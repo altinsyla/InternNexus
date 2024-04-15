@@ -1,0 +1,7 @@
+Week 1 4/15/2024: 
+Created new repository on github, invited all the members. Made a ReadMe file with some small details about what the project is about.
+Kickstarted the project by making the main files and folders in VScode. Made a simple setup about the backend. Installed the required packages that are needed for the backend to start(express.js, nodemon, cors and mongoose). 
+Created new fresh database on Mongo Atlas, connected it with Mongo Compass and our VSCode folders. Invited all of the members in the end.
+Did some research over the main topic. 
+Started designing the UI/UX on Figma.
+
