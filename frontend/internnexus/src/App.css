@@ -1,0 +1,55 @@
+.logo {
+  width: 189.95px; /* Adjust width as needed */
+  height: 60px; /* Maintain aspect ratio */
+}
+body {
+  background-color: #FEF8F8;
+  margin-top: 36px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.NavigationContainer {
+  display: flex;
+  width: 423px;
+  height: 36px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+  color: black;
+}
+
+/* Add gap between Nav links */
+.NavigationContainer a {
+  margin-right: 30px; /* Adjust the margin as needed */
+}
+
+.buttonLogin {
+  margin-left: 10px;
+  width: 120px;
+  height: 36px;
+  border-radius: 6px;
+  border: none;
+  color: #555555;
+  font-size: 14px;
+  white-space: nowrap;
+  background-color: #B3A398;
+  box-shadow: 4px 4px 10px  color-mix(in srgb, #B3A398 100%, #555555 100%); /* Add box shadow to bottom right */
+  cursor:pointer;
+}
+
+
+.NavbarContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* Space between Logo and Nav links */
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+a.nav-link { /* Kjo sherben me ndrru ngjyren e fontit te Nav Barit edhe me ja hek underline-n*/
+  color: #555555;
+  text-decoration: none;
+
+}
