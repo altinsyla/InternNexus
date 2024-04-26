@@ -1,0 +1,13 @@
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+p {
+    border-radius: 5px;
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 70px;
+    padding: 30px;
+    background: linear-gradient(to right, #A5CC82, #00467F);
+}

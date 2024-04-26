@@ -1,0 +1,36 @@
+{
+  "name": "mern-boilerplate",
+  "version": "1.0.2",
+  "description": "Basic Boilerplate for MERN Apps.",
+  "main": "server.js",
+  "scripts": {
+    "build": "npm run build:server  & npm run build:client",
+    "build:server": "babel ./server.js -d build/server",
+    "build-watch:server": "babel ./server.js -d build/server --watch",
+    "build:client": "webpack",
+    "build-watch:client": "webpack --watch",
+    "start-dev": "npm run build:server & npm run build:client && nodemon ./build/server/server.js & npm run build-watch:server & npm run build-watch:client",
+    "start": "node ./build/server/index.js"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "express": "^4.15.4",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "cookie-parser": "^1.0.0",
+    "body-parser": "^1.0.0",
+    "mongoose": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "html-webpack-plugin": "^2.30.1",
+    "nodemon": "^1.11.0",
+    "webpack": "^3.5.5",
+    "css-loader":"^0.28.0",
+    "style-loader":"^0.18.0"
+  }
+}
