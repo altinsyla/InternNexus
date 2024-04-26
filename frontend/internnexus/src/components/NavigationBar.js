@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
-import './styles/App.css';
+import '../styles/App.css';
 import internnexus from '../imgsrc/internnexus.png';
 
 
