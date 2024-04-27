@@ -1,6 +1,11 @@
 .logo {
   width: 189.95px; /* Adjust width as needed */
   height: 60px; /* Maintain aspect ratio */
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-in, ;
+}
+.logo:hover {
+  transform: scale(1.2);
+  box-shadow: 0px 0px 10px 5px #ccc;
 }
 
 .NavigationContainer {
