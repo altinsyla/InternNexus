@@ -35,6 +35,14 @@
   background-color: #B3A398;
   box-shadow: 4px 4px 10px  color-mix(in srgb, #B3A398 100%, #555555 100%); /* Add box shadow to bottom right */
   cursor:pointer;
+
+  transition: transform 0.3s, background-color 0.3s, color 0.2s;
+}
+
+.buttonLogin:hover {
+  transform:translateY(-2px);
+  background-color: #555;
+  color: white;
 }
 
 
