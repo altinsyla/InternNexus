@@ -10,8 +10,6 @@ function App() {
       <header className="App-header">
       </header>
       <body>
-      {/* <NavigationBar /> */}
-      <Login />
       <NavigationBar />
       <Students />
       </body>
