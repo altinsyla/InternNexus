@@ -1,6 +1,6 @@
 import React from 'react';
 import '../src/styles/App.css';
-import NavigationBar from './components/NavigationBar';
+import Login from './components/Login';
 
 function App() {
   return (
@@ -8,7 +8,8 @@ function App() {
       <header className="App-header">
       </header>
       <body>
-      <NavigationBar />
+      {/* <NavigationBar /> */}
+      <Login />
       </body>
     </div>
   );

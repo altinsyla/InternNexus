@@ -50,3 +50,63 @@ a.nav-link { /* Kjo sherben me ndrru ngjyren e fontit te Nav Barit edhe me ja he
   color: #555555;
   text-decoration: none;
 }
+
+.mainDivLogin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 75px;
+}
+
+.mainDivLogin .logo{
+  width: 350px;
+  border: 1 solid black;
+  height: 100px;
+}
+
+.robot-font{
+  font-family: 'Roboto', sans-serif;
+}
+
+.Inputs {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 17px;
+  padding-left: 10px;
+  width: 300px;
+  height: 45px;
+  border: 1px solid #ccc;
+}
+
+.loginBtn {
+  width: 300px;
+  height: 45px;
+  background-color: #555555;
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 100px;
+  cursor: pointer;
+}
+.forgotPasswordDiv {
+  display: flex;
+  width: 320px;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+.signuptext{
+  text-decoration: none;
+  cursor: pointer;
+  color: #555555;
+  font-size: small;
+  padding-left: 5px;
+}
+
+.GoogleLogin {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 150px;
+  margin-top: 35px;
+}
