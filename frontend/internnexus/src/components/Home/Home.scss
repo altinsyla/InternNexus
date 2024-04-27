@@ -1,0 +1,114 @@
+@import '../../styles/_globals.scss';
+@import '../../styles/_fonts';
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    font-size: 100%;
+}
+
+#body{
+    // background-color: $clr_softwhite;
+    font-family: poppins_regular;
+}
+
+.banner{
+    display: flex;
+    justify-content: space-between;
+    
+    gap: 2vw;
+    margin: 5vh 12.5vw;
+
+    // border: 1px solid black;
+    
+}
+
+.banner_bannerPhoto{
+    background-color: rgb(248, 238, 218);
+    width: 45%;
+    // height: 100%;
+    text-align: end;
+    border-radius: 40px;
+}
+
+.banner_maindiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 100%;
+    // border: 1px solid black;
+}
+
+.banner_buttondiv{
+    display: flex;
+    gap: 10%;
+    justify-content: center;
+    align-items: end;
+    // margin-right: 5vw;
+    // border: 1px solid black;
+    height: 20%;
+}
+
+.button_findintern{
+    width: 40%;
+    height: 60%;
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 100px;
+    // cursor: pointer;
+}
+
+.button_registercompany{
+    width: 40%;
+    height: 60%;
+    background-color: #555555;
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 40px;
+    // cursor: pointer;
+}
+
+
+.poweredby{
+    font-family: poppins_black;
+    text-align: center;
+
+    margin-top: 15rem;
+    margin-bottom: 5rem;
+}
+
+.ph_grid{
+    // border: 1px solid black;
+    display: flex;
+    justify-content: center;
+}
+
+.poweredbygrid{
+    display: grid;
+
+    // border: 1px solid black;
+    height: 50rem;
+    width: 80%;
+
+    justify-content: center;
+    align-items: center;
+
+    grid-template-columns: repeat(3, 33%);
+    grid-template-rows: repeat(2, 50%);
+
+}
+
+.gridphotos{
+    width: 70%;
+    height: 100%;
+    object-fit: contain;
+
+    justify-self: center;
+    align-self: center;
+    
+}

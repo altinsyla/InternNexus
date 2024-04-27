@@ -98,7 +98,7 @@ a.nav-link { /* Kjo sherben me ndrru ngjyren e fontit te Nav Barit edhe me ja he
   color: white;
   border: 1px solid #ccc;
   border-radius: 100px;
-  cursor: pointer;
+  cursor: pointer; /* edhe pa qita bon*/
 }
 .forgotPasswordDiv {
   display: flex;
