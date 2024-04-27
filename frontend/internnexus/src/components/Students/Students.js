@@ -1,6 +1,6 @@
 import React from 'react';
-import '../styles/App.css';
-import AltinSyla from '../imgsrc/AltinSyla.jpg';
+import '../Students/Students.css'
+import AltinSyla from '../Students/AltinSyla.jpg';
 import { SiReact, SiExpress, SiMongodb, SiNodedotjs, SiMysql, SiFigma } from 'react-icons/si';
 
 function Students() {

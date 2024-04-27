@@ -1,8 +1,7 @@
 import React from 'react';
 import '../src/styles/App.css';
-import Login from './components/Login';
 import NavigationBar from './components/NavigationBar';
-import Students from './components/Students';
+import Students from './components/Students/Students.js';
 
 function App() {
   return (

@@ -1,0 +1,67 @@
+.studentName{
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+    color: black;
+    
+  }
+  
+  .studentPosition{
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    color:#555555; 
+    font-weight: 700;
+  }
+  
+  .studentSkillsAndEducation{
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    color:#555555; 
+    font-weight: 700;
+  }
+  
+  .studentDescription{
+    width: 627px;
+    height: 326px;
+    font-size: 15px;
+    color: black;
+  }
+  
+  .studentBody{
+    display: flex;
+    flex-direction: column;
+    margin-top: 36px;
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+  
+  .studentContent{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .studentPhoto{
+    width: 400px;
+    height: 533.41px;
+    border-radius: 15px;
+  }
+
+  .skill-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 30px;
+  }
+  
+  .skill-icon {
+    width: 70px; 
+    height: 50px; 
+  }
+  
+  .skill-icon:hover {
+  transform: scale(1.2);
+  box-shadow: 0px 0px 10px 5px #ccc;
+  }
+  .skill-text {
+    font-size: 18px; 
+  }
