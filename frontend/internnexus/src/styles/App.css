@@ -14,6 +14,65 @@
   color: black;
 }
 
+.studentName{
+  font-family: 'Roboto', sans-serif;
+  font-size: 25px;
+  color: black;
+}
+
+.studentPosition{
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  color:#555555; 
+  font-weight: 700;
+}
+
+.studentSkills{
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  color:#555555; 
+  font-weight: 700;
+}
+
+.studentEducation{
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  color:#555555; 
+  font-weight: 700;
+}
+
+.studentDescription{
+  width: 627px;
+  height: 326px;
+  font-size: 15px;
+  color: black;
+}
+
+.studentBody{
+  display: flex;
+  flex-direction: column;
+  margin-top: 36px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.studentContent{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.studentText{
+  flex: 1;
+}
+
+.studentPhoto{
+  width: 400px;
+  height: 533.41px;
+  border-radius: 15px;
+}
+
+
 /* Add gap between Nav links */
 .NavigationContainer a {
   margin-right: 30px; /* Adjust the margin as needed */
