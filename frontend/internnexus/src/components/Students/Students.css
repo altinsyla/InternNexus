@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .studentName{
     font-family: 'Roboto', sans-serif;
     font-size: 25px;
@@ -5,14 +10,27 @@
     
   }
   
-  .studentPosition{
-    font-size: 20px;
+  .studentEducation {
+    font-size: 15px;
     font-family: 'Roboto', sans-serif;
-    color:#555555; 
-    font-weight: 700;
+    color: #555555;
+    font-weight: 400;
+  }
+
+  .studentBanner {
+    text-align: center; /* Center-align the content horizontally */
+    width: auto;
+    height: auto;
   }
   
-  .studentSkillsAndEducation{
+  .studentPhoto {
+    width: 200px; /* Adjust the width of the image as needed */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensure the image is a block element */
+    margin: 0 auto; /* Center the image horizontally */
+  }
+  
+  .studentSkills{
     font-size: 20px;
     font-family: 'Roboto', sans-serif;
     color:#555555; 
@@ -44,6 +62,23 @@
     width: 400px;
     height: 533.41px;
     border-radius: 15px;
+  }
+
+  .buttoncontact{
+    width: 200px;
+    height: 50px;
+    background-color: #555555;
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 40px;
+    margin-top: 20px;
+    transition: transform 0.3s, background-color 0.3s, color 0.2s;
+  }
+
+  .buttoncontact:hover {
+    transform:translateY(-2px);
+    background-color: #555;
+    color: black;
   }
 
   .skill-item {

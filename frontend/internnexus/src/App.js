@@ -8,9 +8,8 @@ import Login from './components/Login.js';
 function App() {
   return (
     <div className="App">
-      <Home />
-      {/* <NavigationBar /> */}
-      {/* <Students /> */}
+      {/* <Home /> */}
+      <Students />
       {/* <Login /> */}
     </div>
   );
