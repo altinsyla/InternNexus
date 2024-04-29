@@ -1,4 +1,6 @@
-* {
+@import '../../styles/_globals.scss';
+
+*{
   margin: 0;
   padding: 0;
 }
@@ -34,6 +36,7 @@
     height: auto; /* Maintain aspect ratio */
     display: block; /* Ensure the image is a block element */
     margin: 0 auto; /* Center the image horizontally */
+    // margin-top: 36px;
   }
   
   .studentSkills{
@@ -54,8 +57,7 @@
     display: flex;
     flex-direction: column;
     margin-top: 36px;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin : $_margin;
   }
   
   .studentContent{
