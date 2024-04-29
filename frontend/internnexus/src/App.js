@@ -1,16 +1,22 @@
 import React from 'react';
 import '../src/styles/App.css';
-import NavigationBar from './components/NavigationBar';
-import Students from './components/Students/Students.js';
-import Home from './components/Home/Home.js';
-import Login from './components/Login.js';
+import NavigationBar from './components/NavigationBar.js';
+import Signup from './components/SignUp/Signup.js';
+
 
 function App() {
   return (
     <div className="App">
+      <header className="App-header">
+      </header>
+      <body>
       {/* <Home /> */}
-      <Students />
       {/* <Login /> */}
+      <NavigationBar />
+      <Signup></Signup>
+      
+      {/* <Students /> */}
+      </body>
     </div>
   );
 }

@@ -2,6 +2,8 @@
   width: 189.95px; /* Adjust width as needed */
   height: 60px; /* Maintain aspect ratio */
   transition: transform 0.3s ease-out, box-shadow 0.3s ease-in, ;
+
+  border-radius: 0px;
 }
 .logo:hover {
   transform: scale(1.2);
@@ -10,7 +12,7 @@
 
 .NavigationContainer {
   display: flex;
-  width: 423px;
+  /* width: 423px; */
   height: 36px;
   flex-direction: row;
   align-items: center;
@@ -24,8 +26,8 @@
   margin-right: 30px; /* Adjust the margin as needed */
 }
 .buttonLogin {
-  margin-left: 10px;
-  width: 150px;
+  /* margin-left: 10px; */
+  width: 100px;
   height: 36px;
   border-radius: 6px;
   border: none;

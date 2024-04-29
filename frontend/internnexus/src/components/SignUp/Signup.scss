@@ -1,0 +1,80 @@
+@import '../../styles/_fonts';
+@import '../../styles/globals';
+
+*{
+    margin: 0;
+    padding: 0;
+    // background: url('./bg.png') no-repeat center center fixed;
+    // background-size: cover;
+}
+
+
+
+.mainDiv {
+    // background-color: white;
+    margin-top: 3.5rem;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // border: 1px solid black;
+}
+.formInputs{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 17px;
+    padding-left: 10px;
+    width: 100%;
+    height: 45px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+.firstP {
+    font-family: poppins_bold;
+    font-size: 20px;
+    align-self: flex-start;
+    margin-bottom: 1rem;
+}
+.secondP{
+    font-family: poppins_bold;
+    font-size: 15px;
+    align-self: flex-start;
+    margin-bottom: 1rem;
+}
+
+
+.logoDiv {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo1 {
+    width: 200px;
+    height: 64px;
+}
+
+.forms {
+    // width: 350px;
+    width: 30%;
+    padding: 0 1rem;
+
+}
+
+.nextBtn {
+    width: 30%;
+    align-self: center;
+    height: 45px;
+    background-color: #555555;
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 100px;
+    cursor: pointer; /* edhe pa qita bon*/
+    
+    transition: transform 0.3s ease-in, background-color 0.3s ease-out, color 0.3s ease-out;
+}
+
+.datepicker{
+    // background-color: red;
+    width: 264%;
+}

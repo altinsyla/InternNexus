@@ -16,9 +16,6 @@ const fontiPerTekste = 'robot-font';
 function Login() {
   return (
     <div>
-      <header>
-      </header>
-      <body>
         <div className='mainDivLogin'>
           <img src={internnexus} alt='Logo' className='logo'/>
           <p style={{fontWeight: 'bold',fontFamily:{fontiPerTekste},fontSize: 30 }}>Log in to InternNexus</p>
@@ -39,7 +36,6 @@ function Login() {
             <a href='#' className='signuptext'> Login With Google</a>
           </div>
         </div>
-      </body>
     </div>
   );
 }
