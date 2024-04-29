@@ -3,20 +3,17 @@ import '../Students/Students.css'
 import AltinSyla from '../Students/AltinSyla.jpg';
 import { SiReact, SiExpress, SiMongodb, SiNodedotjs, SiMysql, SiFigma } from 'react-icons/si';
 import NavigationBar from '../NavigationBar';
-import { useState } from 'react';
 
 function Students() {
-const [clicked, setClicked] = useState('false');
+// const [clicked, setClicked] = useState('false');
 
-  const handleClick = () => {
-    setClicked(true);
-    setTimeout(() => setClicked(false), 800);
-  };
+//   const handleClick = () => {
+//     setClicked(true);
+//     setTimeout(() => setClicked(false), 800);
+//   };
 
   return (
     <div>
-      <header></header>
-      <body>
         <NavigationBar />
       <div className='studentBody'>
         <div className="studentContent">
@@ -31,8 +28,7 @@ const [clicked, setClicked] = useState('false');
           alt="studentPhoto"
           className='studentPhoto' />
            <button
-      className={`buttoncontact ${clicked ? 'clicked' : ''}`}
-      onClick={handleClick}
+      className='buttoncontact'
     >
       GET STARTED
     </button>
@@ -50,7 +46,6 @@ const [clicked, setClicked] = useState('false');
         <SiMysql className="skill-icon" />
       </div>
     </div>
-      </body>
     </div>
   );
 }

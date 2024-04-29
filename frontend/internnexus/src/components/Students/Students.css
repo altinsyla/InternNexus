@@ -83,15 +83,16 @@
   
   .buttoncontact:hover {
     transform: translateY(-2px);
-    background-color: #555;
+    background-color: white;
     color: black;
+    transform: translateX(5px);
   }
   
-  .clicked {
+  /* .clicked {
     transform: translateX(5px);
     background-color: white; 
     color: black; 
-  }
+  } */
 
   .skill-item {
     display: flex;
