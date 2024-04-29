@@ -7,8 +7,14 @@
     font-family: 'Roboto', sans-serif;
     font-size: 25px;
     color: black;
-    
+    transition: transform 0.3s;
+    transform-origin: center; /* Set the transform origin to the center of the element */
+    display: inline-block;
   }
+
+.studentName:hover {
+  transform: scale(1.2);
+}
   
   .studentEducation {
     font-size: 15px;
@@ -64,7 +70,7 @@
     border-radius: 15px;
   }
 
-  .buttoncontact{
+  .buttoncontact {
     width: 200px;
     height: 50px;
     background-color: #555555;
@@ -74,11 +80,17 @@
     margin-top: 20px;
     transition: transform 0.3s, background-color 0.3s, color 0.2s;
   }
-
+  
   .buttoncontact:hover {
-    transform:translateY(-2px);
+    transform: translateY(-2px);
     background-color: #555;
     color: black;
+  }
+  
+  .clicked {
+    transform: translateX(5px);
+    background-color: white; 
+    color: black; 
   }
 
   .skill-item {
