@@ -3,6 +3,11 @@ import '../src/styles/App.css';
 import NavigationBar from './components/NavigationBar.js';
 import Signup from './components/SignUp/Signup.js';
 
+import Footer from './components/Footer/Footer.js';
+import Home from './components/Home/Home.js';
+import Internships from './components/Internships/Internships.js';
+import Login from './components/Login.js';
+import Students from './components/Students/Students.js';
 
 function App() {
   return (
@@ -17,6 +22,11 @@ function App() {
       
       {/* <Students /> */}
       </body>
+      <Home />
+      <Students />
+      <Login />
+      <Footer />
+      <Internships />
     </div>
   );
 }
