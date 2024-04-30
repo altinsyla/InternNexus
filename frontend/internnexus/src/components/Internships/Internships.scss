@@ -8,7 +8,13 @@
     // border: 1px solid black;
     width: 100%;
     height: auto;
-    // border: 1px solid black;
-
     padding: $_margin;
+}
+
+.searchInput { 
+    width: 100%;
+    border-radius: 15px;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
 }

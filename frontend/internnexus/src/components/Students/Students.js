@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Students/Students.css'
+import '../Students/Students.scss'
 import AltinSyla from '../Students/AltinSyla.jpg';
 import { SiReact, SiExpress, SiMongodb, SiNodedotjs, SiMysql, SiFigma } from 'react-icons/si';
 import NavigationBar from '../NavigationBar';
