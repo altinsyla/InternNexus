@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { Button } from 'react-bootstrap';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "./Signup.scss";
-
+import '../SignUp/Signup.css';
 
 function Signup() {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -41,8 +40,10 @@ function Signup() {
             placeholderText="Birth Date"
           />
         </form>
-        <Button className="nextBtn">Next</Button>
+        <Button className="butoniNext">Next</Button>
+
       </div>
+
     </>
   );
 }

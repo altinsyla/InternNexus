@@ -1,0 +1,45 @@
+.logoDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo1{
+    width: 200px;
+    height: 64px;
+}
+.mainDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid black;
+}
+.input-image{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    width: 14rem;
+    height: 7rem;
+    border-radius: 15px;
+}
+.first-p{
+    align-self: center
+}
+.description-area{
+    margin-top: 1rem;
+    width: 23rem;
+    height: 3rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+.icon{
+    opacity: 0.4;
+    align-self: center;
+    margin-bottom: 10px;
+}
+.second-p{
+    font-weight: 300;
+}
