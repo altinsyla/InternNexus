@@ -1,11 +1,16 @@
 import "./Home.scss";
 import NavigationBar from "../NavigationBar";
-// import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Studentcard from "./StudentCard";
+import { useState } from "react";
 
 function Home() {
+
+  const [isDark, setIsDark] = useState(false);
+
+
   return (
-    <div id="body">
+    <div id="body" data-theme = {isDark ? 'dark' : 'light'}>
       <NavigationBar />
       <div className="banner">
         <div className="banner_main">
@@ -23,17 +28,17 @@ function Home() {
               </p>
             </div>
             <div className="banner_buttondiv">
-              <button className="button_findintern">
+              <button className="button_registercompany" onClick={() => setIsDark(true)}>
                 Register your company
               </button>
-              <button className="button_registercompany">Find an Intern</button>
+              <button className="button_findintern" onClick={() => console.log(isDark)}>Find an Intern</button>
             </div>
           </div>
         </div>
         <div className="banner_bannerPhoto">
           <img
             src={require("./img/man_laptop.jpeg")}
-            alt="Photo"
+            alt="Man with laptop"
             style={{ height: 400 }}
           ></img>
         </div>
@@ -43,15 +48,52 @@ function Home() {
 
       <div className="ph_grid">
         <div className="poweredbygrid">
-          <img src={require("./img/gjirafalab.png")} className="gridphotos img1"></img>
-          <img src={require("./img/frakton.png")} className="gridphotos img2"></img>
-          <img src={require("./img/ict.png")} className="gridphotos img3"></img>
-          <img src={require("./img/solaborate.png")} className="gridphotos img4"></img>
-          <img src={require("./img/starlabs.png")} className="gridphotos img5"></img>
-          <img src={require("./img/xponent.jpg")} className="gridphotos img6"></img>
+          <img
+            src={require("./img/gjirafalab.png")}
+            className="gridphotos img1"
+            alt="company"
+          ></img>
+          <img
+            src={require("./img/frakton.png")}
+            className="gridphotos img2"
+            alt="company"
+          ></img>
+          <img
+            src={require("./img/ict.png")}
+            className="gridphotos img3"
+            alt="company"
+          ></img>
+          <img
+            src={require("./img/solaborate.png")}
+            className="gridphotos img4"
+            alt="company"
+          ></img>
+          <img
+            src={require("./img/starlabs.png")}
+            className="gridphotos img5"
+            alt="company"
+          ></img>
+          <img
+            src={require("./img/xponent.jpg")}
+            className="gridphotos img6"
+            alt="company"
+          ></img>
         </div>
       </div>
-      <h1 className="poweredby">MEET OUR DEVS</h1>
+      <h1 className="poweredby">FIND STUDENTS</h1>
+      <div className="studentcarddiv">
+          <Studentcard />
+          <Studentcard />
+          <Studentcard />
+          <Studentcard />
+          <Studentcard />
+          <Studentcard />
+          <Studentcard />
+          <Studentcard />
+          <Studentcard />
+          <Studentcard />
+      </div>
+      <h1 className="fontblack" style={{textAlign: 'center', marginTop: '15rem'}}>MEET THE DEVS</h1>
     </div>
   );
 }

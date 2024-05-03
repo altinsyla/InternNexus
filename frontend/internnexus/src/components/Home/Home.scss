@@ -1,6 +1,10 @@
 @import '../../styles/_globals.scss';
 @import '../../styles/_fonts';
 
+
+
+
+
 *{
     margin: 0;
     padding: 0;
@@ -13,6 +17,13 @@ html{
 #body{
     // background-color: $clr_softwhite;
     font-family: poppins_regular;
+
+    background-color: #f2f2f2;
+    // background-color: black;
+}
+
+[data-theme = "dark"] {
+    background-color: black;
 }
 
 .banner{
@@ -21,13 +32,14 @@ html{
     
     gap: 2vw;
     margin: 5vh 12.5vw;
-
+    padding: 2rem;
+    background-color: $clr_softwhite;
     // border: 1px solid black;
     
 }
 
 .banner_bannerPhoto{
-    background-color: rgb(248, 238, 218);
+    background-color: $clr_buttontheme2;
     width: 45%;
     // height: 100%;
     text-align: end;
@@ -53,24 +65,35 @@ html{
     height: 20%;
 }
 
-.button_findintern{
+.button_registercompany{
     width: 40%;
     height: 60%;
-    background-color: white;
+    background-color: $clr_bgtheme;
     color: black;
     border: 1px solid #ccc;
     border-radius: 100px;
     // cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s, color 0.2s;
 }
 
-.button_registercompany{
+.button_registercompany:hover{
+    background-color: $clr_buttontheme;
+    color: white;
+}
+
+.button_findintern{
     width: 40%;
     height: 60%;
-    background-color: #555555;
+    background-color: $clr_buttontheme2;
     color: white;
     border: 1px solid #ccc;
     border-radius: 40px;
     // cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s, color 0.2s;
+}
+
+.button_findintern:hover{
+    background-color: $clr_buttontheme;
 }
 
 
@@ -93,7 +116,7 @@ html{
 
     // border: 1px solid black;
     height: 50rem;
-    width: 80%;
+    width: 60%;
 
     justify-content: center;
     align-items: center;
@@ -110,5 +133,49 @@ html{
 
     justify-self: center;
     align-self: center;
+}
+
+.studentcarddiv{
+    margin: $_margin;
+    padding: 1rem 2rem;
+    height: 500px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow-x: scroll;
+    flex-shrink: 0;
+    scroll-snap-type: x mandatory;
+
+    gap: .75rem;
+    background-color: $clr_softwhite;
+}
+
+.studentcarddiv::-webkit-scrollbar {
+    height: 12px;
     
 }
+  
+  .studentcarddiv::-webkit-scrollbar-thumb,
+  .studentcarddiv::-webkit-scrollbar-track {
+    border-radius: 92px;
+  }
+  
+  .studentcarddiv::-webkit-scrollbar-thumb {
+    background: $clr_buttontheme2;
+  }
+  
+  .studentcarddiv::-webkit-scrollbar-track {
+    background: $clr_graywhite;
+  }
+
+
+
+  :root {
+    --red: #ef233c;
+    --darkred: #c00424;
+    --platinum: #e5e5e5;
+    --black: #2b2d42;
+    --white: #fff;
+    --thumb: #edf2f4;
+  }
