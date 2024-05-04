@@ -51,7 +51,7 @@ function Home() {
           <img src={require("./img/xponent.jpg")} className="gridphotos img6"></img>
         </div>
       </div>
-      <h1 className="poweredby">MEET OUR DEVS</h1>
+      <h3 className="poweredby">MEET OUR DEVS</h3>
     </div>
   );
 }
