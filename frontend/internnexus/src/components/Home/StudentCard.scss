@@ -1,0 +1,22 @@
+@import '../../styles/_globals.scss';
+
+
+.card{
+    scroll-snap-align: start;
+}
+
+
+.cardText{
+    // color: $clr_softgray;
+    color: $clr_mediumgray;
+}
+
+.button_details{
+    width: 35%;
+    height: 2.25rem;
+    background-color: $clr_buttontheme2;
+    color: white;
+    border: 1px solid #ccc;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}

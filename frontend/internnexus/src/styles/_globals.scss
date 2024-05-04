@@ -2,18 +2,39 @@ $_margin: 0 12.5vw;
 
 
 
-$clr_softwhite: #FEFFEC;
+$clr_softwhite: #f2f2f2; 
 $clr_graywhite: #e6e6e6;
+$clr_softgray: #e6e6e6;
 
 
-.fontbold{
-  font-family: poppins_bold;  
-}
+$clr_buttontheme: #666666;
+$clr_buttontheme2: #B3A398;
+$clr_bgtheme: #f2f2f2;
+
+
+$clr_lightgray: #cccccc;
+$clr_mediumgray: #8c8c8c;
+$clr_darkgray: #595959;
+
+
 
 .fontthin{
-    font-family: poppins_thin;
+  font-family: poppins_thin;
 }
 
 .fontregular{
   font-family: poppins_regular;
 }
+
+.fontbold{
+  font-family: poppins_bold;  
+}
+
+.fontmedium{
+  font-family: poppins_medium;
+}
+
+.fontblack{
+  font-family: poppins_black;
+}
+
