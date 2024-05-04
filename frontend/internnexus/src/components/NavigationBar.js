@@ -12,10 +12,9 @@ function NavigationBar() {
           </Container>
           <Nav className="NavigationContainer">
             <Nav.Link href="#home">HOME</Nav.Link>
-            <Nav.Link href="#features">INTERNSHIPS</Nav.Link>
-            <Nav.Link href="#pricing">STUDENTS</Nav.Link>
-            <button className="buttonLogin">LOG IN</button>{" "}
-            {/* LOG IN BUTTON IS NOT WIDE ENOUGH!!*/}
+            <Nav.Link href="#internships">INTERNSHIPS</Nav.Link>
+            <Nav.Link href="#students">STUDENTS</Nav.Link>
+            <button className="buttonLogin">LOG IN</button>
           </Nav>
         </Navbar>
     </div>
