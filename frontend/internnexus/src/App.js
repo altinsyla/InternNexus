@@ -5,6 +5,7 @@ import SignUp2 from "./components/SignUp2/SignUp2.js";
 
 function App() {
   return (
+    
     <div className="App">
       {/* <NavigationBar /> */}
       {/* <Signup /> */}
