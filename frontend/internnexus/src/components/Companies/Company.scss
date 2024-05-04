@@ -1,0 +1,33 @@
+@import '../../styles/globals';
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.mainDiv {
+    padding: $_margin;
+    width: 100%;
+    height: auto;
+}
+
+.imageDiv { 
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 5%;
+}
+
+.companyLogo {
+    width: 20%;
+    height: 20%;
+}
+
+.meetmentors{
+    font-family: poppins_bold;
+    text-align: center;
+    margin-top: 10%;
+    margin-bottom: 5%;
+}

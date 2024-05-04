@@ -1,0 +1,67 @@
+@import '../../styles/globals';
+
+* {
+    margin: 0;
+    padding: 0;
+}
+.mainContainer{
+    border: 1px solid black;
+    width: 100%;
+    // height: auto;
+    padding: $_margin;
+}
+
+.companyLogo {
+    width: 25%;
+    height: 25%;
+    object-fit: contain;
+}
+
+.applyCard { 
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+}
+
+.specifications { 
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: right;
+    margin-left: 10%;
+    background-color: white;
+    gap: 10%;
+    padding-left: 3%;
+    padding-top: 3%;
+    border-radius: 20px;
+}
+
+.description {
+    display: flex;
+    flex: column;
+    justify-content: center;
+    // border: 1px solid black;
+    width: 100%;
+    height: auto;
+    margin-top: 5%;
+    border-radius: 20px;
+    background-color: white;
+    font-size: 20px;
+}
+
+.buttonDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button{
+    margin-top: 10%;
+    width: 15%;
+    height: 45px;
+    background-color: #555555;
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 40px;
+}
