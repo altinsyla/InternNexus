@@ -1,0 +1,14 @@
+[
+    {
+        "Skills": "Html",
+        "Icon" : "❤️"
+    },
+    {
+        "SkillsCss": "Css",
+        "Icon" : "💙"
+    },
+    {
+        "SkillsJs": "JavaScript",
+        "Icon" : "🍔"
+    }
+]

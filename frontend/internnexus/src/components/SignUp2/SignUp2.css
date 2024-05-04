@@ -12,6 +12,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    max-width:min-content;
+    max-height: max-content;
     border: 1px solid black;
 }
 .input-image{
@@ -25,14 +27,19 @@
     border-radius: 15px;
 }
 .first-p{
-    align-self: center
+    font-family: 'roboto', sans-serif;
+    font-weight: 800;
+    font-size: larger;
+    align-self: flex-start;
+    
 }
 .description-area{
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     width: 23rem;
     height: 3rem;
     border: 1px solid #ccc;
     border-radius: 10px;
+
     padding-left: 10px;
 }
 .icon{
@@ -42,4 +49,21 @@
 }
 .second-p{
     font-weight: 300;
+}
+.parentMainDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.first-p-skills {
+    font-size: small;
+    font-weight: 800;
+    align-self: self-start;
+    padding-bottom: 1.5rem;
+}
+.dropdown{
+    height: 100%;
+    display: grid;
+    place-items: center;
+    background-color: #ccc;
 }
