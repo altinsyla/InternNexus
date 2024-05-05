@@ -6,7 +6,8 @@
     "@ant-design/icons": "^5.3.6",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@mui/material": "^5.15.15",
+    "@mui/icons-material": "^5.15.16",
+    "@mui/material": "^5.15.16",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@mui/x-date-pickers": "^7.3.1",
     "@testing-library/jest-dom": "^5.17.0",
@@ -20,6 +21,7 @@
     "react-date-picker": "^10.6.0",
     "react-datepicker": "^6.9.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^5.3.4",
     "react-scripts": "5.0.1",
     "sass": "^1.75.0",
     "styled-components": "^6.1.8",
@@ -48,5 +50,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "^5.3.3"
   }
 }

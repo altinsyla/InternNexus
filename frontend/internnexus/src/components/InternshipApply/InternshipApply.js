@@ -37,8 +37,9 @@ function InternshipApply() {
         </p>
       </div>
       <div className="buttonDiv">
-        <button className="fontbold">APPLY</button>
+        <button className="fontbold applybutton">APPLY</button>
       </div>
+      {/* <Footer></Footer>  MOS E LE PA FOOTER*/} 
     </div>
   );
 }

@@ -57,7 +57,7 @@ function Internships() {
   return (
     <div>
       <NavigationBar />
-      <body className="internship_body">
+      <div className="internship_body">
         <input
           type="text"
           placeholder="Search..."
@@ -68,7 +68,7 @@ function Internships() {
         {filteredInternshipCards.map((card, index) => (
           <InternshipCard key={index} {...card} />
         ))}
-      </body>
+      </div>
     </div>
   );
 }
