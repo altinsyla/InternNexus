@@ -1,4 +1,5 @@
 @import '../../styles/globals';
+@import '../../styles/_fonts';
 
 * {
     margin: 0;
@@ -30,4 +31,48 @@
     text-align: center;
     margin-top: 10%;
     margin-bottom: 5%;
+}
+
+.mentorscarddiv{
+  // margin: $_margin;
+  padding: 1rem 2rem;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  overflow-x: scroll;
+  flex-shrink: 0;
+  scroll-snap-type: x mandatory;
+  gap: .75rem;
+  background-color: $clr_softwhite;
+  margin-bottom: 5%;
+}
+
+.mentorscarddiv::-webkit-scrollbar {
+  height: 12px;
+  
+}
+
+.mentorscarddiv::-webkit-scrollbar-thumb,
+.mentorscarddiv::-webkit-scrollbar-track {
+  border-radius: 92px;
+}
+
+.mentorscarddiv::-webkit-scrollbar-thumb {
+  background: $clr_buttontheme2;
+}
+
+.mentorscarddiv::-webkit-scrollbar-track {
+  background: $clr_graywhite;
+}
+
+
+
+:root {
+  --red: #ef233c;
+  --darkred: #c00424;
+  --platinum: #e5e5e5;
+  --black: #2b2d42;
+  --white: #fff;
+  --thumb: #edf2f4;
 }

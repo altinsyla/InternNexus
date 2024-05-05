@@ -5,14 +5,17 @@ import drenakusari from '../Companies/drenakusari.jpg';
 import ardianhoxha from '../Companies/ardianhoxha.jpg';
 import blerandstavileci from '../Companies/blerandstavileci.jpg';
 import celiknimani from '../Companies/celiknimani.jpg';
-import Carousel from 'react-bootstrap/Carousel';
+import MentorsCard from "./MentorsCard";
+import NavigationBar from "../NavigationBar";
 
 function Company() {
   return (
+    <div>
+      <NavigationBar />
     <div className="mainDiv">
       <div className="imageDiv">
         <img src={Gjirafalab} alt="gjirafalab" className="companyLogo" />
-        <p className="fontregular" style={{ marginLeft: "10%" }}>
+        <p className="fontregular" style={{ marginLeft: "10%"}}>
           Gjirafa Lab is a startup factory, made for Internet entrepreneurs who
           lack access to resources and market. As a startup factory, the Lab
           will provide the space, mentoring, networking, technology, talent
@@ -27,6 +30,14 @@ function Company() {
         </p>
       </div>
       <h2 className="meetmentors">MEET OUR MENTORS</h2>
+      <div className="mentorscarddiv">
+        <MentorsCard />
+        <MentorsCard /> 
+        <MentorsCard />
+        <MentorsCard />
+        <MentorsCard />
+      </div>
+    </div>
     </div>
   );
 }
