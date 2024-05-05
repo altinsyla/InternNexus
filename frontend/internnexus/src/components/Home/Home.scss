@@ -2,8 +2,24 @@
 @import '../../styles/_fonts';
 
 
+// 320px — 480px: Mobile devices
+// 481px — 768px: iPads, Tablets
+// 769px — 1024px: Small screens, laptops
+// 1025px — 1200px: Desktops, large screens
+// 1201px and more —  Extra large screens, TV
 
-
+// @media screen and (max-width: 480px) { // mobile devices
+//     .navbarcontainer {
+//     //   width: 100%;
+//     //   height: 4rem;
+    
+//     //   display: flex;
+//     //   padding: 0 5rem;
+//     //   margin-top: 2rem;
+//     background-color: red;
+//     }
+  
+//   }
 
 *{
     margin: 0;
@@ -11,15 +27,21 @@
 }
 
 html{
+    background-color: #f2f2f2;
+
     font-size: 100%;
 }
 
 #body{
     // background-color: $clr_softwhite;
     font-family: poppins_regular;
-
     background-color: #f2f2f2;
     // background-color: black;
+}
+
+#container{
+    margin: 5vh 12.5vw;
+
 }
 
 [data-theme = "dark"] {
@@ -31,7 +53,7 @@ html{
     justify-content: space-between;
     
     gap: 2vw;
-    margin: 5vh 12.5vw;
+    // margin: 5vh 12.5vw;
     padding: 2rem;
     background-color: $clr_softwhite;
     // border: 1px solid black;
@@ -90,6 +112,10 @@ html{
     border-radius: 40px;
     // cursor: pointer;
     transition: transform 0.3s, background-color 0.3s, color 0.2s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .button_findintern:hover{
@@ -116,7 +142,7 @@ html{
 
     // border: 1px solid black;
     height: 50rem;
-    width: 60%;
+    // width: 60%;
 
     justify-content: center;
     align-items: center;
@@ -136,19 +162,25 @@ html{
 }
 
 .studentcarddiv{
-    margin: $_margin;
-    padding: 1rem 2rem;
-    height: 500px;
+    // margin: $_margin;
+    padding: 0.5rem 0;
+    // margin: 0.5rem 3rem;
+    // height: 400px;
+    // width: ;
 
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    flex-direction: row;
+
+    // flex-wrap: nowrap;
+    // overflow-y: scroll;
     overflow-x: scroll;
-    flex-shrink: 0;
-    scroll-snap-type: x mandatory;
+    // flex-shrink: 0;
+    // scroll-snap-type: x mandatory;
 
     gap: .75rem;
-    background-color: $clr_softwhite;
+    // background-color: $clr_softwhite;
+
+    // border: 1px solid black;
 }
 
 .studentcarddiv::-webkit-scrollbar {
@@ -169,13 +201,33 @@ html{
     background: $clr_graywhite;
   }
 
+.devcarddiv{
+    // margin-top: 10rem;
 
+    display: flex;
+    justify-content: center;
+    height: fit-content;
 
-  :root {
-    --red: #ef233c;
-    --darkred: #c00424;
-    --platinum: #e5e5e5;
-    --black: #2b2d42;
-    --white: #fff;
-    --thumb: #edf2f4;
-  }
+    gap: 3rem;
+
+    // border: 1px solid black;
+}
+
+.devcard{
+    height: fit-content;
+
+}
+
+.button_details{
+    width: 35%;
+    height: 2.25rem;
+    background-color: $clr_buttontheme2;
+    color: white;
+    border: 1px solid #ccc;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
