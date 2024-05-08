@@ -3,65 +3,123 @@
 * {
     margin: 0;
     padding: 0;
+    background-color: #f2f2f2;
 }
-.mainContainer{
-    // border: 1px solid black;
+.applymainContainer{
     width: 100%;
-    // height: auto;
     padding: $_margin;
 }
-
-.companyLogo {
-    width: 25%;
-    height: 25%;
+.applycompanyLogo {
+    width: 40%;
+    height: 40%;
     object-fit: contain;
 }
-
 .applyCard { 
     display: flex;
     flex-direction: row;
     margin-top: 5%;
 }
-
 .specifications { 
     display: flex;
     flex-direction: column;
     width: 100%;
     justify-content: right;
     margin-left: 10%;
-    background-color: white;
-    gap: 10%;
+    background-color: #FEF8F8;
+    gap: 7%;
     padding-left: 3%;
     padding-top: 3%;
     border-radius: 20px;
 }
-
-.description {
-    display: flex;
-    flex: column;
-    justify-content: center;
-    // border: 1px solid black;
+.intapplydescription {
     width: 100%;
     height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin-top: 5%;
     border-radius: 20px;
-    background-color: white;
     font-size: 20px;
+    margin-bottom: 5%;
+    font-family: poppins_regular;
 }
-
-.buttonDiv {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.applybutton{
-    margin-top: 10%;
-    width: 15%;
-    height: 45px;
+.apply-button{
+    width: 20%;
+    height: 12%;
+    border-radius: 20px;
+    font-family: poppins_regular;
+    font-size: 1rem;
     background-color: #555555;
     color: white;
     border: 1px solid #ccc;
-    border-radius: 40px;
+    border-radius: 100px;
+    cursor: pointer;
+
+}
+@media only screen and (max-width: 480px) {
+    .applyCard{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .applycompanyLogo {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: $_margin;
+        margin-bottom: 10%;
+    }
+    .specifications {
+        width: 100%;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: $_margin;
+        margin-bottom: 5%;
+        align-items: center;
+    }
+
+    .intapplydescription{
+        font-size: 1rem;
+        font-family: poppins_regular;
+    }
+    .apply-button{
+        width: 20%;
+        height: 12%;
+        border-radius: 20px;
+        font-family: poppins_regular;
+        background-color: #555555;
+        color: white;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+
+    h2{
+        font-size: 1.2rem;
+    }
+    h5 {
+        font-size: 0.9rem;
+    }
+    h6 {
+        font-size: 0.8rem;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .intapplydescription{
+        font-family: poppins_regular;
+    }
+    .apply-button{
+        width: 60%;
+        height: 12%;
+        border-radius: 20px;
+        font-family: poppins_regular;
+        background-color: #555555;
+        color: white;
+        border: 1px solid #ccc;
+        border-radius: 100px;
+        cursor: pointer;
+    }
 }

@@ -2,7 +2,8 @@ import React from 'react';
 import '../Students/Students.scss'
 import AltinSyla from '../Students/AltinSyla.jpg';
 import { SiReact, SiExpress, SiMongodb, SiNodedotjs, SiMysql, SiFigma } from 'react-icons/si';
-import NavigationBar from '../NavigationBar';
+import NavBar from "../NavBar/NavBar.js";
+import Footer from '../Footer/Footer.js';
 
 function Students() {
 // const [clicked, setClicked] = useState('false');
@@ -14,7 +15,7 @@ function Students() {
 
   return (
     <div>
-        <NavigationBar />
+      <NavBar />
       <div className='studentBody'>
         <div className="studentContent">
           <div style={{flex: 1}}>
@@ -27,11 +28,11 @@ function Students() {
           <img src={AltinSyla} 
           alt="studentPhoto"
           className='studentPhoto' />
-           <button
+           {/* <button
       className='buttoncontact'
     >
       GET STARTED
-    </button>
+    </button> */}
           </div>
         </div>
         <p className='studentSkills'>Skills</p>
@@ -46,6 +47,7 @@ function Students() {
         <SiMysql className="skill-icon" />
       </div>
     </div>
+    <Footer />
     </div>
   );
 }

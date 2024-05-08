@@ -1,14 +1,14 @@
 import React from "react";
 import "../Internships/InternshipCard.scss";
 
-function InternshipCard({ title, type, location, image }) {
+function InternshipCard({ title, type, location, image, key }) {
   return (
-    <div className="card_body">
+    <div className="internshipcard_body" key={key}>
       <img src={image} alt="Company Logo" className="company_logo" />
       <div className="positionInfo">
-        <p className="companyName fontbold">{title}</p>
-        <p className="companyName fontregular">{type}</p>
-        <p className="locationName fontregular">{location}</p>
+        <p className="companyName">{title}</p>
+        <p className="companyType">{type}</p>
+        <p className="locationName">{location}</p>
       </div>
     </div>
   );

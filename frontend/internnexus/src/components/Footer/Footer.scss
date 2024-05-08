@@ -35,3 +35,22 @@
     font-size: 40px;
 }
 
+@media only screen and (max-width: 480px) {
+    .footerLogo {
+        width: 40%;
+        height: 100%;
+        object-fit: scale-down;
+    }
+    .footer_icons{
+        width: 70%;
+        height: 100%;
+        display: flex;
+        justify-content: right;    
+        align-items: right;
+        gap: 0.5rem;
+    }
+    .footerIcons {
+        font-size: 30px;
+    }
+}
+

@@ -1,10 +1,9 @@
-@import '../../styles/_fonts';
-
 body {
     background-color: #FEF8F8;
+    margin-top: 36px;
 }
 
-.card_body {
+.internshipcard_body {
     width: 100%;
     padding: 0 2rem;
     border-radius: 20px;
@@ -13,14 +12,15 @@ body {
     flex-direction: row;
     align-items: center;
     margin-top: 36px;
-    background-color: white
+    background-color: #FEF8F8;
 }
 .company_logo { 
     width: 20%;
     height: 70%;
     object-fit: contain;
     margin-left: 36px;
-    // padding-top: 100%;
+    margin-right: 36px;
+    background-color: #FEF8F8;
 }
   
 
@@ -30,13 +30,78 @@ body {
     display: flex;
     flex-direction: column;
     margin-left: 40px;
-    // border: 1px solid black;
+    padding-top: 20px;
+    background-color: #FEF8F8;
 }
 
 .locationName {
-    // border: 1px solid black;
-    // justify-self: flex-end;
     justify-self: baseline;
     width: fit-content;
-    align-self: flex-end;    
+    align-self: flex-end;
+    margin-bottom: 10px;
+    background-color: #FEF8F8;
+    font-family: poppins_regular;   
+    font-size: 1.2rem;
 }
+
+.companyName { 
+    background-color: #FEF8F8;
+    font-family: poppins_bold;   
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    text-align: left;
+}
+.companyType { 
+    background-color: #FEF8F8;
+    font-family: poppins_regular;   
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+@media only screen and (max-width: 480px) {
+    .internshipcard_body {
+       width: 100%;
+       height: auto;
+       padding: 10px;
+     }
+    .company_logo {
+       width: 25%;
+       height: 30%;
+     }
+    .positionInfo {
+       width: 60%;
+       height: 50%;
+     }
+     .locationName {
+      justify-self: baseline;
+      width: fit-content;
+      align-self: flex-start;
+      margin-bottom: 10px;
+      background-color: #FEF8F8;
+      font-family: poppins_regular;   
+      font-size: 0.9rem;
+  }
+  .companyName{
+    font-size: 1.1rem;
+  }
+  .companyType{
+    font-size: 1rem;
+  }
+   }
+   
+   @media only screen and (max-width: 768px) {
+    .internshipcard_body {
+       width: 100%;
+       height: auto;
+       padding: 10px;
+     }
+    .company_logo {
+       width: 30%;
+       height: 50%;
+     }
+    .positionInfo {
+       width: 60%;
+       height: 50%;
+     }
+   }

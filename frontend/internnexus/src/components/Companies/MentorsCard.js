@@ -6,11 +6,11 @@ import blerandstavileci from '../Companies/blerandstavileci.jpg';
 
 function MentorsCard() {
   return (
-    <Card style={{ width: '18rem'}} className='card'>
+    <Card style={{ width: '18rem'}} className='mentors-card'>
       <Card.Img variant="top" src={blerandstavileci} />
       <Card.Body>
         <Card.Title className='fontmedium'>Blerand Stavileci</Card.Title>
-        <Card.Text className='cardText fontthin'>
+        <Card.Text className='mentors-card-text fontthin'>
         Minister of Economic Development        </Card.Text>
       </Card.Body>
     </Card>

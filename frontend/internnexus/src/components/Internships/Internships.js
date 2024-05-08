@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "../../components/Internships/Internships.scss";
 import InternshipCard from "../../components/Internships/InternshipCard.js";
-import NavigationBar from "../NavigationBar.js";
 import frakton from "../Internships/img/frakton.png";
 import xponent from "../Internships/img/xponent.jpg";
 import starlabs from "../Internships/img/starlabs.png";
 import ict from "../Internships/img/ict.png";
 import solaborate from "../Internships/img/solaborate.png";
+import Footer from '../Footer/Footer.js';
+import NavBar from '../NavBar/NavBar.js';
 
 function Internships() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -56,19 +57,20 @@ function Internships() {
 
   return (
     <div>
-      <NavigationBar />
+      <NavBar />
       <div className="internship_body">
         <input
           type="text"
           placeholder="Search..."
           value={searchQuery}
           onChange={handleSearchChange}
-          className="searchInput"
+          className="internshipsearchInput"
         />
         {filteredInternshipCards.map((card, index) => (
           <InternshipCard key={index} {...card} />
         ))}
       </div>
+      <Footer />
     </div>
   );
 }

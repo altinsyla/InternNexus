@@ -10,55 +10,6 @@
   box-shadow: 0px 0px 10px 5px #ccc;
 }
 
-.NavigationContainer {
-  display: flex;
-  /* width: 423px; */
-  height: 36px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  text-decoration: none;
-  color: black;
-}
-
-/* Add gap between Nav links */
-.NavigationContainer a {
-  margin-right: 30px; /* Adjust the margin as needed */
-}
-.buttonLogin {
-  /* margin-left: 10px; */
-  width: 100px;
-  height: 36px;
-  border-radius: 6px;
-  border: none;
-  color: #555555;
-  font-size: 14px;
-  white-space: nowrap;
-  background-color: #B3A398;
-  box-shadow: 4px 4px 10px  color-mix(in srgb, #B3A398 100%, #555555 100%); /* Add box shadow to bottom right */
-  cursor:pointer;
-
-  transition: transform 0.3s, background-color 0.3s, color 0.2s;
-}
-
-.buttonLogin:hover {
-  transform:translateY(-2px);
-  background-color: #555;
-  color: white;
-}
-
-
-.NavbarContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between; /* Space between Logo and Nav links */
-  align-items: center;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  /* margin-top: 36px; */
-  margin-left: 100px;
-  margin-right: 100px;
-}
 
 a.nav-link { /* Kjo sherben me ndrru ngjyren e fontit te Nav Barit edhe me ja hek underline-n*/
   color: #555555;

@@ -2,22 +2,26 @@
 
 
 
-.card{
+.mentors-card{
     scroll-snap-align: start;
 }
 
 
-.cardText{
+.mentors-card-text{
     // color: $clr_softgray;
     color: $clr_mediumgray;
 }
 
-.button_details{
-    width: 35%;
-    height: 2.25rem;
-    background-color: $clr_buttontheme2;
-    color: white;
-    border: 1px solid #ccc;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
+
+@media only screen and (max-width: 480px) {
+ .mentors-card {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }
+@media only screen and (max-width: 768px) {
+.mentors-card {
+    width: 100%;
+    }
+}
+   

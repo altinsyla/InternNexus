@@ -3,18 +3,38 @@
 * {
     margin: 0;
     padding: 0;
+    background-color: #f2f2f2;
 }
 .internship_body {
     // border: 1px solid black;
     width: 100%;
     height: auto;
     padding: $_margin;
+    margin-bottom: 5%;
 }
 
-.searchInput { 
+.internshipsearchInput { 
     width: 100%;
     border-radius: 15px;
     border: none;
     padding: 15px;
     cursor: pointer;
+    background-color: #FEF8F8;
+    margin-top: 5%;
+    font-size: 1.3rem;
+    font-family: poppins_regular;  
 }
+
+@media only screen and (max-width: 480px) {
+    .internshipsearchInput {
+       width: 100%;
+       font-size: 1rem;
+     }
+   }
+   
+   @media only screen and (max-width: 768px) {
+    .internship_body {
+        width: 100%;
+       padding: 10px;
+     }
+   }
