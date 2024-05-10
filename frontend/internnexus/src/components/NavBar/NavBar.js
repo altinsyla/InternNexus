@@ -2,6 +2,7 @@ import React from "react";
 import "./NavBar.scss";
 import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const NavBar = () => {
   return (
@@ -31,32 +32,36 @@ const NavBar = () => {
       </div>
 
       <div className="navbardropdown">
-        <Dropdown>
-          <Dropdown.Toggle></Dropdown.Toggle>
-
-          <Dropdown.Menu>
-            <Dropdown.Item>
-              <Link to="/" className="navbarlinks">
-                HOME
-              </Link>
-            </Dropdown.Item>
-            <Dropdown.Item>
-              <Link to="/internships" className="navbarlinks">
-                INTERNSHIPS
-              </Link>
-            </Dropdown.Item>
-            <Dropdown.Item>
-              <Link to="/student" className="navbarlinks">
-                STUDENTS
-              </Link>
-            </Dropdown.Item>
-            <Dropdown.Item>
-              <Link to="/login" className="navbarlinks">
-                LOG IN
-              </Link>
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        <button
+          className="btn"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <MenuIcon></MenuIcon>
+        </button>
+        <ul className="dropdown-menu">
+          <li>
+            <Link to="/" className="navbarlinks">
+              HOME
+            </Link>
+          </li>
+          <li>
+            <Link to="/internships" className="navbarlinks">
+              INTERNSHIPS
+            </Link>
+          </li>
+          <li>
+            <Link to="/student" className="navbarlinks">
+              STUDENTS
+            </Link>
+          </li>
+          <li>
+            <Link to="/login" className="navbarlinks">
+              LOG IN
+            </Link>
+          </li>
+        </ul>
       </div>
     </div>
   );
