@@ -1,6 +1,5 @@
-@import '../../styles/_globals.scss';
-@import '../../styles/_fonts';
-
+@import "../../styles/_globals.scss";
+@import "../../styles/_fonts";
 
 // 320px — 480px: Mobile devices
 // 481px — 768px: iPads, Tablets
@@ -12,222 +11,416 @@
 //     .navbarcontainer {
 //     //   width: 100%;
 //     //   height: 4rem;
-    
+
 //     //   display: flex;
 //     //   padding: 0 5rem;
 //     //   margin-top: 2rem;
 //     background-color: red;
 //     }
-  
+
 //   }
 
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-html{
-    background-color: #f2f2f2;
+html {
+  background-color: #f2f2f2;
 
-    font-size: 100%;
+  font-size: 100%;
 }
 
-#body{
-    // background-color: $clr_softwhite;
-    font-family: poppins_regular;
-    background-color: #f2f2f2;
-    // background-color: black;
+#body {
+  // background-color: $clr_softwhite;
+  font-family: poppins_regular;
+  background-color: #f2f2f2;
+  // background-color: black;
 }
 
-#container{
-    margin: 5vh 12.5vw;
-
+#container {
+  margin: 5vh 12.5vw;
 }
 
-[data-theme = "dark"] {
-    background-color: black;
+[data-theme="dark"] {
+  background-color: black;
 }
 
-.banner{
-    display: flex;
-    justify-content: space-between;
-    
-    gap: 2vw;
-    // margin: 5vh 12.5vw;
-    padding: 2rem;
-    background-color: $clr_softwhite;
-    // border: 1px solid black;
-    
+.banner {
+  display: flex;
+  justify-content: space-between;
+
+  gap: 2vw;
+  // margin: 5vh 12.5vw;
+  padding: 2rem;
+  background-color: $clr_softwhite;
+  // border: 1px solid black;
 }
 
-.banner_bannerPhoto{
-    background-color: $clr_buttontheme2;
-    width: 45%;
-    // height: 100%;
-    text-align: end;
-    border-radius: 40px;
+.banner_bannerPhoto {
+  background-color: $clr_buttontheme2;
+  width: 100%;
+  // height: 100%;
+  text-align: end;
+  border-radius: 40px;
+
+  display: flex;
+  justify-content: center;
 }
 
-.banner_maindiv{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    height: 100%;
-    // border: 1px solid black;
-}
-
-.banner_buttondiv{
-    display: flex;
-    gap: 10%;
-    justify-content: center;
-    align-items: end;
-    // margin-right: 5vw;
-    // border: 1px solid black;
-    height: 20%;
-}
-
-.button_registercompany{
-    width: 40%;
-    height: 60%;
-    background-color: $clr_bgtheme;
-    color: black;
-    border: 1px solid #ccc;
-    border-radius: 100px;
-    // cursor: pointer;
-    transition: transform 0.3s, background-color 0.3s, color 0.2s;
-}
-
-.button_registercompany:hover{
-    background-color: $clr_buttontheme;
-    color: white;
-}
-
-.button_findintern{
-    width: 40%;
-    height: 60%;
-    background-color: $clr_buttontheme2;
-    color: white;
-    border: 1px solid #ccc;
-    border-radius: 40px;
-    // cursor: pointer;
-    transition: transform 0.3s, background-color 0.3s, color 0.2s;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.button_findintern:hover{
-    background-color: $clr_buttontheme;
-}
-
-
-.poweredby{
-    font-family: poppins_black;
-    text-align: center;
-
-    margin-top: 15rem;
-    margin-bottom: 5rem;
-}
-
-.ph_grid{
-    // border: 1px solid black;
-    display: flex;
-    justify-content: center;
-}
-
-.poweredbygrid{
-    display: grid;
-
-    // border: 1px solid black;
-    height: 50rem;
-    // width: 60%;
-
-    justify-content: center;
-    align-items: center;
-
-    grid-template-columns: repeat(3, 33%);
-    grid-template-rows: repeat(2, 50%);
+.banner_bannerPhoto img {
+  // e bon image responsive
+  display: block;
+  max-width: 100%;
 
 }
 
-.gridphotos{
-    width: 70%;
-    height: 100%;
-    object-fit: contain;
+.banner_maindiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-    justify-self: center;
-    align-self: center;
+  height: 100%;
+  // border: 1px solid black;
 }
 
-.studentcarddiv{
-    // margin: $_margin;
-    padding: 0.5rem 0;
-    // margin: 0.5rem 3rem;
-    // height: 400px;
-    // width: ;
+.banner_buttondiv {
+  display: flex;
+  gap: 10%;
+  justify-content: center;
+  align-items: end;
+  height: 20%;
+}
 
-    display: flex;
-    flex-direction: row;
+.button_registercompany {
+  width: 40%;
+  height: 60%;
+  background-color: $clr_bgtheme;
+  color: black;
+  border: 1px solid #ccc;
+  border-radius: 100px;
+  // cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s, color 0.2s;
+}
 
-    // flex-wrap: nowrap;
-    // overflow-y: scroll;
-    overflow-x: scroll;
-    // flex-shrink: 0;
-    // scroll-snap-type: x mandatory;
+.button_registercompany:hover {
+  background-color: $clr_buttontheme;
+  color: white;
+}
 
-    gap: .75rem;
-    // background-color: $clr_softwhite;
+.button_findintern {
+  width: 40%;
+  height: 60%;
+  background-color: $clr_buttontheme2;
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 40px;
+  // cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s, color 0.2s;
 
-    // border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button_findintern:hover {
+  background-color: $clr_buttontheme;
+}
+
+.poweredby {
+  font-family: poppins_black;
+  text-align: center;
+
+  margin-top: 15rem;
+  margin-bottom: 5rem;
+}
+
+.ph_grid {
+  // border: 1px solid black;
+  display: flex;
+  justify-content: center;
+}
+
+.poweredbygrid {
+  display: grid;
+
+  // border: 1px solid black;
+  height: 50rem;
+  // width: 60%;
+
+  justify-content: center;
+  align-items: center;
+
+  grid-template-columns: repeat(3, 33%);
+  grid-template-rows: repeat(2, 50%);
+}
+
+.gridphotos {
+  width: 70%;
+  height: 100%;
+  object-fit: contain;
+
+  justify-self: center;
+  align-self: center;
+}
+
+.studentcarddiv {
+  // margin: $_margin;
+  padding: 0.5rem 0;
+  // margin: 0.5rem 3rem;
+  // height: 400px;
+  // width: ;
+
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+
+  // flex-wrap: nowrap;
+  // overflow-y: scroll;
+  overflow-x: scroll;
+  // flex-shrink: 0;
+  // scroll-snap-type: x mandatory;
+
+  gap: 0.75rem;
+  // background-color: $clr_softwhite;
+
+  // border: 1px solid black;
 }
 
 .studentcarddiv::-webkit-scrollbar {
-    height: 12px;
-    
+  height: 12px;
 }
-  
-  .studentcarddiv::-webkit-scrollbar-thumb,
-  .studentcarddiv::-webkit-scrollbar-track {
-    border-radius: 92px;
+
+.studentcarddiv::-webkit-scrollbar-thumb,
+.studentcarddiv::-webkit-scrollbar-track {
+  border-radius: 92px;
+}
+
+.studentcarddiv::-webkit-scrollbar-thumb {
+  background: $clr_buttontheme2;
+}
+
+.studentcarddiv::-webkit-scrollbar-track {
+  background: $clr_graywhite;
+}
+
+.devcarddiv {
+  // margin-top: 10rem;
+
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+
+  gap: 3rem;
+
+  // border: 1px solid black;
+}
+
+.devcard {
+  height: fit-content;
+}
+
+.button_details {
+  width: 35%;
+  height: 2.25rem;
+  background-color: $clr_buttontheme2;
+  color: white;
+  border: 1px solid #ccc;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// The desktop-first pre-defined media queries:
+/* 2xl */
+// @media (max-width: 1536px) {
+// }
+
+// /* xl */
+// @media (max-width: 1280px) {
+// }
+
+/* lg */
+@media (max-width: 1024px) {
+  #container {
+    margin: 0;
   }
-  
-  .studentcarddiv::-webkit-scrollbar-thumb {
-    background: $clr_buttontheme2;
-  }
-  
-  .studentcarddiv::-webkit-scrollbar-track {
-    background: $clr_graywhite;
-  }
 
-.devcarddiv{
-    // margin-top: 10rem;
-
-    display: flex;
-    justify-content: center;
-    height: fit-content;
-
-    gap: 3rem;
-
+  .banner {
+    padding: 1rem;
     // border: 1px solid black;
-}
+    margin: 3rem 2rem;
+  }
 
-.devcard{
-    height: fit-content;
+  .banner_bannerPhoto {
+    width: 100%;
+  }
 
-}
-
-.button_details{
-    width: 35%;
-    height: 2.25rem;
-    background-color: $clr_buttontheme2;
-    color: white;
-    border: 1px solid #ccc;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
-
+  .banner_buttondiv {
     display: flex;
+    flex-direction: column;
+    gap: 20%;
     justify-content: center;
     align-items: center;
+    height: 20%;
+  }
+
+  .button_registercompany,
+  .button_findintern {
+    height: 100%;
+    width: 100%;
+  }
+
+  .studentcarddiv {
+    padding: 0.5rem 0;
+    width: 46rem;
+    gap: 0.75rem;
+  }
+
+}
+
+/* sm */
+@media (max-width: 640px) {
+  .banner_bannerPhoto {
+    display: none;
+  }
+
+  .banner_maindiv_p {
+    font-size: 0.9rem;
+  }
+
+  .banner_buttondiv {
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+    justify-content: center;
+    align-items: end;
+    height: 100%;
+  }
+  .button_registercompany,
+  .button_findintern {
+    height: 100%;
+  }
+
+  .poweredby {
+    margin-top: 20rem;
+  }
+
+  .poweredbygrid {
+    // display: grid;
+
+    // border: 1px solid black;
+    height: fit-content;
+
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(2, 50%);
+  }
+
+  .gridphotos {
+    object-fit: contain;
+  }
+
+  .studentcarddiv {
+    padding: 0.5rem 0;
+    width: 31rem;
+    gap: 0.75rem;
+  }
+
+  .devcarddiv {
+    flex-direction: column;
+
+    height: fit-content;
+
+    gap: 1rem;
+  }
+
+  .devcard {
+    justify-self: center;
+    align-self: center;
+  }
+}
+
+/* xs */
+@media (max-width: 475px) {
+  #container {
+    margin: 0;
+  }
+
+  .banner {
+    // display: flex;
+    // justify-content: space-between;
+
+    gap: 2vw;
+    // margin: 5vh 12.5vw;
+    // padding: 2rem;
+    // background-color: $clr_softwhite;
+    // border: 1px solid black;
+  }
+
+  .banner_bannerPhoto {
+    display: none;
+
+    // background-color: $clr_buttontheme2;
+    // width: 45%;
+    // // height: 100%;
+    // text-align: end;
+    // border-radius: 40px;
+  }
+
+  .banner_maindiv_p {
+    font-size: 0.9rem;
+  }
+
+  .banner_buttondiv {
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+    justify-content: center;
+    align-items: end;
+    height: 100%;
+  }
+
+  .button_registercompany,
+  .button_findintern {
+    height: 100%;
+  }
+
+  .poweredbygrid {
+    // display: grid;
+
+    // border: 1px solid black;
+    height: fit-content;
+
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(2, 50%);
+  }
+
+  .gridphotos {
+    object-fit: contain;
+  }
+
+  // unfinished
+  .studentcarddiv {
+    padding: 0.5rem 0;
+    width: 25rem;
+    gap: 0.75rem;
+
+    
+  }
+
+  .devcarddiv {
+    flex-direction: column;
+
+    height: fit-content;
+
+    gap: 1rem;
+  }
+
+  .devcard {
+    justify-self: center;
+    align-self: center;
+  }
 }

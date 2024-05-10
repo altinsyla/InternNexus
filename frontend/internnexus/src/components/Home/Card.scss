@@ -70,3 +70,32 @@
     align-items: center;
 
 }
+
+
+// The desktop-first pre-defined media queries:
+/* 2xl */
+@media (max-width: 1536px) {}
+
+/* xl */
+@media (max-width: 1280px) {}
+
+/* lg */
+@media (max-width: 1024px) {}
+
+/* md */
+@media (max-width: 768px) {}
+
+/* sm */
+@media (max-width: 640px) {}
+
+/* xs */
+@media (max-width: 475px) {
+    .cardcontainer{
+        width: 12rem;
+    }
+    
+    .cardbody{
+        width: 12rem;
+    
+    }
+}

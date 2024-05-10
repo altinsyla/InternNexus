@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 // routes
 //navbarin ndreqe
 // responsive
-
+// fix bg color
 
 
 
@@ -35,7 +35,7 @@ function Home() {
                   Quickest way to hire fit remote developer
                 </h1>
                 <br></br>
-                <p className="fontthin">
+                <p className="fontthin banner_maindiv_p">
                   Start your team with developers of your needs.
                 </p>
               </div>
@@ -128,7 +128,7 @@ function Home() {
             </Card.Body>
           </Card>
 
-          <Card style={{ width: "18rem", height: '500px' }} className="card">
+          <Card style={{ width: "18rem", height: '500px' }} className="devcard">
             <Card.Img variant="top" src={require("./img/HakifKadriu.jpg")} style={{height: "70%", objectFit: 'cover'}}/>
             <Card.Body style={{height: "30%"}}>
               <Card.Title className="fontmedium">Hakif Kadriu</Card.Title>
@@ -139,7 +139,7 @@ function Home() {
             </Card.Body>
           </Card>
 
-          <Card style={{ width: "18rem", height: '500px'  }} className="card">
+          <Card style={{ width: "18rem", height: '500px'  }} className="devcard">
             <Card.Img variant="top" src={require("./img/FlamurIsa.jpg")} style={{height: "70%", objectFit: 'cover'}}/>
             <Card.Body style={{height: "30%"}}>
               <Card.Title className="fontmedium">Flamur Isa</Card.Title>
