@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Button } from 'react-bootstrap';
-import DatePicker from "react-datepicker";
+import { Button } from "react-bootstrap";
 import "react-datepicker/dist/react-datepicker.css";
-import '../SignUp/Signup.css';
+import "../SignUp/Signup.css";
 
 function Signup() {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -21,7 +20,7 @@ function Signup() {
           className="logo1"
         />
       </div>
-      <div className="mainDiv">
+      <div className="signupformdiv">
         <form className="forms">
           <p className="firstP">Create Students Account</p>
           <input type="text" placeholder="Name" className="formInputs" />
@@ -33,17 +32,18 @@ function Signup() {
             className="formInputs"
           />
           <p className="secondP">Date of Birth</p>
-          <DatePicker
-            selected={selectedDate}
-            onChange={handleDateChange}
-            className="formInputs datepicker"
-            placeholderText="Birth Date"
-          />
+          <div className="datepickerdiv">
+            {/* <DatePicker
+              selected={selectedDate}
+              onChange={handleDateChange}
+              className="datepicker"
+              placeholderText="Birth Date"
+            /> */}
+            <input type="date" id="date" className="datepicker formInputs" ></input>
+          </div>
         </form>
-        <Button className="butoniNext">Next</Button>
-
+        <Button className="signupbutton">Next</Button>
       </div>
-
     </>
   );
 }

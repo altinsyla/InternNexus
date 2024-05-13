@@ -3,19 +3,17 @@
     margin: 0;
     padding: 0;
     /* background: url('./bg.png') no-repeat center center fixed; */
-    background-size: cover;
 }
 
 
 
-.mainDiv {
+.signupformdiv {
      /* background-color: white; */
     margin-top: 3.5rem;
     flex-direction: column;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: 1px solid black; */
 }
 .formInputs{
     display: flex;
@@ -40,6 +38,7 @@
     font-weight: 800;
     align-self: flex-start;
     margin-bottom: 1rem;
+
 }
 
 
@@ -59,12 +58,11 @@
     /* // width: 350px; */
     width: 30%;
     padding: 0 1rem;
-    /* border: 1px solid black; */
 
 }
 
-.butoniNext{
-    width: 30%;
+.signupbutton{
+    width: 200px;
     align-self: center;
     height: 45px;
     color: white;
@@ -76,7 +74,14 @@
     
 }
 
-.datepicker{
-    /* // background-color: red; */
-    width: 259%;
-}
+.signupbutton:hover {
+    background-color: #666666;
+    color: white;
+  }
+
+  .datepicker{
+    width: 100%;
+    justify-content: center;
+    padding-right: 0.5rem;
+    color: #555;
+  }
