@@ -1,17 +1,17 @@
 import React from "react";
-import "../src/styles/App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom"; // per linqe
+import "../src/styles/App.css";
 
 // Pages
+import Companies from './components/Companies/Company.js';
 import Home from "./components/Home/Home.js";
+import InternshipsApply from './components/InternshipApply/InternshipApply.js';
+import Internships from './components/Internships/Internships.js';
 import Login from './components/Login.js';
-import Signup from './components/SignUp/Signup.js'; 
-import Signup2 from './components/SignUp2/SignUp2.js'; 
-import Student from './components/Students/Students.js'; 
-import Internships from './components/Internships/Internships.js'; 
-import InternshipsApply from './components/InternshipApply/InternshipApply.js'; 
-import Companies from './components/Companies/Company.js'; 
-import NavBar from "./components/NavBar/NavBar.js";
+import MyProfile from "./components/MyProfile/MyProfile.js";
+import Signup from './components/SignUp/Signup.js';
+import Signup2 from './components/SignUp2/SignUp2.js';
+import Student from './components/Students/Students.js';
 
 function App() {
   return (
@@ -52,6 +52,10 @@ function App() {
         <Route exact path="/companies">
           <Companies />
         </Route> 
+        <Route exact path="/myprofile">
+          <MyProfile />
+        </Route> 
+
       </Switch>
     </BrowserRouter>
   );

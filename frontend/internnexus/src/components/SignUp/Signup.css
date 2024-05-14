@@ -1,19 +1,37 @@
-
+@import "../../styles/_fonts.scss";
 *{
     margin: 0;
     padding: 0;
-    /* background: url('./bg.png') no-repeat center center fixed; */
 }
 
 
 
 .signupformdiv {
-     /* background-color: white; */
+    width: 40%;
     margin-top: 3.5rem;
     flex-direction: column;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+}
+.second-main-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 30%;
+    margin-left: 50px;
+    margin-top: 3.5rem;
+
+
+}
+.main-div{
+    display: flex;
+    align-items: stretch;
+    background-color:#F4F2F3;
+    justify-content: center;
+    margin: 5rem 13rem 5rem 13rem;
+    border-radius: 25px;
 }
 .formInputs{
     display: flex;
@@ -21,12 +39,12 @@
     margin-bottom: 17px;
     padding-left: 12px;
     width: 100%;
-    height: 45px;
+    height: 47px;
     border: 1px solid #ccc;
-    border-radius: 10px;
+    border-radius: 50px;
 }
 .firstP {
-    font-family: 'Roberto', sans-serif;
+    font-family: poppins_bold;
     font-size: 18px;
     font-weight: 800;
     align-self: flex-start;
@@ -46,31 +64,34 @@
     /* border: 1px solid black; */
 
     display: flex;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center; */
+    /* justify-content: center; */
 }
 .logo1 {
+    position:relative;
     width: 200px;
-    height: 64px;
+    height: 100px;
 }
 
 .forms {
     /* // width: 350px; */
-    width: 30%;
+    width: 100%;
     padding: 0 1rem;
 
 }
 
 .signupbutton{
-    width: 200px;
-    align-self: center;
+    margin-top: 5%;
+    width: 95%;
     height: 45px;
     color: white;
     border: 1px solid #ccc;
     background-color: #555;
-    border-radius: 100px;
+    font-size:medium;
+    font-weight: 600;
+    border-radius: 10px;
+    font-family: poppins_regular;
     cursor: pointer; /* edhe pa qita bon*/
-    margin-bottom: 100px;
     
 }
 
@@ -85,3 +106,65 @@
     padding-right: 0.5rem;
     color: #555;
   }
+.second-main-div p {
+    align-self: flex-start;
+    padding-top: 0.6rem;
+    padding-left: 1.2rem;
+    font-family: poppins_thin;
+    font-size: small;
+}
+.second-main-div span {
+    font-weight: 900;
+}
+.second-main-div h5 {
+    font-weight: 800;
+    font-family: poppins_bold;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    font-size: 25px;
+}
+.sign-google{
+display: flex;
+align-items: center;
+   width: 100%;
+   height: 45px;
+   background-color: white;
+   color: black;
+   border: 1.5px solid black;
+    box-shadow: 2px 3px 5px gray;
+    margin-bottom: 20px;
+}
+.sign-google span {
+    font-family: poppins_thin;
+    font-size: small;
+}
+.g-icon{
+    width: 25px;
+    height: 25px;
+    margin-left: 5px;
+    margin-right: 20%;
+}
+.sign-google:hover{
+    background-color: white;
+    color: black;
+    border: 1.5px solid black;
+}
+.sign-facebook{
+    display: flex;
+    align-items: center;
+       width: 100%;
+       height: 45px;
+       background-color: white;
+       color: black;
+       border: 1.5px solid black;
+        box-shadow: 2px 3px 5px gray;
+}
+.sign-facebook span {
+    font-family: poppins_thin;
+    font-size: small;
+}
+.sign-facebook:hover{
+    background-color: white;
+    color: black;
+    border: 1.5px solid black;
+}

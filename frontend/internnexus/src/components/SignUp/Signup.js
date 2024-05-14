@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import "react-datepicker/dist/react-datepicker.css";
+import { FaFacebook, FaGoogle } from "react-icons/fa";
 import "../SignUp/Signup.css";
+
+
 
 function Signup() {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -20,29 +23,40 @@ function Signup() {
           className="logo1"
         />
       </div>
+      <div className="main-div">
       <div className="signupformdiv">
         <form className="forms">
-          <p className="firstP">Create Students Account</p>
-          <input type="text" placeholder="Name" className="formInputs" />
-          <input type="tel" placeholder="Phone Number" className="formInputs" />
-          <input type="email" placeholder="Email" className="formInputs" />
+          <p className="firstP">Sign Up as Student</p>
+          <input type="text" placeholder="Username" className="formInputs" />
+          <input type="text" placeholder="Full Name" className="formInputs" />
+          <input type="email" placeholder="Email Address" className="formInputs" />
           <input
             type="password"
             placeholder="Password"
             className="formInputs"
           />
-          <p className="secondP">Date of Birth</p>
-          <div className="datepickerdiv">
-            {/* <DatePicker
-              selected={selectedDate}
-              onChange={handleDateChange}
-              className="datepicker"
-              placeholderText="Birth Date"
-            /> */}
-            <input type="date" id="date" className="datepicker formInputs" ></input>
-          </div>
+           <input
+            type="password"
+            placeholder="Confirm Password"
+            className="formInputs"
+          />
+       
         </form>
-        <Button className="signupbutton">Next</Button>
+      </div>
+      <div className="second-main-div">
+      <Button className="signupbutton">Sign Up</Button>
+      <p >Already have an Account? <span>Log In</span></p>
+      <h5>Or</h5>
+      <Button className="sign-google">  
+      <FaGoogle className="g-icon"/>
+       <span> Sign up with Google</span>
+        </Button>
+      <Button className="sign-facebook">
+      <FaFacebook className="g-icon"/>
+       <span> Sign up with Facebook</span>
+        </Button>
+
+      </div>
       </div>
     </>
   );
