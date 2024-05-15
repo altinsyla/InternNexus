@@ -13,6 +13,9 @@
   display: flex;
   padding: 0 4rem;
   // margin-top: 2rem;
+
+  font-family: poppins_regular;
+
 }
 
 .navbarlogo {
@@ -163,10 +166,10 @@
 
   .navbartabs {
     display: none;
-  }
+  } 
 
   .navbarlinks {
-    font-family: poppins_bold;
+    font-family: poppins_black;
     border-bottom: 1px solid $clr-lightpink;
   }
 }

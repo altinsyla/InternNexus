@@ -10,9 +10,10 @@ const mentorRouter = require('./Routes/mentorRouter');
 
 
 //Routes
+
+router.use('/api/internships', internshipRouter);
 router.use('/api/companies', companyRouter);
 router.use('/api/internshipApplications', internshipApplicationRouter);
-router.use('/api/internships', internshipRouter);
 router.use('/api/mentors', mentorRouter);
 
 //Connecting to MongoDB

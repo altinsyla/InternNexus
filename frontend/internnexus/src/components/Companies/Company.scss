@@ -28,6 +28,9 @@
     // background-color: #FEF8F8;
     border-radius: 15px;
 }
+  // .comp-companyLogo:hover{
+  //   transform: scale(1.1);
+  // }
 
 .comp-meetmentors{
     font-family: poppins_bold;
@@ -38,10 +41,13 @@
 
 .pargraph-description {
   margin-left: 20%;
-  font-size: 1.3rem; 
+  font-size: 1.2rem; 
   width: 50%; 
   height: 40%;
   font-family: poppins_regular;
+  background-color: #FEF8F8;
+  border-radius: 15px;
+  padding: 2% 2%;
 }
 
 .comp-mentorscarddiv{

@@ -5,6 +5,9 @@
 .mentors-card{
     scroll-snap-align: start;
 }
+.mentors-card:hover {
+    transform: scale(1.05);
+}
 
 
 .mentors-card-text{

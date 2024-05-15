@@ -1,6 +1,7 @@
 body {
-    background-color: #FEF8F8;
+
     margin-top: 36px;
+    background-color: #f2f2f2;
 }
 
 .internshipcard_body {
@@ -13,6 +14,14 @@ body {
     align-items: center;
     margin-top: 36px;
     background-color: #FEF8F8;
+    // background-color: #f2f2f2;
+    // box-shadow: 2px 2px #555555;
+    cursor: pointer;
+}
+.internshipcard_body:hover{
+  transform: scale(1.05);
+  transition: ease-in 0.15s;
+  
 }
 .company_logo { 
     width: 20%;
@@ -51,6 +60,7 @@ body {
     margin-bottom: 10px;
     text-align: left;
 }
+
 .companyType { 
     background-color: #FEF8F8;
     font-family: poppins_regular;   

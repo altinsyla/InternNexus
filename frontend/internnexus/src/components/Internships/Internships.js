@@ -8,6 +8,8 @@ import ict from "../Internships/img/ict.png";
 import solaborate from "../Internships/img/solaborate.png";
 import Footer from '../Footer/Footer.js';
 import NavBar from '../NavBar/NavBar.js';
+import InternshipApply from "../InternshipApply/InternshipApply.js";
+// import { Link } from "react-router-dom";
 
 function Internships() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -67,7 +69,7 @@ function Internships() {
           className="internshipsearchInput"
         />
         {filteredInternshipCards.map((card, index) => (
-          <InternshipCard key={index} {...card} />
+          <InternshipCard key={index} {...card}/>
         ))}
       </div>
       <Footer />

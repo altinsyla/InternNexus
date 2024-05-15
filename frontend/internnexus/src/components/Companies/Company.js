@@ -31,9 +31,6 @@ function Company() {
             Entrepreneurs will have an opportunity to transform their technology
             ideas/products into successful online businesses and solve real
             problems for society.
-            <br></br>
-            <br></br>
-            <a href="https://gjirafalab.com/">VISIT WEBSITE</a>
           </p>
         </div>
         <h2 className="comp-meetmentors">MEET OUR MENTORS</h2>

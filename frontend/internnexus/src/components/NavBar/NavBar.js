@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import MenuIcon from "@mui/icons-material/Menu";
 
+//Hover logo with box-shadow
 const NavBar = () => {
   return (
     <div className="navbarcontainer">
@@ -27,6 +28,11 @@ const NavBar = () => {
         <div className="navbarlogin">
           <Link to="/login" className="navbarlinks">
             LOG IN
+          </Link>
+        </div>
+        <div className="navbarlogin">
+          <Link to="/login" className="navbarlinks">
+            SIGN UP
           </Link>
         </div>
       </div>

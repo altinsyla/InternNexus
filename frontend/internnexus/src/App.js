@@ -1,6 +1,11 @@
 import React from "react";
+<<<<<<< Updated upstream
 import { BrowserRouter, Route, Switch } from "react-router-dom"; // per linqe
 import "../src/styles/App.css";
+=======
+import "../src/styles/App.css";
+  import { BrowserRouter, Route, Switch } from "react-router-dom"; // per linqe
+>>>>>>> Stashed changes
 
 // Pages
 import Companies from './components/Companies/Company.js';

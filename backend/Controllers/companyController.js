@@ -21,7 +21,7 @@ const getSingleCompany = async (req, res) => {
   }
 };
 
-//Sherben me kriju ni kompani t're por e ka edhe nje proces qe kontrollon se a ekziston ndonje kompani ne baze te id, titullit apo qfardo qe vendosim
+// Sherben me kriju ni kompani t're por e ka edhe nje proces qe kontrollon se a ekziston ndonje kompani ne baze te id, titullit apo qfardo qe vendosim
 const createCompany = async (req, res) => {
   const {
       name,
@@ -43,7 +43,7 @@ const createCompany = async (req, res) => {
   }
 
   try {
-    // Ktu kontrollohet a ka kompani me emer t'njejt
+    // Ktu kontrollohet a ka kompani me emer t'njejt 
     const existingCompanyByRoll = await Company.findOne({ name });
     if (existingCompanyByRoll) {
       return res
@@ -79,7 +79,7 @@ const updateCompany = async (req, res) => {
   }
 };
 
-//Kjo sherben me fshi ni kompani ne baze te id se caktuar
+//Kjo sherben me fshi ni kompani ne baze te id se caktuar 
 const deleteCompany = async (req, res) => {
   const id = req.params.id;
   try {
