@@ -70,6 +70,7 @@ function Internships() {
     <div>
       <NavBar />
       <div className="internship_body">
+        <h2 className="fontregular" style={{marginTop: '5%'}}>Search Internships</h2>
         <input
           type="text"
           placeholder="Search..."
@@ -80,27 +81,6 @@ function Internships() {
         {filteredInternshipCards.map((card, index) => (
           <InternshipCard key={index} {...card} />
         ))}
-        {/* <button className="add-button" onClick={() => setShowForm(true)}>+</button>
-        {showForm && (
-          <div className="form-overlay">
-            <form className="internship-form" onSubmit={handleFormSubmit}>
-              <label>
-                Title:
-                <input type="text" name="title" required />
-              </label>
-              <label>
-                Type:
-                <input type="text" name="type" required />
-              </label>
-              <label>
-                Location:
-                <input type="text" name="location" required />
-              </label>
-              <button type="submit">Add Internship</button>
-              <button type="button" onClick={() => setShowForm(false)}>Cancel</button>
-            </form>
-          </div>
-        )} */}
       </div>
       <Footer />
     </div>

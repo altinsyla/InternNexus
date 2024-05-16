@@ -24,6 +24,10 @@ function Home() {
   const handleCreateInternship = () => {
     history.push('/internshipform');
   }
+  
+  const handleCompany = () => {
+    history.push('/companies');
+  }
 
   return (
     <div id="body" data-theme={isDark ? "dark" : "light"}>
@@ -71,6 +75,7 @@ function Home() {
               src={require("./img/gjirafalab.png")}
               className="gridphotos img1"
               alt="company"
+              onClick={handleCompany}
             ></img>
             <img
               src={require("./img/frakton.png")}

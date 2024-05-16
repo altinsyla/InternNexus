@@ -8,12 +8,20 @@ import React from 'react';
 import { FaGoogle } from "react-icons/fa";
 import internnexus from '../imgsrc/internnexus.png';
 import '../styles/App.css';
+import { useHistory } from 'react-router-dom';
 
 
 
 const fontiPerTekste = 'robot-font';
 
 function Login() {
+
+  const history = useHistory();
+
+  const handleSignup = () => {
+    history.push('/signup');
+  }
+
   return (
     <div>
         <div className='mainDivLogin'>
@@ -26,7 +34,7 @@ function Login() {
           <button className='loginBtn'>Log In</button>
           <div className='forgotPasswordDiv'>
           <a href='#' className='signuptext'>Forgot password?</a>
-          <a href='#' className='signuptext'>Sign Up to InternNexus</a>
+          <a href='#' className='signuptext' onClick={handleSignup}>Sign Up to InternNexus</a>
           </div>
 
           <div className='GoogleLogin'>
