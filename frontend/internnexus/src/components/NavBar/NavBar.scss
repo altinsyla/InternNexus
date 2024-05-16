@@ -34,6 +34,7 @@
 
 .navbarlinks {
   height: fit-content;
+  color: black;
 }
 
 .navbarlinks:link,
@@ -41,7 +42,6 @@
 .navbarlinks:hover,
 .navbarlinks:active {
   text-decoration: none;
-  color: black;
 }
 
 .navbarlogin {
@@ -64,6 +64,10 @@
 .navbarlogin:hover {
   transform: translateY(-2px);
   background-color: #555;
+  color: white;
+}
+
+.navbarlogintext:hover{
   color: white;
 }
 

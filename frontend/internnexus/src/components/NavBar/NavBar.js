@@ -21,17 +21,17 @@ const NavBar = () => {
           </Link>
         </div>
         <div>
-          <Link to="/student" className="navbarlinks">
+          <Link to="/students" className="navbarlinks">
             STUDENTS
           </Link>
         </div>
         <div className="navbarlogin">
-          <Link to="/login" className="navbarlinks">
+          <Link to="/login" className="navbarlinks navbarlogintext">
             LOG IN
           </Link>
         </div>
         <div className="navbarlogin">
-          <Link to="/login" className="navbarlinks">
+          <Link to="/signup" className="navbarlinks navbarlogintext">
             SIGN UP
           </Link>
         </div>

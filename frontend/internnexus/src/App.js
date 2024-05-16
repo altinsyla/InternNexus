@@ -1,11 +1,6 @@
 import React from "react";
-<<<<<<< Updated upstream
 import { BrowserRouter, Route, Switch } from "react-router-dom"; // per linqe
 import "../src/styles/App.css";
-=======
-import "../src/styles/App.css";
-  import { BrowserRouter, Route, Switch } from "react-router-dom"; // per linqe
->>>>>>> Stashed changes
 
 // Pages
 import Companies from './components/Companies/Company.js';
@@ -17,6 +12,7 @@ import MyProfile from "./components/MyProfile/MyProfile.js";
 import Signup from './components/SignUp/Signup.js';
 import Signup2 from './components/SignUp2/SignUp2.js';
 import Student from './components/Students/Students.js';
+import SearchStudents from "./components/SearchStudents/SearchStudents.js";
 
 function App() {
   return (
@@ -44,6 +40,10 @@ function App() {
 
         <Route exact path="/student">
           <Student />
+        </Route>
+
+        <Route exact path="/students">
+          <SearchStudents />
         </Route>
 
         <Route exact path="/internships">

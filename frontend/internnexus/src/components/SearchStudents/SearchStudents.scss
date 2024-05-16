@@ -1,0 +1,88 @@
+.container {
+    max-width: 1536px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+.profilesDiv{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 1rem;
+}
+
+.studentsearchInput { 
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    border-bottom: 4px solid #D3C0B4;
+    padding: 15px;
+    background-color: transparent;
+    margin-top: 5%;
+    font-size: 1.3rem;
+    font-family: poppins_regular;  
+}
+
+.studentsearchInput:focus{
+  border: none;
+}
+
+.filterDiv{
+  margin-bottom: 1rem;
+
+  display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // border: 1px solid black;
+}
+
+  
+  /* 2xl */
+  @media (max-width: 1536px) {
+    .container {
+      max-width: 1280px;
+    }
+  }
+  
+  /* xl */
+  @media (max-width: 1280px) {
+    .container {
+      max-width: 1024px;
+    }
+  }
+  
+  /* lg */
+  @media (max-width: 1024px) {
+    .container {
+      max-width: 768px;
+    }
+
+    .profilesDiv{
+      display: grid;
+      grid-template-columns: 1fr;
+    
+    }
+  }
+  
+  /* md */
+  @media (max-width: 768px) {
+    .container {
+      max-width: 640px;
+    }
+  }
+  
+  /* sm */
+  @media (max-width: 640px) {
+    .container {
+      max-width: 475px;
+    }
+  }
+  
+  /* xs */
+  @media (max-width: 475px) {
+    .container {
+      width: 100%;
+    }
+  }
