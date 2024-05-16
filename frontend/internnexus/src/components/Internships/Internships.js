@@ -9,17 +9,11 @@ import solaborate from "../Internships/img/solaborate.png";
 import Footer from '../Footer/Footer.js';
 import NavBar from '../NavBar/NavBar.js';
 import InternshipApply from "../InternshipApply/InternshipApply.js";
-// import { Link } from "react-router-dom";
 
 function Internships() {
   const [searchQuery, setSearchQuery] = useState("");
-
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
-
-  //Objekt me i marr t'dhanat
-  const internshipCards = [
+  // const [showForm, setShowForm] = useState(false);
+  const [internshipCards, setInternshipCards] = useState([
     {
       title: "Front-End Developer",
       type: "Full-time",
@@ -50,12 +44,27 @@ function Internships() {
       location: "Remote",
       image: solaborate,
     },
-  ];
+  ]);
 
-  // Na jep results edhe nese e dhajm me tvogla
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
   const filteredInternshipCards = internshipCards.filter((card) =>
     card.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  // const handleFormSubmit = (event) => {
+  //   event.preventDefault();
+  //   const newInternship = {
+  //     title: event.target.title.value,
+  //     type: event.target.type.value,
+  //     location: event.target.location.value,
+  //     image: solaborate, // Placeholder image, you can change this as needed
+  //   };
+  //   setInternshipCards([...internshipCards, newInternship]);
+  //   setShowForm(false); // Close the form after submission
+  // };
 
   return (
     <div>
@@ -69,8 +78,29 @@ function Internships() {
           className="internshipsearchInput"
         />
         {filteredInternshipCards.map((card, index) => (
-          <InternshipCard key={index} {...card}/>
+          <InternshipCard key={index} {...card} />
         ))}
+        {/* <button className="add-button" onClick={() => setShowForm(true)}>+</button>
+        {showForm && (
+          <div className="form-overlay">
+            <form className="internship-form" onSubmit={handleFormSubmit}>
+              <label>
+                Title:
+                <input type="text" name="title" required />
+              </label>
+              <label>
+                Type:
+                <input type="text" name="type" required />
+              </label>
+              <label>
+                Location:
+                <input type="text" name="location" required />
+              </label>
+              <button type="submit">Add Internship</button>
+              <button type="button" onClick={() => setShowForm(false)}>Cancel</button>
+            </form>
+          </div>
+        )} */}
       </div>
       <Footer />
     </div>

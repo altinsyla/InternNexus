@@ -1,0 +1,132 @@
+@import "../../styles/_globals.scss";
+@import "../../styles/_fonts";
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.internship-form-container {
+  max-width: 50%;
+  margin: 3% auto 3%;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 1px 1px #555;
+  font-family: poppins_regular;
+}
+.internshipform-details {
+  text-align: center;
+  font-size: 2.5rem;
+  font-family: poppins_regular;
+}
+.intform-placeholder {
+  width: 100%;
+  border-radius: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  height: 45.78px;
+}
+
+.fill-out-form {
+  text-align: center;
+  color: #666;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.internshipform-labels {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.internshipform-inputs {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 5%;
+}
+
+.cancel-internship {
+  background-color: white;
+  color: #333;
+  width: 30%;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+
+.create-internship {
+  background-color: #333;
+  color: #fff;
+  width: 30%;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+
+.create-internship:hover,
+.cancel-internship:hover {
+  transform: scale(1.1);
+}
+
+@media only screen and (max-width: 480px) {
+  .internship-form-container {
+    max-width: 80%;
+    margin: 3% auto 3%;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: poppins_regular;
+  }
+  .internshipform-details {
+    text-align: center;
+    font-size: 1.8rem;
+    font-family: poppins_regular;
+  }
+  .internshipform-labels {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+  .internshipform-inputs {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+  .create-internship {
+    width: 40%;
+    font-size: 0.8rem;
+  }
+  .cancel-internship {
+    width: 40%;
+    font-size: 0.8rem;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .internship-form-container {
+    max-width: 80%;
+    margin: 3% auto 3%;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 1px 1px #555;
+    font-family: poppins_regular;
+  }
+}

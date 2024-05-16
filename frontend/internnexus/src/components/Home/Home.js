@@ -5,8 +5,7 @@ import Studentcard from "./Card";
 import { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Footer from "../../components/Footer/Footer";
-import { Link } from "react-router-dom";
-
+import { Link, useHistory } from "react-router-dom";
 
 // routes
 //navbarin ndreqe
@@ -20,6 +19,11 @@ import { Link } from "react-router-dom";
 
 function Home() {
   const [isDark, setIsDark] = useState(false);
+  const history = useHistory();
+
+  const handleCreateInternship = () => {
+    history.push('/internshipform');
+  }
 
   return (
     <div id="body" data-theme={isDark ? "dark" : "light"}>
@@ -42,9 +46,9 @@ function Home() {
               <div className="banner_buttondiv">
                 <button
                   className="button_registercompany"
-                  onClick={() => setIsDark(true)}
+                  onClick={handleCreateInternship}
                 >
-                  Register your company
+                 Create an Internship
                 </button>
                   <Link to='/internships' className="linknodecoration button_findintern">Find an Internship</Link>
               </div>

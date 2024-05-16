@@ -13,6 +13,7 @@ import Signup from './components/SignUp/Signup.js';
 import Signup2 from './components/SignUp2/SignUp2.js';
 import Student from './components/Students/Students.js';
 import SearchStudents from "./components/SearchStudents/SearchStudents.js";
+import InternshipForm from './components/InternshipForm/InternshipForm.js';
 
 function App() {
   return (
@@ -59,6 +60,9 @@ function App() {
         </Route> 
         <Route exact path="/myprofile">
           <MyProfile />
+        </Route> 
+        <Route exact path="/internshipForm">
+          <InternshipForm />
         </Route> 
 
       </Switch>

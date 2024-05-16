@@ -21,6 +21,7 @@
     "react-date-picker": "^10.6.0",
     "react-datepicker": "^6.9.0",
     "react-dom": "^18.2.0",
+    "react-placeholder-image": "^0.1.8",
     "react-router-dom": "^5.3.4",
     "react-scripts": "5.0.1",
     "sass": "^1.75.0",
