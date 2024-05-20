@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import { Button } from "react-bootstrap";
 import "react-datepicker/dist/react-datepicker.css";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
@@ -6,12 +6,6 @@ import "../SignUp/Signup.css";
 import { Link } from "react-router-dom";
 
 function Signup() {
-  const [selectedDate, setSelectedDate] = useState(null);
-
-  // Function to handle date selection
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
 
   return (
     <>
@@ -63,6 +57,8 @@ function Signup() {
               </Link>
             </span>
           </p>
+          <p>
+          <Link to="/signupcompany" style={{textDecoration: "none", color: "black"}}>Sign up as <span>Company</span> </Link></p>
           <h5>Or</h5>
           <Button className="sign-google">
             <FaGoogle className="g-icon" />

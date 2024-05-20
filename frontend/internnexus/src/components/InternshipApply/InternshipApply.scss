@@ -41,12 +41,12 @@
     width: 100%;
     margin-left: 10%;
     background-color: #FEF8F8;
-    gap: 10%;
+    gap: 7%;
     padding-left: 3%;
     padding-top: 3%;
     border-radius: 20px;
     align-items: center;
-    box-shadow: 1px 1px 1px  #555555;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .intapplydescription {
     width: 100%;
@@ -62,7 +62,7 @@
     border-radius: 20px;
     background-color: #FEF8F8;
     padding: 3% 3%;
-    box-shadow: 1px 1px 1px  #555555;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     // align-items: center;
 }
 .int-requirements{
@@ -92,7 +92,7 @@
       }
     .specifications {
         width: 100%;
-        height: 200px;
+        height: 150px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -158,7 +158,54 @@
       }
     .specifications {
         width: 100%;
-        height: 200px;
+        height: 150px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: $_margin;
+        margin-bottom: 5%;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    h2{
+        font-size: 1.2rem;
+    }
+    h5 {
+        font-size: 1rem;
+    }
+    h6 {
+        font-size: 0.9rem;
+    }
+
+}
+@media only screen and (max-width: 1024px){
+    .applyCard{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .applycompanyLogo {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: $_margin;
+        margin-bottom: 10%;
+    }
+    .btn-apply{
+        background-color: #b3a398;
+        box-shadow: 3px 3px 3px #555555;
+        width: 40%;
+        height: 35px;
+        cursor: pointer;
+        font-family: poppins_regular;
+        border-radius: 6px;
+        transition: transform 0.3s, background-color 0.3s, color 0.2s;
+    }
+    .specifications {
+        width: 100%;
+        height: 250px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -166,15 +213,6 @@
         margin-bottom: 5%;
         align-items: center;
         gap: 5px;
-    }
-    h2{
-        font-size: 1.2rem;
-    }
-    h5 {
-        font-size: 0.9rem;
-    }
-    h6 {
-        font-size: 0.8rem;
     }
 
 }

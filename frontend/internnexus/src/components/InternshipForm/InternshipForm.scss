@@ -10,10 +10,11 @@
   max-width: 50%;
   margin: 3% auto 3%;
   padding: 20px;
-  background-color: white;
+  background-color:  #FEF8F8;
   border-radius: 8px;
   box-shadow: 1px 1px #555;
   font-family: poppins_regular;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .internshipform-details {
   text-align: center;
@@ -119,9 +120,20 @@
   }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 768px) {
   .internship-form-container {
     max-width: 80%;
+    margin: 3% auto 3%;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 1px 1px #555;
+    font-family: poppins_regular;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .internship-form-container {
+    max-width: 70%;
     margin: 3% auto 3%;
     padding: 20px;
     background-color: white;

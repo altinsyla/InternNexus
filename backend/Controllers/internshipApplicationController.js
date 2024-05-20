@@ -21,49 +21,37 @@ const getSingleInternshipApplication = async (req, res) => {
 
 const createInternshipApplication = async (req, res) => {
     const {
-        positionTitle,
-        companyLogo,
-        location,
-        employmentType,
-        duration,
-        requirements,
-        offerDetails,
-        createdAt,
+      applicationID,
+      internshipTitle,
+      studentID,
+      applyDate
     } = req.body;
   
     console.log(req.body);
   
     // Check for required fields
     if (
-      !positionTitle ||
-      !companyLogo ||
-      !location ||
-      !employmentType ||
-      !duration ||
-      !requirements ||
-      !offerDetails ||
-      !createdAt 
+      !applicationID ||
+      !internshipTitle ||
+      !studentID ||
+      !applyDate
     ) {
       return res.status(400).json({ message: "Required fields are missing" });
     }
   
     try {
-      const existingInternshipApplicationByRoll = await InternshipApplication.findOne({ positionTitle });
+      const existingInternshipApplicationByRoll = await InternshipApplication.findOne({ applicationID });
       if (existingInternshipApplicationByRoll) {
         return res
           .status(409)
-          .json({ message: "Internship Application with this title already exists" });
+          .json({ message: "Internship Application with this internshipID already exists" });
       }
   
       const newInternshipApplication = await InternshipApplication.create({
-        positionTitle,
-        companyLogo,
-        location,
-        employmentType,
-        duration,
-        requirements,
-        offerDetails,
-        createdAt
+      applicationID,
+      internshipTitle,
+      studentID,
+      applyDate
       });
   
       res.status(201).json(newInternshipApplication);

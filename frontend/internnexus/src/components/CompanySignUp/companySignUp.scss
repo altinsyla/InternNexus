@@ -1,0 +1,329 @@
+@import "../../styles/_fonts.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.c-signupformdiv {
+  width: 40%;
+  margin-top: 3.5rem;
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.c-second-div {
+  display: flex;
+  width: 30%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 50px;
+  margin-top: 3.5rem;
+}
+
+.c-signup-maindiv {
+  display: flex;
+  align-items: stretch;
+  background-color: #f4f2f3;
+  justify-content: center;
+  margin: 5rem 13rem;
+  border-radius: 25px;
+  height: 450px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.c-formInputs {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 17px;
+  padding-left: 12px;
+  width: 100%;
+  height: 47px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-family: poppins_regular;
+}
+
+.c-firstP {
+  font-family: poppins_bold;
+  font-size: 1.2rem;
+  align-self: flex-start;
+  margin-bottom: 1rem;
+}
+
+.complogodiv {
+  display: flex;
+  justify-content: center;
+  height: auto;
+}
+
+.c-logo-company {
+  position: relative;
+  width: 20%;
+  height: auto;
+  margin-top: 3%;
+}
+
+.c-forms {
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.c-signupbutton {
+  margin-top: 5%;
+  width: 95%;
+  height: 45px;
+  color: white;
+  border: 1px solid #ccc;
+  background-color: #555;
+  font-size: medium;
+  font-weight: 600;
+  border-radius: 10px;
+  font-family: poppins_regular;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.c-signupbutton:hover {
+  background-color: #666666;
+  color: white;
+}
+
+.c-second-div p {
+  align-self: flex-start;
+  padding-top: 0.6rem;
+  padding-left: 1.2rem;
+  font-family: poppins_thin;
+  font-size: small;
+}
+
+.c-second-div span {
+  font-weight: 900;
+}
+
+.c-second-div h5 {
+  font-weight: 800;
+  font-family: poppins_bold;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-size: 25px;
+}
+
+.c-sign-google,
+.c-sign-facebook {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 45px;
+  background-color: white;
+  color: black;
+  border: 1.5px solid black;
+  box-shadow: 2px 3px 5px gray;
+  margin-bottom: 20px;
+}
+
+.c-sign-google span,
+.c-sign-facebook span {
+  font-family: poppins_thin;
+  font-size: small;
+}
+
+.c-g-icon {
+  width: 25px;
+  height: 25px;
+  margin-left: 5px;
+  margin-right: 20%;
+}
+
+.c-sign-google:hover,
+.c-sign-facebook:hover {
+  background-color: white;
+  color: black;
+  border: 1.5px solid black;
+}
+
+@media only screen and (max-width: 1024px) {
+  .c-signup-maindiv {
+    flex-direction: column;
+    margin: 3rem 5rem;
+    border-radius: 20px;
+    height: auto;
+  }
+
+  .c-signupformdiv,
+  .c-second-div {
+    width: 80%;
+    margin-top: 2rem;
+    margin-left: 10%;
+  }
+
+  .c-formInputs {
+    font-size: 1rem;
+  }
+
+  .c-logo-company {
+    width: 30%;
+    margin-top: 2%;
+  }
+
+  .c-firstP {
+    font-size: 1.1rem;
+  }
+
+  .c-signupbutton {
+    width: 90%;
+    height: 40px;
+    font-size: medium;
+  }
+
+  .c-second-div h5 {
+    font-size: 1.8rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .c-sign-google,
+  .c-sign-facebook {
+    width: 80%;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+
+  .c-g-icon {
+    margin-right: 18%;
+  }
+
+  .c-second-div p {
+    padding-left: 0;
+    width: 90%;
+    text-align: center;
+    font-size: 0.9rem;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .c-signup-maindiv {
+    flex-direction: column;
+    margin: 2rem;
+    border-radius: 15px;
+    height: auto;
+  }
+
+  .c-signupformdiv,
+  .c-second-div {
+    width: 100%;
+    margin-top: 2rem;
+    margin-left: 2%;
+  }
+
+  .c-formInputs {
+    font-size: 0.9rem;
+  }
+
+  .c-logo-company {
+    width: 50%;
+    margin-top: 2%;
+  }
+
+  .c-firstP {
+    font-size: 1rem;
+  }
+
+  .c-signupbutton {
+    width: 80%;
+    height: 40px;
+    font-size: small;
+  }
+
+  .c-second-div h5 {
+    font-size: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .c-sign-google,
+  .c-sign-facebook {
+    width: 70%;
+    height: 40px;
+    font-size: 0.8rem;
+  }
+
+  .c-g-icon {
+    margin-right: 15%;
+  }
+
+  .c-second-div p {
+    padding-left: 0;
+    width: 95%;
+    text-align: center;
+    font-size: 0.8rem;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .c-signup-maindiv {
+    flex-direction: column;
+    margin: 2rem;
+    border-radius: 15px;
+    height: auto;
+  }
+
+  .c-signupformdiv,
+  .c-second-div {
+    width: 100%;
+    margin-top: 2rem;
+    margin-left: 2%;
+  }
+
+  .c-formInputs {
+    font-size: 0.9rem;
+  }
+
+  .c-logo-company {
+    width: 50%;
+    margin-top: 2%;
+  }
+
+  .c-firstP {
+    font-size: 1rem;
+  }
+
+  .c-signupbutton {
+    width: 80%;
+    height: 40px;
+    font-size: small;
+  }
+
+  .c-second-div h5 {
+    font-size: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .c-sign-google,
+  .c-sign-facebook {
+    width: 70%;
+    height: 40px;
+    font-size: 0.8rem;
+  }
+
+  .c-g-icon {
+    margin-right: 15%;
+  }
+
+  .c-second-div p {
+    padding-left: 0;
+    width: 95%;
+    text-align: center;
+    font-size: 0.8rem;
+    align-items: center;
+  }
+}

@@ -2,38 +2,22 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const InternshipApplication = new Schema({
-  positionTitle: {
-    type: String,
+  applicationID: {
+    type: Number,
     required: true
   },
-  companyLogo: {
-    type: String,
+  internshipTitle: {
+    type: String, //Ktu e marrim titullin e internshipit prej Internshipit, kur dojm me kriju aplikim tri veq e bajm internshipTitle(Application) = internshipTitle(Internships) tu i bo import dy tabelat
     required: true
   },
-  location: {
-    type: String,
+  studentID: {
+    type: Number, //I njejti sen vlen nalt si me internship ktu e kem me student
     required: true
   },
-  employmentType: {
-    type: String,
-    required: true
-  },
-  duration: {
-    type: String,
-    required: true
-  },
-  requirements: {
-    type: String,
-    required: true
-  },
-  offerDetails: {
-    type: String,
-    required: true
-  },
-  createdAt: {
+  applyDate: {
     type: Date,
     default: Date.now
-  },
+  }
 });
 
 module.exports = mongoose.model("internshipApplicationModel", InternshipApplication);

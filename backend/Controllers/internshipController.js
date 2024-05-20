@@ -21,25 +21,33 @@ const getSingleInternship = async (req, res) => {
 
 const createInternship = async (req, res) => {
     const {
+        internshipID,
+        image,
         title,
         type,
         location,
-        image,
+        duration,
+        requirements,
+        offers
     } = req.body;
   
     console.log(req.body);
   
     if (
+      !internshipID ||
+      !image ||
       !title ||
       !type ||
       !location ||
-      !image
+      !duration ||
+      !requirements ||
+      !offers 
     ) {
       return res.status(400).json({ message: "Required fields are missing" });
     }
   
     try {
-      const existingInternshipByRoll = await Internship.findOne({ title });
+      const existingInternshipByRoll = await Internship.findOne({ internshipID });
       if (existingInternshipByRoll) {
         return res
           .status(409)
@@ -47,10 +55,14 @@ const createInternship = async (req, res) => {
       }
   
       const newInternship = await Internship.create({
+        internshipID,
+        image,
         title,
         type,
         location,
-        image,
+        duration,
+        requirements,
+        offers
       });
   
       res.status(201).json(newInternship);

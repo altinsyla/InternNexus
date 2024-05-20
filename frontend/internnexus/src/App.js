@@ -14,6 +14,7 @@ import Signup2 from './components/SignUp2/SignUp2.js';
 import Student from './components/Students/Students.js';
 import SearchStudents from "./components/SearchStudents/SearchStudents.js";
 import InternshipForm from './components/InternshipForm/InternshipForm.js';
+import CompanySignUp from './components/CompanySignUp/CompanySignUp.js';
 
 function App() {
   return (
@@ -33,6 +34,10 @@ function App() {
 
         <Route exact path="/signup">
           <Signup />
+        </Route>
+        
+        <Route exact path="/signupcompany">
+          <CompanySignUp />
         </Route>
 
         <Route exact path="/create">

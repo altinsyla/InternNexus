@@ -2,25 +2,31 @@ const express = require('express');
 // require('dotenv').config(); //Kta e perdorum kur e kem .env edhe dojm mi perdor nbaz tsaj portin, mongoUri etj..
 const cors = require('cors');
 const port = process.env.PORT || 5001;
-const router = express.Router();
-const companyRouter = require('./Routes/companyRouter');
-const internshipRouter = require('./Routes/internshipRouter');
-const internshipApplicationRouter = require('./Routes/internshipApplicationRouter');
-const mentorRouter = require('./Routes/mentorRouter');
+const app = express();
+const connectDB = require('./connectdb');
 
+const mongoURI = "mongodb+srv://hakifkadriu:admin123@internnexus.xy6a46f.mongodb.net/?retryWrites=true&w=majority&appName=InternNexus"
 
 //Routes
+const internshipRouter = require('./Routes/internshipRouter');
+app.use('/internships', internshipRouter);
+const internshipApplicationRouter = require('./Routes/internshipApplicationRouter');
+app.use('/internshipapplication',  internshipApplicationRouter);
 
-router.use('/api/internships', internshipRouter);
-router.use('/api/companies', companyRouter);
-router.use('/api/internshipApplications', internshipApplicationRouter);
-router.use('/api/mentors', mentorRouter);
 
 //Connecting to MongoDB
-const mongoose = require('mongoose');
-const uri = "mongodb+srv://hakifkadriu:admin123@internnexus.xy6a46f.mongodb.net/?retryWrites=true&w=majority&appName=InternNexus"
-mongoose.connect(uri)
-.then(() => 
-        console.log('Connected to MongoDB'))
-.catch((error) => 
-    console.log("Couldn't connect to MongoDB", error))
+const start = async () => {
+        try {
+          await connectDB(mongoURI);
+          console.log("Connected to DB");
+          app.listen(port, () => {
+            console.log(`Server is listening on port ${port}`);
+          }).on('error', (err) => {
+            console.error('Server error:', err.message);
+          });
+        } catch (error) {
+          console.error('Database connection error:', error.message);
+        }
+      };
+      
+      start();
