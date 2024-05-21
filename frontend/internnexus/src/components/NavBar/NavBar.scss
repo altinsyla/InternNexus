@@ -15,7 +15,6 @@
   // margin-top: 2rem;
 
   font-family: poppins_regular;
-
 }
 
 .navbarlogo {
@@ -53,7 +52,7 @@
   font-size: 1rem;
   font-family: poppins_regular;
   white-space: nowrap;
-  background-color: #b3a398;
+  background-color: $clr-caramel;
   box-shadow: 4px 4px 10px color-mix(in srgb, #b3a398 100%, #555555 100%);
   display: flex;
   justify-content: center;
@@ -63,12 +62,13 @@
 
 .navbarlogin:hover {
   transform: translateY(-2px);
-  background-color: #555;
+  background-color: $clr-dark;
   color: white;
 }
 
-.navbarlogintext:hover{
-  color: white;
+
+.navbarsimplelinks:hover {
+  border-bottom: 2px solid $clr-caramel;
 }
 
 .navbardropdown {
@@ -170,7 +170,7 @@
 
   .navbartabs {
     display: none;
-  } 
+  }
 
   .navbarlinks {
     font-family: poppins_black;

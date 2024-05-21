@@ -8,33 +8,33 @@ import MenuIcon from "@mui/icons-material/Menu";
 const NavBar = () => {
   return (
     <div className="navbarcontainer">
-      <img src={require("./internnexus.png")} className="navbarlogo" />
+      <Link to="/">
+        <img src={require("./internnexus.png")} className="navbarlogo" />
+      </Link>
       <div className="navbartabs">
         <div>
-          <Link to="/" className="navbarlinks">
+          <Link to="/" className="navbarlinks navbarsimplelinks">
             HOME
           </Link>
         </div>
         <div>
-          <Link to="/internships" className="navbarlinks">
+          <Link to="/internships" className="navbarlinks navbarsimplelinks">
             INTERNSHIPS
           </Link>
         </div>
         <div>
-          <Link to="/students" className="navbarlinks">
+          <Link to="/students" className="navbarlinks navbarsimplelinks">
             STUDENTS
           </Link>
         </div>
-        <div className="navbarlogin">
-          <Link to="/login" className="navbarlinks navbarlogintext">
+        <div>
+          <Link to="/login" className="navbarlinks navbarsimplelinks">
             LOG IN
           </Link>
         </div>
-        <div className="navbarlogin">
-          <Link to="/signup" className="navbarlinks navbarlogintext">
-            SIGN UP
-          </Link>
-        </div>
+        <Link to="/signup" className="navbarlogin navbarlinks navbarlogintext">
+          SIGN UP
+        </Link>
       </div>
 
       <div className="navbardropdown">

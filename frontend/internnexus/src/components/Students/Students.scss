@@ -1,120 +1,220 @@
-@import '../../styles/_globals.scss';
+@import "../../styles/_globals.scss";
 
-*{
+* {
   margin: 0;
   padding: 0;
 }
 
-
-
-.studentName{
-    font-family: 'Roboto', sans-serif;
-    font-size: 25px;
-    color: black;
-    transition: transform 0.3s;
-    transform-origin: center; /* Set the transform origin to the center of the element */
-    display: inline-block;
-  }
-
-.studentName:hover {
-  transform: scale(1.2);
+// Desktop container utility class:
+.utilitycontainer {
+  max-width: 1536px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
-  
-  .studentEducation {
-    font-size: 15px;
-    font-family: 'Roboto', sans-serif;
-    color: #555555;
-    font-weight: 400;
-  }
 
-  .studentBanner {
-    text-align: center; /* Center-align the content horizontally */
-    width: auto;
-    height: auto;
-    margin-top: 5%;
-  }
-  
-  .studentPhoto {
-    width: 200px; /* Adjust the width of the image as needed */
-    height: auto; /* Maintain aspect ratio */
-    display: block; /* Ensure the image is a block element */
-    margin: 0 auto; /* Center the image horizontally */
-    // margin-top: 36px;
-  }
-  
-  .studentSkills{
-    font-size: 20px;
-    font-family: 'Roboto', sans-serif;
-    color:#555555; 
-    font-weight: 700;
-  }
-  
-  .studentDescription{
-    width: 627px;
-    height: 326px;
-    font-size: 15px;
-    color: black;
-  }
-  
-  .studentBody{
+.studentbanner {
+  display: flex;
+  justify-content: space-between;
+
+  margin: 0 10rem;
+  margin-top: 3.5rem;
+}
+
+.studentbannerleftside {
+  width: 50%;
+}
+
+.studentbannerrightside img {
+  display: block;
+  max-width: 100%;
+  // width: 200px;
+  height: 400px;
+  border-radius: 20px;
+  object-fit: contain;
+}
+
+.skillstable,
+.educationstable {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.skillstable td {
+  border-bottom: 2px solid #d3c0b4;
+  font-family: poppins_bold;
+}
+
+.skillstable tr {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.studentskillscontainer,
+.studenteducationscontainer {
+  margin: 0 10rem;
+}
+
+.educationstable th {
+  font-family: poppins_regular;
+  font-size: 18px;
+}
+
+.educationstable td {
+  font-family: poppins_thin;
+}
+
+/* lg */
+@media (max-width: 1024px) {
+  .studentcontainer{
     display: flex;
     flex-direction: column;
-    margin-top: 36px;
-    margin : $_margin;
-  }
-  
-  .studentContent{
-    display: flex;
-    flex-direction: row;
     align-items: center;
   }
-  
-  .studentPhoto{
-    width: 400px;
-    height: 533.41px;
-    border-radius: 15px;
+
+  .utilitycontainer {
+    max-width: 768px;
   }
 
-  .buttoncontact {
-    width: 200px;
-    height: 50px;
-    background-color: #555555;
-    color: white;
-    border: 1px solid #ccc;
-    border-radius: 40px;
-    margin-top: 20px;
-    transition: transform 0.3s, background-color 0.3s, color 0.2s;
-  }
-  
-  .buttoncontact:hover {
-    transform: translateY(-2px);
-    background-color: white;
-    color: black;
-    transform: translateX(5px);
-  }
-  
-  /* .clicked {
-    transform: translateX(5px);
-    background-color: white; 
-    color: black; 
-  } */
-
-  .skill-item {
+  .studentbanner {
     display: flex;
+    flex-direction: column-reverse;
+    // justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
-    gap: 30px;
+
+    margin: 0;
   }
-  
-  .skill-icon {
-    width: 70px; 
-    height: 50px; 
+
+  .studentbannerleftside {
+    display: flex;
+    flex-direction: column;
   }
-  
-  .skill-icon:hover {
-  transform: scale(1.2);
-  box-shadow: 0px 0px 10px 5px #ccc;
+
+  .studentUsername {
+    text-align: center;
   }
-  .skill-text {
-    font-size: 18px; 
+
+  .studentbanner,
+  .studentskillscontainer,
+  .studenteducationscontainer {
+    margin: 0;
   }
+
+  .studentbannerrightside img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .studentbannerleftside h4 {
+    align-self: center;
+  }
+
+  .studentbannerleftside p {
+    font-size: 16px;
+    align-self: center;
+    text-align: center;
+  }
+
+  .studentskillscontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .studentskillscontainer tr {
+    display: flex;
+    justify-content: center;
+    margin: 0 2rem;
+  }
+
+  .studenteducationscontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .educationstable tr {
+    display: flex;
+    justify-content: center;
+    margin: 0 2rem;
+    text-align: center;
+  }
+}
+
+/* xs */
+@media (max-width: 768px) {
+  .utilitycontainer {
+    width: 100%;
+  }
+
+  .studentbanner {
+    display: flex;
+    flex-direction: column-reverse;
+    // justify-content: center;
+    align-items: center;
+
+    margin: 0;
+  }
+
+  .studentbannerleftside {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .studentUsername {
+    text-align: center;
+  }
+
+  .studentbanner,
+  .studentskillscontainer,
+  .studenteducationscontainer {
+    margin: 0;
+  }
+
+  .studentbannerrightside img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .studentbannerleftside h4 {
+    align-self: center;
+  }
+
+  .studentbannerleftside p {
+    font-size: 12px;
+    width: 300px;
+    align-self: center;
+    text-align: center;
+  }
+
+  .studentskillscontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .studentskillscontainer tr {
+    display: flex;
+    justify-content: center;
+    margin: 0 2rem;
+  }
+
+  .studenteducationscontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .educationstable tr {
+    display: flex;
+    justify-content: center;
+    margin: 0 2rem;
+    text-align: center;
+  }
+}

@@ -20,15 +20,7 @@ import { Link, useHistory } from "react-router-dom";
 function Home() {
   const [isDark, setIsDark] = useState(false);
   const history = useHistory();
-
-  const handleCreateInternship = () => {
-    history.push('/internshipform');
-  }
   
-  const handleCompany = () => {
-    history.push('/companies');
-  }
-
   return (
     <div id="body" data-theme={isDark ? "dark" : "light"}>
       <NavBar />
@@ -50,7 +42,7 @@ function Home() {
               <div className="banner_buttondiv">
                 <button
                   className="button_registercompany"
-                  onClick={handleCreateInternship}
+                  onClick={() => history.push('/internshipform')}
                 >
                  Create an Internship
                 </button>
@@ -75,7 +67,6 @@ function Home() {
               src={require("./img/gjirafalab.png")}
               className="gridphotos img1"
               alt="company"
-              onClick={handleCompany}
             ></img>
             <img
               src={require("./img/frakton.png")}
