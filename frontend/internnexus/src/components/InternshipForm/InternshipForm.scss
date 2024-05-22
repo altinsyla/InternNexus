@@ -7,8 +7,8 @@
 }
 
 .internship-form-container {
-  max-width: 50%;
-  margin: 3% auto 3%;
+  max-width: 40%;
+  margin: 2% auto 3%;
   padding: 20px;
   background-color:  #FEF8F8;
   border-radius: 8px;
@@ -47,9 +47,12 @@
 
 .internshipform-inputs {
   width: 100%;
+  height: 45px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  font-size: 0.9rem;
+  margin: 0px 5px;
 }
 
 .form-buttons {
@@ -84,7 +87,45 @@
   transform: scale(1.1);
 }
 
-@media only screen and (max-width: 480px) {
+@media (max-width: 1024px) {
+  .internship-form-container {
+    max-width: 70%;
+    margin: 3% auto 3%;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 1px 1px #555;
+    font-family: poppins_regular;
+  }
+}
+.create-internship {
+  width: 30%;
+  font-size: 1rem;
+}
+.cancel-internship{
+  width: 30%;
+  font-size: 1rem;
+}
+@media (max-width: 768px) {
+  .internship-form-container {
+    max-width: 80%;
+    margin: 3% auto 3%;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 1px 1px #555;
+    font-family: poppins_regular;
+  }
+  .create-internship {
+    width: 40%;
+    font-size: 0.9rem;
+  }
+  .cancel-internship{
+    width: 40%;
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 480px) {
   .internship-form-container {
     max-width: 80%;
     margin: 3% auto 3%;
@@ -120,25 +161,3 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
-  .internship-form-container {
-    max-width: 80%;
-    margin: 3% auto 3%;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 1px 1px #555;
-    font-family: poppins_regular;
-  }
-}
-@media only screen and (max-width: 1024px) {
-  .internship-form-container {
-    max-width: 70%;
-    margin: 3% auto 3%;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 1px 1px #555;
-    font-family: poppins_regular;
-  }
-}

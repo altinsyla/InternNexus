@@ -14,8 +14,6 @@ body {
     align-items: center;
     margin-top: 36px;
     background-color: #FEF8F8;
-    // background-color: #f2f2f2;
-    // box-shadow: 2px 2px #555555;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -60,22 +58,37 @@ body {
     font-size: 1.4rem;
     margin-bottom: 10px;
     text-align: left;
-}
-
-.companyType { 
+  }
+  
+  .companyType { 
     background-color: #FEF8F8;
     font-family: poppins_regular;   
     font-size: 1.2rem;
     margin-bottom: 10px;
     text-align: left;
-}
-
-@media only screen and (max-width: 480px) {
+  }
+  
+  @media (max-width: 768px) {
+   .internshipcard_body {
+      width: 100%;
+      height: auto;
+      padding: 10px;
+    }
+   .company_logo {
+      width: 30%;
+      height: 50%;
+    }
+   .positionInfo {
+      width: 60%;
+      height: 50%;
+    }
+  }
+  @media (max-width: 480px) {
     .internshipcard_body {
        width: 100%;
        height: auto;
        padding: 10px;
-     }
+      }
     .company_logo {
        width: 25%;
        height: 30%;
@@ -101,18 +114,3 @@ body {
   }
    }
    
-   @media only screen and (max-width: 768px) {
-    .internshipcard_body {
-       width: 100%;
-       height: auto;
-       padding: 10px;
-     }
-    .company_logo {
-       width: 30%;
-       height: 50%;
-     }
-    .positionInfo {
-       width: 60%;
-       height: 50%;
-     }
-   }

@@ -9,12 +9,11 @@ import InternshipsApply from './components/InternshipApply/InternshipApply.js';
 import Internships from './components/Internships/Internships.js';
 import Login from './components/Login.js';
 import MyProfile from "./components/MyProfile/MyProfile.js";
-import Signup from './components/SignUp/Signup.js';
 import Signup2 from './components/SignUp2/SignUp2.js';
 import Student from './components/Students/Students.js';
 import SearchStudents from "./components/SearchStudents/SearchStudents.js";
 import InternshipForm from './components/InternshipForm/InternshipForm.js';
-import CompanySignUp from './components/CompanySignUp/CompanySignUp.js';
+import SignUpForm from './components/SignUpForm/SignUpForm.js';
 
 function App() {
   return (
@@ -32,12 +31,8 @@ function App() {
           <Login />
         </Route>
 
-        <Route exact path="/signup">
-          <Signup />
-        </Route>
-        
-        <Route exact path="/signupcompany">
-          <CompanySignUp />
+        <Route exact path="/signupform">
+         <SignUpForm />
         </Route>
 
         <Route exact path="/create">

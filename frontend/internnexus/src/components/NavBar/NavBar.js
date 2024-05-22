@@ -32,7 +32,7 @@ const NavBar = () => {
             LOG IN
           </Link>
         </div>
-        <Link to="/signup" className="navbarlogin navbarlinks navbarlogintext">
+        <Link to="/signupform" className="navbarlogin navbarlinks navbarlogintext">
           SIGN UP
         </Link>
       </div>
@@ -66,6 +66,11 @@ const NavBar = () => {
             <Link to="/login" className="navbarlinks">
               LOG IN
             </Link>
+            <li>
+            <Link to="/signupform" className="navbarlinks">
+              SIGN UP
+            </Link>
+            </li>
           </li>
         </ul>
       </div>

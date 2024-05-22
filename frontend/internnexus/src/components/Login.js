@@ -19,7 +19,7 @@ function Login() {
   const history = useHistory();
 
   const handleSignup = () => {
-    history.push('/signup');
+    history.push('/signupform');
   }
 
   return (
