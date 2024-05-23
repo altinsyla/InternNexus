@@ -5,10 +5,13 @@ import React from 'react';
 // import Button from 'react-bootstrap/Button'; 
 // kjo e thirr veq Buttonin nkrahasim me ata ma nalt e cila e thirr KREJT librarin, ndikon ne performance edhe ne madhesi
 
-import { FaGoogle } from "react-icons/fa";
+import { SiFacebook } from "react-icons/si";
+
+import { FcGoogle } from "react-icons/fc";
+import { useHistory } from 'react-router-dom';
 import internnexus from '../imgsrc/internnexus.png';
 import '../styles/App.css';
-import { useHistory } from 'react-router-dom';
+
 
 
 
@@ -37,12 +40,17 @@ function Login() {
           <a href='#' className='signuptext' onClick={handleSignup}>Sign Up to InternNexus</a>
           </div>
 
-          <div className='GoogleLogin'>
-           
-          <FaGoogle cursor='pointer'/>
-       
-            <a href='#' className='signuptext'> Login With Google</a>
-          </div>
+      <div className='btn-google-fb'>
+
+        <button className='googlebtn'>
+      <FcGoogle className='googleicon'/>
+          Login with Google</button>
+
+          <buton className='facebookbtn'>
+          <SiFacebook className='fbicon' />
+
+            Login With Facebook</buton>
+      </div>
         </div>
     </div>
   );

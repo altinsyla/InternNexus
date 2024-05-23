@@ -81,3 +81,40 @@ a.nav-link { /* Kjo sherben me ndrru ngjyren e fontit te Nav Barit edhe me ja he
   width: 150px;
   margin-top: 35px;
 }
+.btn-google-fb{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 10rem;
+}
+.googlebtn{
+height: 2.8rem;
+width: 18.5rem;
+border-radius: 10px;
+border: 1px solid #ccc;
+background-color: white;
+font-weight: 500;
+
+}
+.googleicon{
+margin-right: 5px;
+width: 1.7rem;
+height: 1.7rem;
+}
+.facebookbtn{
+  display: flex;
+  height: 2.8rem;
+width: 18.5rem;
+border-radius: 10px;
+border: 1px solid #ccc;
+background-color: white;
+font-weight: 500;
+align-items: center;
+justify-content: center;
+
+}
+.fbicon{
+  margin-right: 5px;
+width: 1.7rem;
+height: 1.7rem;
+}
