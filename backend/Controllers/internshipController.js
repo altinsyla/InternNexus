@@ -1,4 +1,20 @@
-const Internship = require('../Models/internshipModel');
+const Internship = require("../Models/internshipModel");
+const multer = require("multer");
+const path = require("path");
+
+//qikjo ta mundson me i ru fotot, 'public/images' veni ku ruhen fotot kur bohen upload
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/images');
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({
+  storage: storage
+});
 
 const getAllInternships = async (req, res) => {
   try {
@@ -10,73 +26,64 @@ const getAllInternships = async (req, res) => {
 };
 
 const getSingleInternship = async (req, res) => {
-  const id = req.params.id;
-  try {
-    const Internship = await Internship.findOne({ _id: id });
-    res.status(200).json(Internship);
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-};
-
-const createInternship = async (req, res) => {
-    const {
-        internshipID,
-        image,
-        title,
-        type,
-        location,
-        duration,
-        requirements,
-        offers
-    } = req.body;
-  
-    console.log(req.body);
-  
-    if (
-      !internshipID ||
-      !image ||
-      !title ||
-      !type ||
-      !location ||
-      !duration ||
-      !requirements ||
-      !offers 
-    ) {
-      return res.status(400).json({ message: "Required fields are missing" });
-    }
-  
+    const { id } = req.params;
     try {
-      const existingInternshipByRoll = await Internship.findOne({ internshipID });
-      if (existingInternshipByRoll) {
-        return res
-          .status(409)
-          .json({ message: "Internship with this ID already exists" });
+      const internship = await Internship.findById(id);
+      if (!internship) {
+        return res.status(404).json({ error: "Internship not found" });
       }
-  
-      const newInternship = await Internship.create({
-        internshipID,
-        image,
-        title,
-        type,
-        location,
-        duration,
-        requirements,
-        offers
-      });
-  
-      res.status(201).json(newInternship);
-    } catch (error) {
-      res.status(500).json({ message: error.message });
+      res.json(internship);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "Server error" });
     }
   };
 
-const updateInternship = async (req, res) => {
-  const id = req.params.id;
+const createInternship = async (req, res) => {
+  const {
+    title,
+    type,
+    location,
+    duration,
+    requirements,
+    offers
+  } = req.body;
+
+  const image = req.file ? req.file.filename : "";
+
   try {
-    const updateInternship = await Internship.findOneAndUpdate({ _id: id }, req.body, {
-      new: true,
+    const newInternship = await Internship.create({
+      image: image,
+      title,
+      type,
+      location,
+      duration,
+      requirements,
+      offers
     });
+
+    res.status(201).json(newInternship);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const updateInternship = async (req, res) => {
+  const {id} = req.params;
+  const updatedData = req.body;
+
+  if (req.file) {
+    updatedData.image = req.file.path;
+  }
+
+  try {
+    const updateInternship = await Internship.findById(
+      id,
+      updatedData,
+      {
+        new: true,
+      }
+    );
     res.status(200).json(updateInternship);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -84,9 +91,9 @@ const updateInternship = async (req, res) => {
 };
 
 const deleteInternship = async (req, res) => {
-  const id = req.params.id;
+  const id = req.params;
   try {
-    await Internship.findOneAndDelete({ _id: id });
+    await Internship.findByIdAndDelete(id);
     res.status(204).json({ message: "Internship deleted successfully" });
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -94,9 +101,10 @@ const deleteInternship = async (req, res) => {
 };
 
 module.exports = {
-    getAllInternships,
-    getSingleInternship,
-    createInternship,
-    updateInternship,
-    deleteInternship
+  getAllInternships,
+  getSingleInternship,
+  createInternship,
+  updateInternship,
+  deleteInternship,
+  upload
 };

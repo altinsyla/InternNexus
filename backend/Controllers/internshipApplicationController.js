@@ -3,7 +3,7 @@ const InternshipApplication = require('../Models/internshipApplicationModel');
 const getAllInternshipApplications = async (req, res) => {
   try {
     const InternshipApplications = await InternshipApplication.find();
-    res.status(200).json(InternshipApplications);
+    res.status(200).json({InternshipApplications});
   } catch (error) {
     res.status(404).json({ message: error.message });
   }

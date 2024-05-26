@@ -51,9 +51,9 @@ function App() {
           <Internships />
         </Route> 
 
-        <Route exact path="/apply">
+        <Route exact path="/apply/:id">
           <InternshipsApply />
-        </Route> 
+          </Route>
 
         <Route exact path="/companies">
           <Companies />

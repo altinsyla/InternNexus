@@ -1,11 +1,12 @@
 const express = require("express");
 const internshipApplicationController = require('../Controllers/internshipApplicationController');
+const verifyToken = require('../verifyToken');
 const router = express.Router();
 
-router.get('/', internshipApplicationController.getAllInternshipApplications);
-router.get('/:id', internshipApplicationController.getSingleInternshipApplication);
-router.post('/', internshipApplicationController.createInternshipApplication);
-router.patch('/:id', internshipApplicationController.updateInternshipApplication);
-router.delete('/:id', internshipApplicationController.deleteInternshipApplication);
+router.get('/', verifyToken, internshipApplicationController.getAllInternshipApplications);
+router.get('/:id', verifyToken,  internshipApplicationController.getSingleInternshipApplication);
+router.post('/', verifyToken,  internshipApplicationController.createInternshipApplication);
+router.patch('/:id', verifyToken,  internshipApplicationController.updateInternshipApplication);
+router.delete('/:id', verifyToken, internshipApplicationController.deleteInternshipApplication);
 
 module.exports = router;

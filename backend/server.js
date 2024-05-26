@@ -7,11 +7,14 @@ const connectDB = require('./connectdb');
 
 const mongoURI = "mongodb+srv://hakifkadriu:admin123@internnexus.xy6a46f.mongodb.net/?retryWrites=true&w=majority&appName=InternNexus"
 
+app.use(cors());
+
 //Routes
 const internshipRouter = require('./Routes/internshipRouter');
 app.use('/internships', internshipRouter);
 const internshipApplicationRouter = require('./Routes/internshipApplicationRouter');
 app.use('/internshipapplication',  internshipApplicationRouter);
+app.use(express.static('public'))
 
 
 //Connecting to MongoDB
