@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./SearchStudents.scss";
 import NavBar from "../NavBar/NavBar.js";
 import Footer from "../Footer/Footer.js";
@@ -98,7 +98,7 @@ const SearchStudents = () => {
     },
   ];
 
-  const splitSearchQuery = searchQuery.split(' ');
+  const splitSearchQuery = searchQuery.split(" ");
 
   const filteredStudentCardsByName = studentCards.filter((card) =>
     card.fullName.toLowerCase().includes(searchQuery.toLowerCase())
@@ -163,7 +163,6 @@ const SearchStudents = () => {
               Skill
             </ToggleButton> */}
           </ToggleButtonGroup>
-
         </div>
 
         {/* <div className="filterSkillDiv">

@@ -1,36 +1,38 @@
-// import React, {useState} from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
-import '../SignUpForm/SignUpForm.scss';
-import { Link } from "react-router-dom";
-// import axios from "axios";
+import "../SignUpForm/SignUpForm.scss";
+import { Link, useHistory } from "react-router-dom";
+import api from "../../../src/api";
+import cors from "cors";
 
 function CompanySignUp() {
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const [info, setInfo] = useState({
+    username: "",
+    email: "",
+    fullname: "",
+    password: "",
+  });
 
-  // const handleNameChange = (event) => setName(event.target.value);
-  // const handleEmailChange = (event) => setEmail(event.target.value);
-  // const handlePasswordChange = (event) => setPassword(event.target.value);
+  const history = useHistory();
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   console.log("Register button clicked");
-  // } // e hek qita kur e hek komentimin
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    //Qikjo duhet me shti te posti pathin ku ka mu postu
-  //   try {
-  //     const response = await axios.post("", {
-  //       name,
-  //       email,
-  //       password,
-  //     });
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.error("Register error", error.response.data);
-  //   }
-  // };
+    try {
+      await api
+        .post("/user", info)
+        .then((response) => {
+          alert("Account created successfully");
+          history.push("/home");
+        })
+        .catch((err) => {
+          alert("User with this username or email already exists!");
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
@@ -49,29 +51,29 @@ function CompanySignUp() {
               type="text"
               placeholder="Username"
               className="c-formInputs"
+              onChange={(e) => setInfo({ ...info, username: e.target.value })}
               // value={name}
-              // onChange={handleNameChange}
             />
             <input
               type="text"
               placeholder="Full Name"
               className="c-formInputs"
+              onChange={(e) => setInfo({ ...info, fullname: e.target.value })}
               // value={name}
-              // onChange={handleNameChange}
             />
             <input
               type="email"
               placeholder="Email Address"
               className="c-formInputs"
+              onChange={(e) => setInfo({ ...info, email: e.target.value })}
               // value={email}
-              // onChange={handleEmailChange}
             />
             <input
               type="password"
               placeholder="Password"
               className="c-formInputs"
+              onChange={(e) => setInfo({ ...info, password: e.target.value })}
               // value={password}
-              // onChange={handlePasswordChange}
             />
             <input
               type="password"
@@ -83,11 +85,12 @@ function CompanySignUp() {
           </form>
         </div>
         <div className="c-second-div">
-          <button 
-          className="c-signupbutton" 
-          // onClick={handleSubmit}
-          type="submit">
-          Sign Up
+          <button
+            className="c-signupbutton"
+            onClick={handleSubmit}
+            type="submit"
+          >
+            Sign Up
           </button>
           <p>
             Already have an Account?{" "}
