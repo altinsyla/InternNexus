@@ -4,50 +4,32 @@ import "./MyProfile.scss";
 
 function MyProfile() {
   return (
-    <div className="main-Div">
-      <div className="left-elements">
-        <img className="logo1" src={internnexus} />
-        <div className="foto-Profilit"></div>
-        <p className="first-P">Flamur Isa</p>
-        <p className="second-P">Front End Developer</p>
-        <div className="left-info">
-            <div className="info-text">
-            <p>Age: 21</p>
-            <p>Job: Intern</p>
-            <p>Location: Vushtrri</p>
-            </div>
-            <div className="info-skills">
-               <div className="skill-element">HTML</div>
-               <div className="skill-element">Css</div>
-               <div className="skill-element">JavaScript</div>
-               <div className="skill-element">ReactJs</div>
-            </div>
-        </div>
-      </div>
-      <div className="right-elements">
-      <form className="format">
-          <p className="firstP">Name:</p>
-          <input type="text" placeholder="Name" className="formInputs" />
-          <p className="firstP">Number:</p>
-          <input type="tel" placeholder="Phone Number" className="formInputs" />
-          <p className="firstP">Email:</p>
-          <input type="email" placeholder="Email" className="formInputs" />
-          <p className="firstP">Password:</p>
+    <>
+    <img className="INlogo" src={internnexus} />
 
-          <input
-            type="password"
-            placeholder="Password"
-            className="formInputs"
-          />
-          </form>
-          <p className="firstP">Description:</p>
-
-          <textarea placeholder="Description..." className="skill-description"></textarea>
-      <button className='loginButton'>Log In</button>
-
-      </div>
-
+    <div className="main-div">
+      <div className="leftContainer">
+    <input type="image" className="profilePic" />
+    <h3 className="profileName">Flamur Isa</h3>
     </div>
+
+    <div className="rightContainer">
+      <form>
+        <p>About Me :</p>
+        <input type='text' placeholder="Write something about yourself" className="formInput"></input>
+        <p>Skills :</p>
+        <input type='text' placeholder="Write your programming skills" className="formInput"></input>
+        <p>University :</p>
+        <input type='text' placeholder="University which you studied in, optional" className="formInput"></input>
+        <p>High School Education :</p>
+        <input type='text' placeholder="High School which you finished" className="formInput"></input>
+        <p>Courses :</p>
+        <input type='text' placeholder="Courses that you followed" className="formInput"></input>
+      </form>
+      <button>Edit Profile</button>
+    </div>
+    </div>
+    </>
   );
 }
 
