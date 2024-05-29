@@ -4,7 +4,8 @@ const userController = require("../Controllers/userController");
 const router = express.Router();
 
 router.get("/",userController.getAllUsers);
-router.get("/:id",userController.getSingleUser);
+router.get("/limit/:limit",userController.getcustomlimitusers);
+router.get("/:username",userController.getSingleUser);
 router.post("/",userController.createUser);
 router.patch("/:id",userController.updateUser);
 router.delete("/:id",userController.deleteUser);

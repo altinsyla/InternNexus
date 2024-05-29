@@ -5,112 +5,44 @@ import Footer from "../Footer/Footer.js";
 import StudentCard from "./StudentCard.js";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
+import api from "../../api.js";
 
 const SearchStudents = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [filter, setFilter] = useState(1); // default 1 me i filtru me emra, 2 per me username
+  const [filter, setFilter] = useState("fullname"); // default fullname, pastaj jon username edhe skills
+  const [users, setUsers] = useState([]);
+  const [isTyping, setIsTyping] = useState(false);
+
+  const getUsers = async () => {
+    try {
+      const response = await api.get("/user");
+      setUsers(response.data);
+    } catch (err) {
+      console.log("You need to be logged in first!");
+    }
+  };
+
+  const applyFilter = async () => {
+    const response = await api.get("/user?" + filter + "=" + searchQuery);
+    setUsers(response.data);
+  };
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
+    applyFilter();
+    setIsTyping(true);
   };
 
-  const studentCards = [
-    {
-      profilePic: require("../Home/img/AltinSyla.jpg"),
-      fullName: "Altin Syla",
-      username: "AltinS",
-      skills: [
-        "Software Developement",
-        "Web Developement",
-        "Full Stack Developer",
-        "Full Stack Developer",
-        "Full Stack Developer",
-      ],
-    },
-    {
-      profilePic: require("../Home/img/FlamurIsa.jpg"),
-      fullName: "Flamur Isa",
-      username: "Isa",
-      skills: [
-        "Software Developement",
-        "Web Developement",
-        "Full Stack Developer",
-      ],
-    },
-    {
-      profilePic: require("../Home/img/HakifKadriu.jpg"),
-      fullName: "Hakif Kadriu",
-      username: "Kifa2",
-      skills: [
-        "Full Stack Developer",
-        "Full Stack Developer",
-        "Full Stack Developer",
-        "Full Stack Developer",
-      ],
-    },
-    {
-      profilePic: require("../Home/img/HakifKadriu.jpg"),
-      fullName: "Hakif Kadriu",
-      username: "Kifa",
-      skills: [
-        "Software Developement",
-        "Full Stack Developer",
-        "Full Stack Developer",
-        "Full Stack Developer",
-        "Full Stack Developer",
-      ],
-    },
-    {
-      profilePic: require("../Home/img/HakifKadriu.jpg"),
-      fullName: "Hakif Kadriu",
-      username: "Kifa",
-      skills: [
-        "Software Developement",
-        "Full Stack Developer",
-        "Full Stack Developer",
-        "Full Stack Developer",
-        "Full Stack Developer",
-      ],
-    },
-    {
-      profilePic: require("../Home/img/HakifKadriu.jpg"),
-      fullName: "Hakif Kadriu",
-      username: "Kifa",
-      skills: [
-        "Software Developement",
-        "Full Stack Developer",
-        "Full Stack Developer",
-        "Full Stack Developer",
-        "Full Stack Developer",
-      ],
-    },
-    {
-      profilePic: require("../Home/img/HakifKadriu.jpg"),
-      fullName: "Rinor Rashica",
-      username: "rinor",
-      skills: [
-        "Software Developement",
-        "Full Stack Developer",
-        "Full Stack Developer",
-        "Full Stack Developer",
-        "Full Stack Developer",
-      ],
-    },
-  ];
+  const clearFilter = async () => {
+    const response = await api.get("/user");
+    setUsers(response.data);
+    setSearchQuery("");
+    setIsTyping(false);
+  };
 
-  const splitSearchQuery = searchQuery.split(" ");
-
-  const filteredStudentCardsByName = studentCards.filter((card) =>
-    card.fullName.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  const filteredStudentCardsByUsername = studentCards.filter((card) =>
-    card.username.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  const filteredStudentCardsbySkill = studentCards.filter((card) =>
-    card.skills.includes("Software Developement")
-  );
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   return (
     <div>
@@ -119,13 +51,26 @@ const SearchStudents = () => {
         <h1 className="fontregular" style={{ marginTop: "3rem" }}>
           Search Students
         </h1>
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchQuery}
-          onChange={handleSearchChange}
-          className="studentsearchInput"
-        />
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+            className="studentsearchInput"
+          ></input>
+          {isTyping ? (
+            <button
+              className="btn btn-primary mr-2"
+              style={{ width: "fit-content", alignSelf: "center" }}
+              onClick={clearFilter}
+            >
+              Clear Filter
+            </button>
+          ) : (
+            ""
+          )}
+        </div>
 
         <h4
           style={{
@@ -142,7 +87,10 @@ const SearchStudents = () => {
               id="tbg-radio-1"
               value={1}
               variant="outline-dark"
-              onClick={() => setFilter(1)}
+              onClick={() => {
+                setFilter("fullname");
+              }}
+              onChange={() => applyFilter()}
             >
               Name
             </ToggleButton>
@@ -150,51 +98,33 @@ const SearchStudents = () => {
               id="tbg-radio-2"
               value={2}
               variant="outline-dark"
-              onClick={() => setFilter(2)}
+              onClick={() => {
+                setFilter("username");
+              }}
+              onChange={() => applyFilter()}
             >
               Username
             </ToggleButton>
-            {/* <ToggleButton
-              id="tbg-radio-2"
+            <ToggleButton
+              id="tbg-radio-3"
               value={3}
               variant="outline-dark"
-              onClick={() => setFilter(3)}
+              onClick={() => {
+                setFilter("skill");
+              }}
+              onChange={() => applyFilter()}
             >
               Skill
-            </ToggleButton> */}
+            </ToggleButton>
           </ToggleButtonGroup>
         </div>
-
-        {/* <div className="filterSkillDiv">
-          <ToggleButtonGroup
-            type="checkbox"
-            // defaultValue={[1, 2, 3]}
-            className="mb-2"
-          >
-            <ToggleButton id="tbg-check-1" value={1}>
-              Checkbox 1 (pre-checked)
-            </ToggleButton>
-            <ToggleButton id="tbg-check-2" value={2}>
-              Checkbox 2
-            </ToggleButton>
-            <ToggleButton id="tbg-check-3" value={3}>
-              Checkbox 3 (pre-checked)
-            </ToggleButton>
-          </ToggleButtonGroup>
-        </div> */}
-
+        <p className="fontthin" style={{ marginTop: "0.2rem" }}>
+          Results: {users.length}
+        </p>
         <div className="profilesDiv">
-          {(() => {
-            if (filter === 1) {
-              return filteredStudentCardsByName.map((card, index) => (
-                <StudentCard key={index} {...card} />
-              ));
-            } else if (filter === 2) {
-              return filteredStudentCardsByUsername.map((card, index) => (
-                <StudentCard key={index} {...card} />
-              ));
-            }
-          })()}
+          {users.map((user) => (
+            <StudentCard key={user._id} username={user.username} />
+          ))}
         </div>
       </div>
       <Footer></Footer>

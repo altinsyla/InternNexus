@@ -1,12 +1,13 @@
 import React from "react";
 import internnexus from "../../imgsrc/internnexus.png";
 import "./MyProfile.scss";
+import NavBar from "../NavBar/NavBar";
+import Footer from "../Footer/Footer";
 
 function MyProfile() {
   return (
     <>
-    <img className="INlogo" src={internnexus} />
-
+    <NavBar />
     <div className="main-div">
       <div className="leftContainer">
     <input type="image" className="profilePic" />
@@ -29,6 +30,7 @@ function MyProfile() {
       <button>Edit Profile</button>
     </div>
     </div>
+    <Footer />
     </>
   );
 }

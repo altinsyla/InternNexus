@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./NavBar.scss";
 import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -6,6 +6,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 //Hover logo with box-shadow
 const NavBar = () => {
+  const [login, setLogin] = useState(false);
+
   return (
     <div className="navbarcontainer">
       <Link to="/">
@@ -27,14 +29,29 @@ const NavBar = () => {
             STUDENTS
           </Link>
         </div>
-        <div>
-          <Link to="/login" className="navbarlinks navbarsimplelinks">
-            LOG IN
-          </Link>
-        </div>
-        <Link to="/signupform" className="navbarlogin navbarlinks navbarlogintext">
-          SIGN UP
-        </Link>
+        {!login ? (
+          <>
+            <div>
+              <Link to="/login" className="navbarlinks navbarsimplelinks">
+                LOG IN
+              </Link>
+            </div>
+            <div>
+              <Link
+                to="/signupform"
+                className="navbarlogin navbarlinks navbarlogintext"
+              >
+                SIGN UP
+              </Link>
+            </div>
+          </>
+        ) : (
+          <div>
+            <Link to="/myprofile" className="navbarlinks navbarlogin">
+              My Profile
+            </Link>
+          </div>
+        )}
       </div>
 
       <div className="navbardropdown">
@@ -62,16 +79,27 @@ const NavBar = () => {
               STUDENTS
             </Link>
           </li>
-          <li>
-            <Link to="/login" className="navbarlinks">
-              LOG IN
-            </Link>
-            <li>
-            <Link to="/signupform" className="navbarlinks">
-              SIGN UP
-            </Link>
-            </li>
-          </li>
+          {!login ? (
+            <>
+              {" "}
+              <li>
+                <Link to="/login" className="navbarlinks">
+                  LOG IN
+                </Link>
+              </li>
+              <li>
+                <Link to="/signupform" className="navbarlinks">
+                  SIGN UP
+                </Link>
+              </li>
+            </>
+          ) : (
+              <li>
+                <Link to="/myprofile" className="navbarlinks">
+                  My Profile
+                </Link>
+              </li>
+          )}
         </ul>
       </div>
     </div>

@@ -1,8 +1,39 @@
 const User = require("../Models/userModel");
 
 const getAllUsers = async (req, res) => {
+  const { username, fullname} = req.query;
+
+  let query = {};
+
+  if (username) {
+    query.username = { $regex: new RegExp(username, "i") };
+  }
+
+  if (fullname) {
+    query.fullname = { $regex: new RegExp(fullname, "i") };
+  }
+
   try {
-    const Users = await User.find();
+    const Users = await User.find(query);
+    res.status(200).json(Users);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+// const getAllUsers = async (req, res) => {
+//   try {
+//     const Users = await User.find();
+//     res.status(200).json(Users);
+//   } catch (error) {
+//     res.status(404).json({ message: error.message });
+//   }
+// };
+
+const getcustomlimitusers = async (req, res) => {
+  let limit = req.params.limit;
+  try {
+    const Users = await User.find().limit(limit);
     res.status(200).json(Users);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -10,9 +41,9 @@ const getAllUsers = async (req, res) => {
 };
 
 const getSingleUser = async (req, res) => {
-  const id = req.params.id;
+  const username = req.params.username;
   try {
-    const user = await User.findOne({ _id: id });
+    const user = await User.findOne({ username: username });
     res.status(200).json(user);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -20,10 +51,10 @@ const getSingleUser = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
-  const { username, fullname, email, password } = req.body;
+  const { username, fullname, email, password, role } = req.body;
   //   console.log(req.body);
 
-  if (!username || !fullname || !email || !password) {
+  if (!username || !fullname || !email || !password || !role) {
     return res.status(400).json({ message: "Required fields are missing" });
   }
 
@@ -46,6 +77,7 @@ const createUser = async (req, res) => {
       fullname,
       email,
       password,
+      role,
     });
 
     res.status(201).json(newUser);
@@ -82,4 +114,8 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
+  getcustomlimitusers,
 };
+
+
+

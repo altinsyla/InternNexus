@@ -1,24 +1,43 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../Students/Students.scss";
 import AltinSyla from "../Students/AltinSyla.jpg";
 import NavBar from "../NavBar/NavBar.js";
 import Footer from "../Footer/Footer.js";
+import api from "../../api.js";
+import { useParams, useHistory } from "react-router-dom";
 
 // boni me props
 // marginen te student search
 // bone responsive
 
 function Students() {
+  const { username } = useParams();
+  const [user, setUser] = useState([]);
+
+
+  useEffect(() => {
+    const fetchInternship = async () => {
+      try {
+        const response = await api.get(`/user/${username}`);
+        setUser(response.data);
+      } catch (err) {
+        console.log("Failed to fetch user info!");
+      }
+    };
+
+    fetchInternship();
+  }, [username]);
+
   return (
     <div className="studentcontainer">
       <NavBar />
       <div className="utilitycontainer studentbanner">
         <div className="studentbannerleftside">
-          <div className='studentUsername'>
+          <div className="studentUsername">
             <h2 style={{ fontFamily: "poppins_bold", marginBottom: 0 }}>
-              Altin Syla
+              {user.fullname}
             </h2>
-            <h6 className="fontregular">altins7</h6>
+            <h6 className="fontregular">{user.username}</h6>
           </div>
           <h4
             className="fontregular"

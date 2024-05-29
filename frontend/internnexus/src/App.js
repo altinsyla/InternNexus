@@ -16,6 +16,7 @@ import InternshipForm from "./components/InternshipForm/InternshipForm.js";
 import SignUpForm from "./components/SignUpForm/SignUpForm.js";
 import Error from "./components/Error.js";
 // import {ToastContainer} from 'react-toastify';
+// import Test from "./components/Test/test.js";
 
 function App() {
   return (
@@ -45,6 +46,10 @@ function App() {
           <Student />
         </Route>
 
+        <Route exact path="/student/:username">
+          <Student />
+        </Route>
+
         <Route exact path="/students">
           <SearchStudents />
         </Route>
@@ -52,6 +57,7 @@ function App() {
         <Route exact path="/internships">
           <Internships />
         </Route>
+
         <Route exact path="/Internships/edit/:id">
           <Internships />
         </Route>
@@ -63,18 +69,23 @@ function App() {
         <Route exact path="/companies">
           <Companies />
         </Route>
+
         <Route exact path="/myprofile">
           <MyProfile />
         </Route>
+
         <Route exact path="/internshipForm">
           <InternshipForm />
         </Route>
+
         <Route exact path="/internshipForm/:id">
           <InternshipForm />
         </Route>
+
         <Route exact path="*">
           <Error />
         </Route>
+        
       </Switch>
     </BrowserRouter>
   );

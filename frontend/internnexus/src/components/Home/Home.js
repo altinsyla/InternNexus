@@ -2,27 +2,47 @@ import "./Home.scss";
 import NavBar from "../NavBar/NavBar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Studentcard from "./Card";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Footer from "../../components/Footer/Footer";
 import { Link, useHistory } from "react-router-dom";
-
-// routes
-//navbarin ndreqe
-// responsive
-// fix bg color
-
-
-
-
-
+import api from "../../api.js";
 
 function Home() {
   const [isDark, setIsDark] = useState(false);
   const history = useHistory();
-  
+  const [users, setUsers] = useState([]);
+  const [customUsers, setCustomUsers] = useState([]);
+
+  const getAllUsers = async () => {
+    try {
+      const response = await api.get("/user");
+      setUsers(response.data);
+    } catch (err) {
+      console.log("You need to be logged in first!");
+    }
+  };
+
+  const getcustomUsers = async (limit) => {
+    try {
+      const response = await api.get("/user/limit/" + limit);
+      setCustomUsers([]); // niher e bajna clear arrayn
+      setCustomUsers(response.data); // taj e mushum tre
+    } catch (err) {
+      console.log("You need to be logged in first!");
+    }
+  };
+
+  useEffect(() => {
+    let customlimit = 20; // sa usera dojna mi marr
+
+
+    getAllUsers();
+    getcustomUsers(customlimit);
+  }, []);
+
   return (
-    <div id="body" data-theme={isDark ? "dark" : "light"}>
+    <div id="body">
       <NavBar />
       <div id="container">
         <div className="banner">
@@ -42,11 +62,16 @@ function Home() {
               <div className="banner_buttondiv">
                 <button
                   className="button_registercompany"
-                  onClick={() => history.push('/internshipform')}
+                  onClick={() => history.push("/internshipform")}
                 >
-                 Create an Internship
+                  Create an Internship
                 </button>
-                  <Link to='/internships' className="linknodecoration button_findintern">Find an Internship</Link>
+                <Link
+                  to="/internships"
+                  className="linknodecoration button_findintern"
+                >
+                  Find an Internship
+                </Link>
               </div>
             </div>
           </div>
@@ -97,56 +122,62 @@ function Home() {
         </div>
         <h1 className="poweredby">FIND STUDENTS</h1>
         <div className="studentcarddiv">
-          <Studentcard />
-          <Studentcard />
-          <Studentcard />
-          <Studentcard />
-          <Studentcard />
-          <Studentcard />
-          <Studentcard />
-          <Studentcard />
-          <Studentcard />
-          <Studentcard />
-          <Studentcard />
-          <Studentcard />
+          {customUsers.map((user) => (
+            <Studentcard key={user._id} username={user.username}/>
+          ))}
         </div>
-        <h1
-          className="fontblack poweredby"
-          style={{ textAlign: "center"}}
-        >
+        <h1 className="fontblack poweredby" style={{ textAlign: "center" }}>
           MEET THE DEVS
         </h1>
         <div className="devcarddiv">
-          <Card style={{ width: "18rem", height: '500px'}} className="devcard">
-            <Card.Img variant="top" src={require("./img/AltinSyla.jpg")} style={{height: "70%", objectFit: 'cover'}}/>
-            <Card.Body style={{height: "30%"}}>
+          <Card style={{ width: "18rem", height: "500px" }} className="devcard">
+            <Card.Img
+              variant="top"
+              src={require("./img/AltinSyla.jpg")}
+              style={{ height: "70%", objectFit: "cover" }}
+            />
+            <Card.Body style={{ height: "30%" }}>
               <Card.Title className="fontmedium">Altin Syla</Card.Title>
               <Card.Text className="cardText fontthin">
-              Full Stack Web Developer
+                Full Stack Web Developer
               </Card.Text>
-              <Link to='/student' className="button_details linknodecoration" >Details</Link>
+              <Link to="/student" className="button_details linknodecoration">
+                Details
+              </Link>
             </Card.Body>
           </Card>
 
-          <Card style={{ width: "18rem", height: '500px' }} className="devcard">
-            <Card.Img variant="top" src={require("./img/HakifKadriu.jpg")} style={{height: "70%", objectFit: 'cover'}}/>
-            <Card.Body style={{height: "30%"}}>
+          <Card style={{ width: "18rem", height: "500px" }} className="devcard">
+            <Card.Img
+              variant="top"
+              src={require("./img/HakifKadriu.jpg")}
+              style={{ height: "70%", objectFit: "cover" }}
+            />
+            <Card.Body style={{ height: "30%" }}>
               <Card.Title className="fontmedium">Hakif Kadriu</Card.Title>
               <Card.Text className="cardText fontthin">
-              Full Stack Web Developer
+                Full Stack Web Developer
               </Card.Text>
-              <Link to='/student' className="button_details linknodecoration" >Details</Link>
+              <Link to="/student" className="button_details linknodecoration">
+                Details
+              </Link>
             </Card.Body>
           </Card>
 
-          <Card style={{ width: "18rem", height: '500px'  }} className="devcard">
-            <Card.Img variant="top" src={require("./img/FlamurIsa.jpg")} style={{height: "70%", objectFit: 'cover'}}/>
-            <Card.Body style={{height: "30%"}}>
+          <Card style={{ width: "18rem", height: "500px" }} className="devcard">
+            <Card.Img
+              variant="top"
+              src={require("./img/FlamurIsa.jpg")}
+              style={{ height: "70%", objectFit: "cover" }}
+            />
+            <Card.Body style={{ height: "30%" }}>
               <Card.Title className="fontmedium">Flamur Isa</Card.Title>
               <Card.Text className="cardText fontthin">
-              Full Stack Web Developer
+                Full Stack Web Developer
               </Card.Text>
-              <Link to='/student' className="button_details linknodecoration" >Details</Link>
+              <Link to="/student" className="button_details linknodecoration">
+                Details
+              </Link>
             </Card.Body>
           </Card>
         </div>
