@@ -3,17 +3,19 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"; // per linqe
 import "../src/styles/App.css";
 
 // Pages
-import Companies from './components/Companies/Company.js';
+import Companies from "./components/Companies/Company.js";
 import Home from "./components/Home/Home.js";
-import InternshipsApply from './components/InternshipApply/InternshipApply.js';
-import Internships from './components/Internships/Internships.js';
-import Login from './components/Login.js';
+import InternshipApply from "./components/InternshipApply/InternshipApply.js";
+import Internships from "./components/Internships/Internships.js";
+import Login from "./components/Login.js";
 import MyProfile from "./components/MyProfile/MyProfile.js";
-import Signup2 from './components/SignUp2/SignUp2.js';
-import Student from './components/Students/Students.js';
+import Signup2 from "./components/SignUp2/SignUp2.js";
+import Student from "./components/Students/Students.js";
 import SearchStudents from "./components/SearchStudents/SearchStudents.js";
-import InternshipForm from './components/InternshipForm/InternshipForm.js';
-import SignUpForm from './components/SignUpForm/SignUpForm.js';
+import InternshipForm from "./components/InternshipForm/InternshipForm.js";
+import SignUpForm from "./components/SignUpForm/SignUpForm.js";
+import Error from "./components/Error.js";
+// import {ToastContainer} from 'react-toastify';
 
 function App() {
   return (
@@ -32,7 +34,7 @@ function App() {
         </Route>
 
         <Route exact path="/signupform">
-         <SignUpForm />
+          <SignUpForm />
         </Route>
 
         <Route exact path="/create">
@@ -49,22 +51,30 @@ function App() {
 
         <Route exact path="/internships">
           <Internships />
-        </Route> 
+        </Route>
+        <Route exact path="/Internships/edit/:id">
+          <Internships />
+        </Route>
 
         <Route exact path="/apply/:id">
-          <InternshipsApply />
-          </Route>
+          <InternshipApply />
+        </Route>
 
         <Route exact path="/companies">
           <Companies />
-        </Route> 
+        </Route>
         <Route exact path="/myprofile">
           <MyProfile />
-        </Route> 
+        </Route>
         <Route exact path="/internshipForm">
           <InternshipForm />
-        </Route> 
-
+        </Route>
+        <Route exact path="/internshipForm/:id">
+          <InternshipForm />
+        </Route>
+        <Route exact path="*">
+          <Error />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

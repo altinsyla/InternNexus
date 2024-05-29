@@ -26,18 +26,19 @@ const getAllInternships = async (req, res) => {
 };
 
 const getSingleInternship = async (req, res) => {
-    const { id } = req.params;
-    try {
-      const internship = await Internship.findById(id);
-      if (!internship) {
-        return res.status(404).json({ error: "Internship not found" });
-      }
-      res.json(internship);
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: "Server error" });
+  const { id } = req.params;
+  try {
+    const internship = await Internship.findById(id);
+    if (!internship) {
+      return res.status(404).json({ error: "Internship not found" });
     }
-  };
+    res.json(internship);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
 
 const createInternship = async (req, res) => {
   const {
@@ -69,31 +70,34 @@ const createInternship = async (req, res) => {
 };
 
 const updateInternship = async (req, res) => {
-  const {id} = req.params;
-  const updatedData = req.body;
+  const { id } = req.params;
+  const { title, type, location, duration, requirements, offers } = req.body;
+  const updatedData = { title, type, location, duration, requirements, offers };
 
   if (req.file) {
-    updatedData.image = req.file.path;
+    updatedData.image = req.file.filename;
   }
 
   try {
-    const updateInternship = await Internship.findById(
+    const updatedInternship = await Internship.findByIdAndUpdate(
       id,
       updatedData,
-      {
-        new: true,
-      }
+      { new: true }
     );
-    res.status(200).json(updateInternship);
+    res.status(200).json(updatedInternship);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
 
+
 const deleteInternship = async (req, res) => {
-  const id = req.params;
+  const { id } = req.params; // Make sure to destructure id from req.params
   try {
-    await Internship.findByIdAndDelete(id);
+    const internship = await Internship.findByIdAndDelete(id);
+    if (!internship) {
+      return res.status(404).json({ message: "Internship not found" });
+    }
     res.status(204).json({ message: "Internship deleted successfully" });
   } catch (error) {
     res.status(400).json({ message: error.message });

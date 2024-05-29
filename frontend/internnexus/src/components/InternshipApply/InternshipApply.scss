@@ -10,8 +10,8 @@
     padding: $_margin;
 }
 .applycompanyLogo {
-    width: 50%;
-    height: 50%;
+    width: 360px;
+    height: 310px;
     object-fit: contain;
 }
 .btn-apply{
@@ -70,6 +70,12 @@
     align-self: center;
     font-family: poppins_bold;
     font-size: 1.5rem;
+  }
+
+  .edit-delete-btn{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
   }
   
 @media (max-width: 480px) {

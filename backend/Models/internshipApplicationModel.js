@@ -6,8 +6,9 @@ const InternshipApplication = new Schema({
     type: Number,
     required: true
   },
-  internshipTitle: {
-    type: String, //Ktu e marrim titullin e internshipit prej Internshipit, kur dojm me kriju aplikim tri veq e bajm internshipTitle(Application) = internshipTitle(Internships) tu i bo import dy tabelat
+  internshipID: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Internship',
     required: true
   },
   studentID: {

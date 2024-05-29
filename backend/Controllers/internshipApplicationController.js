@@ -10,9 +10,9 @@ const getAllInternshipApplications = async (req, res) => {
 };
 
 const getSingleInternshipApplication = async (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   try {
-    const InternshipApplication = await InternshipApplication.findOne({ _id: id });
+    const InternshipApplication = await InternshipApplication.findByID(id);
     res.status(200).json(InternshipApplication);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -61,9 +61,9 @@ const createInternshipApplication = async (req, res) => {
   };
 
 const updateInternshipApplication = async (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   try {
-    const updateInternshipApplication = await this.updateInternshipApplication.findOneAndUpdate({ _id: id }, req.body, {
+    const updateInternshipApplication = await this.updateInternshipApplication.findByIDAndUpdate(id, req.body, {
       new: true,
     });
     res.status(200).json(updateInternshipApplication);
@@ -73,9 +73,9 @@ const updateInternshipApplication = async (req, res) => {
 };
 
 const deleteInternshipApplication = async (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   try {
-    await InternshipApplication.findOneAndDelete({ _id: id });
+    await InternshipApplication.findByIdAndDelete(id);
     res.status(204).json({ message: "Internship Application deleted successfully" });
   } catch (error) {
     res.status(400).json({ message: error.message });

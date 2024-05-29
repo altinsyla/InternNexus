@@ -4,13 +4,16 @@ import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import { useHistory, useParams } from "react-router-dom";
 import api from "../../../src/api";
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
+// import Alert from "@mui/material/Alert";
+import Swal from "sweetalert2";
 
 function InternshipForm() {
   const history = useHistory();
   const { id } = useParams();
-  //Forma ku ruhen t'dhanat
   const [internship, setInternship] = useState({
-    image: "",
+    image: null,
     title: "",
     type: "",
     location: "",
@@ -20,11 +23,10 @@ function InternshipForm() {
   });
 
   useEffect(() => {
-    // qikjo perdoret me i bo fetch Internships
     if (id) {
       const fetchInternship = async () => {
         try {
-          const response = await api.get("/internships/" + id);
+          const response = await api.get(`/internships/${id}`);
           setInternship({
             image: response.data.image,
             title: response.data.title,
@@ -42,11 +44,21 @@ function InternshipForm() {
     }
   }, [id]);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInternship({ ...internship, [name]: value });
+  };
+
+  const handleFileChange = (e) => {
+    setInternship({ ...internship, image: e.target.files[0] });
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const formData = new FormData();
-    formData.append("image", internship.image);
+    if (internship.image) {
+      formData.append("image", internship.image);
+    }
     formData.append("title", internship.title);
     formData.append("type", internship.type);
     formData.append("location", internship.location);
@@ -55,35 +67,36 @@ function InternshipForm() {
     formData.append("offers", internship.offers);
 
     try {
-      const response = await api.post("/internships", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      console.log(response.data);
+      if (id) {
+        await api.patch(`/internships/${id}`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        Swal.fire({
+          text: "Internship successfully edited!",
+          icon: "success",
+        });
+      } else {
+        await api.post("/internships", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        Swal.fire({
+          title: "Good job!",
+          text: "Internship succesfully created!",
+          icon: "success",
+        });
+      }
       history.push("/internships");
-      alert("Internship created successfully");
     } catch (error) {
-      console.error(error);
+      console.error("Internship save error", error);
     }
   };
 
   const handleCancel = () => {
     history.push("/home");
-  };
-
-  const formatList = (input) => {
-    if (input.trim() === "") return "";
-
-    const listItems = input.split("\n");
-
-    return (
-      <ul>
-        {listItems.map((item, index) => (
-          <li key={index}>❖ {item.trim()}</li>
-        ))}
-      </ul>
-    );
   };
 
   return (
@@ -93,7 +106,8 @@ function InternshipForm() {
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           <p className="internshipform-details">Internship Details</p>
           <p className="fill-out-form">
-            Fill out the form below to create an internship listing
+            Fill out the form below to {id ? "edit" : "create"} an internship
+            listing
           </p>
           <p className="internshipform-labels">
             Include an image of your Company
@@ -103,9 +117,7 @@ function InternshipForm() {
               type="file"
               className="internshipform-inputs"
               name="image"
-              onChange={(e) =>
-                setInternship({ ...internship, image: e.target.files[0] })
-              }
+              onChange={handleFileChange}
             />
           </div>
           <div className="form-group">
@@ -115,9 +127,8 @@ function InternshipForm() {
               className="internshipform-inputs"
               name="title"
               placeholder="Enter internship title"
-              onChange={(e) =>
-                setInternship({ ...internship, title: e.target.value })
-              }
+              value={internship.title}
+              onChange={handleChange}
             />
           </div>
           <div className="form-group">
@@ -127,9 +138,8 @@ function InternshipForm() {
               className="internshipform-inputs"
               name="type"
               placeholder="e.g. Full-time, Part-time"
-              onChange={(e) =>
-                setInternship({ ...internship, type: e.target.value })
-              }
+              value={internship.type}
+              onChange={handleChange}
             />
           </div>
           <div className="form-group">
@@ -138,10 +148,9 @@ function InternshipForm() {
               type="text"
               className="internshipform-inputs"
               name="location"
-              placeholder="Enter internship location"
-              onChange={(e) =>
-                setInternship({ ...internship, location: e.target.value })
-              }
+              placeholder="e.g. Prishtine, Vushtrri, Remote"
+              value={internship.location}
+              onChange={handleChange}
             />
           </div>
           <div className="form-group">
@@ -150,39 +159,32 @@ function InternshipForm() {
               type="text"
               className="internshipform-inputs"
               name="duration"
-              placeholder="Enter internship duration (e.g. 6 months)"
-              onChange={(e) =>
-                setInternship({ ...internship, duration: e.target.value })
-              }
+              placeholder="e.g. 3 months, 6 months"
+              value={internship.duration}
+              onChange={handleChange}
             />
           </div>
           <div className="form-group">
-            <label className="internshipform-labels">Requirements</label>
+            <label className="internshipform-labels">
+              Internship Requirements
+            </label>
             <textarea
               className="internshipform-inputs"
               name="requirements"
-              placeholder="List the requirements for the internship, separated by new lines"
-              onChange={(e) =>
-                setInternship({ ...internship, requirements: e.target.value })
-              }
+              placeholder="List the requirements for the internship"
+              value={internship.requirements}
+              onChange={handleChange}
             />
-            <div className="formatted-requirements">
-              {formatList(internship.requirements)}
-            </div>
           </div>
           <div className="form-group">
             <label className="internshipform-labels">What We Offer</label>
             <textarea
               className="internshipform-inputs"
               name="offers"
-              placeholder="Describe what your company offers to interns, separated by new lines"
-              onChange={(e) =>
-                setInternship({ ...internship, offers: e.target.value })
-              }
+              placeholder="Describe what your company offers to interns"
+              value={internship.offers}
+              onChange={handleChange}
             />
-            <div className="formatted-offers">
-              {formatList(internship.offers)}
-            </div>
           </div>
           <div className="form-buttons">
             <button
@@ -192,12 +194,8 @@ function InternshipForm() {
             >
               Cancel
             </button>
-            <button
-              type="submit"
-              className="create-internship"
-              onClick={handleSubmit}
-            >
-              Create Internship
+            <button type="submit" className="create-internship">
+              {id ? "Edit Internship" : "Add Internship"}
             </button>
           </div>
         </form>

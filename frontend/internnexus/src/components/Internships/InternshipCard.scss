@@ -8,7 +8,7 @@ body {
     width: 100%;
     padding: 0 2rem;
     border-radius: 20px;
-    height: 200px;
+    height: 250px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -50,6 +50,17 @@ body {
     background-color: #FEF8F8;
     font-family: poppins_regular;   
     font-size: 1.2rem;
+}
+.registered-date {
+  justify-self: baseline;
+    width: fit-content;
+    align-self: flex-end;
+    margin-bottom: 10px;
+    background-color: #FEF8F8;
+    font-family: poppins_regular;   
+    font-size: 0.9rem;
+    font-style: italic;
+  
 }
 
 .companyName { 
