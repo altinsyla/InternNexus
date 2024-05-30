@@ -1,3 +1,4 @@
+
 const express = require('express');
 // require('dotenv').config(); //Kta e perdorum kur e kem .env edhe dojm mi perdor nbaz tsaj portin, mongoUri etj..
 const cors = require('cors');
@@ -17,11 +18,8 @@ const internshipRouter = require('./Routes/internshipRouter');
 app.use('/internships', internshipRouter);
 const internshipApplicationRouter = require('./Routes/internshipApplicationRouter');
 app.use('/internshipapplication',  internshipApplicationRouter);
-
 const userRouter = require('./Routes/userRouter');
 app.use('/user',  userRouter);
-const skillsRouter = require('./Routes/skillsRouter');
-app.use('/skills',  skillsRouter);
 
 app.use(express.static('public'))
 
