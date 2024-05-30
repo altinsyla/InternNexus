@@ -37,7 +37,7 @@ const history = useHistory();
     console.log(email, password);
     
     try {
-      const response = await api.post("/user/login", { email, password });
+      const response = await api.post("/user", { email, password });
       localStorage.setItem("token", response.data);
       setToken(response.data);
       history.push("/");
@@ -60,8 +60,8 @@ const history = useHistory();
         <form onSubmit={handleSubmit}>
           <input type='email' placeholder='Email address' className='Inputs' value={email} onChange={handleEmailChange} />
           <input type='password' placeholder='Password' className='Inputs' value={password} onChange={handlePasswordChange} />
-          <button type='submit' className='loginBtn'>Log In</button>
-        </form>
+          <button type='submit' className='loginBtn' >Log In</button>
+        </form >
         <div className='forgotPasswordDiv'>
           <a href='#' className='signuptext'>Forgot password?</a>
           <a href='#' className='signuptext' onClick={handleSignup}>Sign Up to InternNexus</a>

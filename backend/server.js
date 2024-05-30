@@ -6,6 +6,7 @@ const port = process.env.PORT || 5001;
 const app = express();
 const connectDB = require('./connectdb');
 
+
 const mongoURI = "mongodb+srv://hakifkadriu:admin123@internnexus.xy6a46f.mongodb.net/?retryWrites=true&w=majority&appName=InternNexus"
 
 
@@ -22,6 +23,10 @@ const userRouter = require('./Routes/userRouter');
 app.use('/user',  userRouter);
 
 app.use(express.static('public'))
+
+// app.get("/check-token", verifyToken /* Middleware*/, (req, res) => {
+//   res.json(req.user);
+// });
 
 
 //Connecting to MongoDB
