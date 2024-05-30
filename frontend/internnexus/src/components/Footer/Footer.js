@@ -20,7 +20,7 @@ function Footer() {
         <img src={internnexus} className="footerLogo" alt="InternnexusLogo" />
         <div className="footer_icons">
           <a
-            href="https://medium.com/@altinsyla11"
+            href="https://www.linkedin.com/in/altin-syla-00739a238/"
             target="_blank"
             className="hreflinknodecoration"
           >
@@ -36,7 +36,7 @@ function Footer() {
           </a>
 
           <a
-            href="https://medium.com/@altinsyla11"
+            href="https://www.facebook.com/altinsyla11/"
             target="_blank"
             className="hreflinknodecoration"
           >
@@ -44,7 +44,7 @@ function Footer() {
           </a>
 
           <a
-            href="https://medium.com/@altinsyla11"
+            href="https://www.instagram.com/altiinsyla/"
             target="_blank"
             className="hreflinknodecoration"
           >

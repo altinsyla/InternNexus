@@ -36,6 +36,7 @@ function CompanySignUp() {
 
   return (
     <>
+    <Link to='/'>
       <div className="complogodiv">
         <img
           src={require("../../../src/imgsrc/internnexus.png")}
@@ -43,6 +44,7 @@ function CompanySignUp() {
           className="c-logo-company"
         />
       </div>
+      </Link>
       <div className="c-signup-maindiv">
         <div className="c-signupformdiv">
           <form className="c-forms">

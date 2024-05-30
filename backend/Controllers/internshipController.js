@@ -92,7 +92,7 @@ const updateInternship = async (req, res) => {
 
 
 const deleteInternship = async (req, res) => {
-  const { id } = req.params; // Make sure to destructure id from req.params
+  const { id } = req.params;
   try {
     const internship = await Internship.findByIdAndDelete(id);
     if (!internship) {

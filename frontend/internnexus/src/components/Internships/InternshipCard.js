@@ -16,7 +16,7 @@ function InternshipCard({ _id, title, type, location, image, registeredDate }) {
         <p className="companyName">{title}</p>
         <p className="companyType">{type}</p>
         <p className="locationName">{location}</p>
-        <p className="registered-date"><strong>Create Date: </strong>{new Date(registeredDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+        <p className="registered-date"><strong>Published on: </strong>{new Date(registeredDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
       </div>
     </div>
   );

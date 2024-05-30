@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Errori from '../imgsrc/not-found.svg';
+import Errori from '../../imgsrc/not-found.svg';
 import './Error.css';
 
 const Error = () => {
