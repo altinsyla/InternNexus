@@ -98,6 +98,17 @@ function InternshipForm() {
   const handleCancel = () => {
     history.push("/home");
   };
+  const formatList = (input) => {
+    if (input.trim() === "") return "";
+    const listItems = input.split("\n");
+    return (
+      <ul>
+        {listItems.map((item, index) => (
+          <li key={index}>{item.trim()}</li>
+        ))}
+      </ul>
+    );
+  };
 
   return (
     <div>
@@ -175,6 +186,9 @@ function InternshipForm() {
               value={internship.requirements}
               onChange={handleChange}
             />
+            <div className="formatted-requirements">
+              {formatList(internship.requirements)}
+            </div>
           </div>
           <div className="form-group">
             <label className="internshipform-labels">What We Offer</label>
@@ -185,6 +199,9 @@ function InternshipForm() {
               value={internship.offers}
               onChange={handleChange}
             />
+            <div className="formatted-offers">
+              {formatList(internship.offers)}
+            </div>
           </div>
           <div className="form-buttons">
             <button
