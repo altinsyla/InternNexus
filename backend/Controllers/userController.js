@@ -1,7 +1,8 @@
 const User = require("../Models/userModel");
+const jwt = require("jsonwebtoken");
 
 const getAllUsers = async (req, res) => {
-  const { username, fullname} = req.query;
+  const { username, fullname } = req.query;
 
   let query = {};
 
@@ -51,21 +52,26 @@ const getSingleUser = async (req, res) => {
 };
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
-    const user = await User.findOne({email});
-    if (user) {
-      const isvalid = await user.isValidPassword(password);
-      if (isvalid) {
-        // username edhe pw correct
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET || 'qelsi', {
+  const user = await User.findOne({ email });
+  console.log(user);
+  if (user) {
+    const isvalid = await user.isValidPassword(password);
+    if (isvalid) {
+      // username edhe pw correct
+      const token = jwt.sign(
+        { id: user._id },
+        process.env.JWT_SECRET || "qelsi",
+        {
           expiresIn: "1d",
-        });
+        }
+      );
 
-        res.json(token); //kthehet tokeni si response
-      }
-    } else {
-      res.status(404).json({ message: "Incorrect username or password" });
+      res.json(token); //kthehet tokeni si response
     }
-  };
+  } else {
+    res.status(404).json({ message: "Incorrect username or password" });
+  }
+};
 
 const createUser = async (req, res) => {
   const { username, fullname, email, password, role } = req.body;
@@ -132,5 +138,5 @@ module.exports = {
   updateUser,
   deleteUser,
   getcustomlimitusers,
-  loginUser
+  loginUser,
 };

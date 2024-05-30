@@ -14,6 +14,7 @@ import SearchStudents from "./components/SearchStudents/SearchStudents.js";
 import InternshipForm from "./components/InternshipForm/InternshipForm.js";
 import SignUpForm from "./components/SignUpForm/SignUpForm.js";
 import Error from './components/Error/Error.js';
+import AdminDashboard from "./components/AdminDashboard/AdminDashboard.js";
 
 function App() {
   return (
@@ -29,6 +30,10 @@ function App() {
 
         <Route exact path="/login">
           <Login />
+        </Route>
+
+        <Route exact path="/admindashboard"> {/*FOR TESTING ONLY, DELETE AFTER ADMIN SESSION IS OVER */}
+          <AdminDashboard />
         </Route>
 
         <Route exact path="/signupform">
