@@ -1,12 +1,37 @@
 import React, { useState } from "react";
 import "./NavBar.scss";
-import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Link, useHistory } from "react-router-dom";
+import Swal from "sweetalert2";
+import api from "../../api.js";
 
 //Hover logo with box-shadow
 const NavBar = () => {
-  const [login, setLogin] = useState(false);
+  const history = useHistory();
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    },
+  });
+
+  function handleLogOut() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    history.push("/login"); 
+
+    Toast.fire({
+      icon: "success",
+      title: "Logged out successfully",
+    });
+  }
 
   return (
     <div className="navbarcontainer">
@@ -14,11 +39,6 @@ const NavBar = () => {
         <img src={require("./internnexus.png")} className="navbarlogo" />
       </Link>
       <div className="navbartabs">
-        <div>
-          <Link to="/" className="navbarlinks navbarsimplelinks">
-            HOME
-          </Link>
-        </div>
         <div>
           <Link to="/Internships" className="navbarlinks navbarsimplelinks">
             INTERNSHIPS
@@ -29,7 +49,7 @@ const NavBar = () => {
             STUDENTS
           </Link>
         </div>
-        {!login ? (
+        {!localStorage.getItem("token") ? (
           <>
             <div>
               <Link to="/login" className="navbarlinks navbarsimplelinks">
@@ -47,9 +67,34 @@ const NavBar = () => {
           </>
         ) : (
           <div>
-            <Link to="/myprofile" className="navbarlinks navbarlogin">
-              My Profile
-            </Link>
+            <div className="dropdown">
+              <button
+                className="btn dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style={{ backgroundColor: "#D3C0B4" }}
+              >
+                My Profile
+              </button>
+              <ul className="dropdown-menu">
+                <li>
+                  <Link to="/myprofile" className="navbarlinks">
+                    My Profile
+                  </Link>
+                </li>
+                <li>
+                  <button className="dropdown-item" onClick={handleLogOut}>
+                    Log Out
+                  </button>
+                </li>
+                {/* <li> 
+                  <a className="dropdown-item" href="#">
+                    Settings
+                  </a>
+                </li> */}
+              </ul>
+            </div>
           </div>
         )}
       </div>
@@ -65,11 +110,6 @@ const NavBar = () => {
         </button>
         <ul className="dropdown-menu">
           <li>
-            <Link to="/" className="navbarlinks">
-              HOME
-            </Link>
-          </li>
-          <li>
             <Link to="/internships" className="navbarlinks">
               INTERNSHIPS
             </Link>
@@ -79,7 +119,7 @@ const NavBar = () => {
               STUDENTS
             </Link>
           </li>
-          {!login ? (
+          {!localStorage.getItem("token") ? (
             <>
               {" "}
               <li>
@@ -94,11 +134,21 @@ const NavBar = () => {
               </li>
             </>
           ) : (
+            <>
               <li>
                 <Link to="/myprofile" className="navbarlinks">
                   My Profile
                 </Link>
               </li>
+              <li>
+                <button
+                  className="dropdown-item navbarlinks"
+                  onClick={handleLogOut}
+                >
+                  Log Out
+                </button>
+              </li>
+            </>
           )}
         </ul>
       </div>

@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import internnexus from "../imgsrc/internnexus.png";
 import "../styles/App.css";
 import api from "../api";
+import Swal from "sweetalert2";
 
 const Login = () => {
   useEffect(() => {
@@ -27,22 +28,43 @@ const Login = () => {
   const handleEmailChange = (event) => setEmail(event.target.value);
   const handlePasswordChange = (event) => setPassword(event.target.value);
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    },
+  });
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       const response = await api.post("/user/login", { email, password });
-      localStorage.setItem("token", response.data);
-      setToken(response.data);
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("username", response.data.username);
+      setToken(response.data.token);
       history.push("/");
+
+      Toast.fire({
+        icon: "success",
+        title: "Logged in successfully",
+      });
     } catch (error) {
       console.log("Login Error");
     }
   };
 
-  const handleSignup = () => {
-    history.push("/signupform");
-  };
+  useEffect(() => {
+    if(localStorage.getItem("token")){
+      history.push("/");
+      Swal.fire("You are already logged in!");
+    }
+  }, []);
 
   const fontiPerTekste = "robot-font";
 
@@ -82,7 +104,11 @@ const Login = () => {
           <a href="#" className="signuptext">
             Forgot password?
           </a>
-          <a href="#" className="signuptext" onClick={handleSignup}>
+          <a
+            href="#"
+            className="signuptext"
+            onClick={() => history.push("/signupform")}
+          >
             Sign Up to InternNexus
           </a>
         </div>

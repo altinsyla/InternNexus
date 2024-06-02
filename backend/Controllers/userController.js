@@ -50,12 +50,15 @@ const getSingleUser = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+
+
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
-  console.log(user);
   if (user) {
     const isvalid = await user.isValidPassword(password);
+    const username = user.username;
     if (isvalid) {
       // username edhe pw correct
       const token = jwt.sign(
@@ -66,7 +69,7 @@ const loginUser = async (req, res) => {
         }
       );
 
-      res.json(token); //kthehet tokeni si response
+      res.json({token, username}); //kthehet tokeni si response
     }
   } else {
     res.status(404).json({ message: "Incorrect username or password" });
@@ -75,7 +78,6 @@ const loginUser = async (req, res) => {
 
 const createUser = async (req, res) => {
   const { username, fullname, email, password, role } = req.body;
-  //   console.log(req.body);
 
   if (!username || !fullname || !email || !password || !role) {
     return res.status(400).json({ message: "Required fields are missing" });
