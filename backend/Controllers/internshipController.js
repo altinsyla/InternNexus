@@ -42,6 +42,7 @@ const getSingleInternship = async (req, res) => {
 
 const createInternship = async (req, res) => {
   const {
+    username,
     title,
     type,
     location,
@@ -54,6 +55,7 @@ const createInternship = async (req, res) => {
 
   try {
     const newInternship = await Internship.create({
+      username,
       image: image,
       title,
       type,

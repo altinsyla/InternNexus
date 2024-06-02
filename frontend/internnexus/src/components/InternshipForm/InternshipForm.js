@@ -4,15 +4,13 @@ import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import { useHistory, useParams } from "react-router-dom";
 import api from "../../../src/api";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
-// import Alert from "@mui/material/Alert";
 import Swal from "sweetalert2";
 
 function InternshipForm() {
   const history = useHistory();
   const { id } = useParams();
   const [internship, setInternship] = useState({
+    username: localStorage.getItem('username'),
     image: null,
     title: "",
     type: "",
@@ -28,6 +26,7 @@ function InternshipForm() {
         try {
           const response = await api.get(`/internships/${id}`);
           setInternship({
+            username: localStorage.getItem('username'),
             image: response.data.image,
             title: response.data.title,
             type: response.data.type,
@@ -59,6 +58,7 @@ function InternshipForm() {
     if (internship.image) {
       formData.append("image", internship.image);
     }
+    formData.append("username", internship.username);
     formData.append("title", internship.title);
     formData.append("type", internship.type);
     formData.append("location", internship.location);

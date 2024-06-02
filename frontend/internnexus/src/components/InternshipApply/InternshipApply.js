@@ -8,30 +8,46 @@ import Swal from "sweetalert2";
 
 function InternshipApply() {
   const { id } = useParams();
-  const [internship, setInternship] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const history = useHistory();
+  const [internship, setInternship] = useState(null);
+  const [currentUser, setcurrentUser] = useState({});
+
+  //Qikjo e merr Userin qe osht i kyqun momentalisht
+  const getcurrentuser = async () => {
+    try {
+      const response = await api.get(
+        `/user/${localStorage.getItem("username")}`
+      );
+      setcurrentUser(response.data);
+    } catch (err) {
+      console.log("You need to be logged in first!");
+    }
+  };
 
   useEffect(() => {
     const fetchInternship = async () => {
       try {
         const response = await api.get(`/internships/${id}`);
         setInternship(response.data);
-        setLoading(false);
       } catch (err) {
         console.error("Failed to fetch internship details", err);
-        setError("Failed to fetch internship details");
-        setLoading(false);
       }
     };
 
-    fetchInternship();
+    const fetchData = async () => {
+      if (localStorage.getItem("token")) {
+        await getcurrentuser();
+      }
+      await fetchInternship();
+    };
+
+    fetchData();
   }, [id]);
 
   const handleEdit = (id) => {
     history.push(`/internshipForm/${id}`);
   };
+
   const handleApply = () => {
     Swal.fire({
       title: "Applied!",
@@ -40,6 +56,7 @@ function InternshipApply() {
     });
     history.push("/internships");
   };
+
   const deleteInternship = async () => {
     try {
       const result = await Swal.fire({
@@ -68,14 +85,6 @@ function InternshipApply() {
       });
     }
   };
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
 
   if (!internship) {
     return <div>No internship found.</div>;
@@ -110,18 +119,27 @@ function InternshipApply() {
               <strong>Duration:</strong> {internship.duration}
             </h5>
             <div className="edit-delete-btn">
-              <button className="btn-apply" onClick={handleApply}>
-                Apply Now
-              </button>
-              <button
-                className="btn-apply"
-                onClick={() => handleEdit(internship._id)}
-              >
-                Edit
-              </button>
-              <button className="btn-apply" onClick={deleteInternship}>
-                Delete
-              </button>
+              {(internship.username === currentUser.username &&
+                currentUser.role === 2) ||
+              currentUser.role === 3 ? (
+                <>
+                  <button
+                    className="btn-apply"
+                    onClick={() => handleEdit(internship._id)}
+                  >
+                    Edit
+                  </button>
+                  <button className="btn-apply" onClick={deleteInternship}>
+                    Delete
+                  </button>
+                </>
+              ) : (
+                currentUser.role === 1 && (
+                  <button className="btn-apply" onClick={handleApply}>
+                    Apply Now
+                  </button>
+                )
+              )}
             </div>
           </div>
         </div>

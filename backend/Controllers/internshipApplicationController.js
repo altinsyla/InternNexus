@@ -23,7 +23,7 @@ const createInternshipApplication = async (req, res) => {
     const {
       applicationID,
       internshipTitle,
-      studentID,
+      username,
       applyDate
     } = req.body;
   
@@ -33,7 +33,7 @@ const createInternshipApplication = async (req, res) => {
     if (
       !applicationID ||
       !internshipTitle ||
-      !studentID ||
+      !username ||
       !applyDate
     ) {
       return res.status(400).json({ message: "Required fields are missing" });
@@ -50,7 +50,7 @@ const createInternshipApplication = async (req, res) => {
       const newInternshipApplication = await InternshipApplication.create({
       applicationID,
       internshipTitle,
-      studentID,
+      username,
       applyDate
       });
   

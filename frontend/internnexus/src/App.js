@@ -15,6 +15,7 @@ import InternshipForm from "./components/InternshipForm/InternshipForm.js";
 import SignUpForm from "./components/SignUpForm/SignUpForm.js";
 import Error from './components/Error/Error.js';
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard.js";
+import ADInternship from './components/AD-Internship/ADInternship.js';
 
 function App() {
   return (
@@ -27,6 +28,14 @@ function App() {
         <Route exact path="/home">
           <Home />
         </Route>
+
+        <Route exact path='/adinternship'>
+        <ADInternship />
+        </Route>
+        <Route exact path='/adinternship/:id'>
+        <ADInternship />
+        </Route>
+        
 
         <Route exact path="/login">
           <Login />

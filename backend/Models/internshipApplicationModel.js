@@ -11,9 +11,9 @@ const InternshipApplication = new Schema({
     ref: 'Internship',
     required: true
   },
-  studentID: {
-    type: Number, //I njejti sen vlen nalt si me internship ktu e kem me student
-    required: true
+  username: {
+    type: String,
+    required: true,
   },
   applyDate: {
     type: Date,
