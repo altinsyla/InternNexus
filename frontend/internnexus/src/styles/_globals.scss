@@ -1,51 +1,96 @@
 $_margin: 0 12.5vw;
 
-
-
-$clr_softwhite: #f2f2f2; 
+$clr_softwhite: #f2f2f2;
 $clr_graywhite: #e6e6e6;
-$clr_buttontheme: #666666;
-$clr_buttontheme2: #B3A398;
+$clr_buttontheme2: #b3a398;
 $clr_bgtheme: #f2f2f2;
 $clr_mediumgray: #8c8c8c;
-$clr-lightpink: #EA738D;
+$clr-lightpink: #ea738d;
 
-$clr-caramel: #D3C0B4;
 $clr-dark: #555555;
-$clr-white: #FEF8F8;
+$clr-white: #fef8f8;
 
+// dark mode
+$darkbg: #181818;
+$darkmenu: #212121;
+$darkhover: #3d3d3d;
+$darktext: #ffffff;
+$darksecondarytext: #aaaaaa;
 
+//white mode
+$lightbg: #f2f2f2;
+$clr-caramel: #d3c0b4;
+$clr_buttontheme: #666666;
 
-.fontthin{
+//dark mode utility class
+.darkbg {
+  background-color: $darkbg;
+}
+
+.darkmenu {
+  background-color: $darkmenu;
+}
+
+.darkhover {
+  background-color: $darkhover;
+}
+
+.darktext {
+  color: $darktext;
+}
+
+.darksecondarytext {
+  background-color: $darksecondarytext;
+}
+
+.lightbg {
+  background-color: $lightbg;
+}
+
+.lighttheme {
+  background-color: $clr-caramel;
+}
+
+.lightbutton {
+  background-color: $clr_buttontheme;
+}
+
+.lighttext {
+  color: #181818;
+}
+
+// dark mode utility class END
+
+.fontthin {
   font-family: poppins_thin;
 }
 
-.fontregular{
+.fontregular {
   font-family: poppins_regular;
 }
 
-.fontbold{
-  font-family: poppins_bold;  
+.fontbold {
+  font-family: poppins_bold;
 }
 
-.fontmedium{
+.fontmedium {
   font-family: poppins_medium;
 }
 
-.fontblack{
+.fontblack {
   font-family: poppins_black;
 }
 
-
-
-
-.linknodecoration:link, .linknodecoration:visited, .linknodecoration:active{
+.linknodecoration:link,
+.linknodecoration:visited,
+.linknodecoration:active {
   color: white;
   text-decoration: none;
 }
 
-.hreflinknodecoration:link, .hreflinknodecoration:visited, .hreflinknodecoration:active{
+.hreflinknodecoration:link,
+.hreflinknodecoration:visited,
+.hreflinknodecoration:active {
   color: black;
   text-decoration: none;
 }
-

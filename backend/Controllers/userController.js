@@ -15,7 +15,7 @@ const getAllUsers = async (req, res) => {
   }
 
   try {
-    const Users = await User.find(query);
+    const Users = await User.find(query).populate('skills');;
     res.status(200).json(Users);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -44,7 +44,7 @@ const getcustomlimitusers = async (req, res) => {
 const getSingleUser = async (req, res) => {
   const username = req.params.username;
   try {
-    const user = await User.findOne({ username: username });
+    const user = await User.findOne({ username: username }).populate('skills');;
     res.status(200).json(user);
   } catch (error) {
     res.status(404).json({ message: error.message });

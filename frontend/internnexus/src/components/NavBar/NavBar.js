@@ -38,9 +38,9 @@ const NavBar = () => {
       <Link to="/">
         <img src={require("./internnexus.png")} className="navbarlogo" />
       </Link>
-      <div className="navbartabs">
+      <div className="navbartabs"> 
         <div>
-          <Link to="/Internships" className="navbarlinks navbarsimplelinks">
+          <Link to="/Internships" className={`navbarlinks navbarsimplelinks`}>
             INTERNSHIPS
           </Link>
         </div>

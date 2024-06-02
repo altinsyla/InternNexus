@@ -43,7 +43,7 @@ const AdminDashboard = () => {
     try {
       if (isEditing) {
         api
-          .patch("/user/" + singleUser.username, singleUser)
+          .patch("/user/" + singleUser._id, singleUser)
           .then((response) => {
             Swal.fire({
               title: "Edit Success!",
@@ -55,16 +55,25 @@ const AdminDashboard = () => {
             setSingleUser([]);
           });
       } else {
-        api.post("/user/", singleUser).then((response) => {
-          Swal.fire({
-            title: "User Added Successfully!",
-            icon: "success",
+        api
+          .post("/user/", singleUser)
+          .then((response) => {
+            Swal.fire({
+              title: "User Added Successfully!",
+              icon: "success",
+            });
+            setShow(false);
+            getAllUsers();
+            setSingleUser([]);
+            setisEditing(false);
+          })
+          .catch((err) => {
+            Swal.fire({
+              title: "Error!",
+              text: err.response.data.message,
+              icon: "error",
+            });
           });
-          setShow(false);
-          getAllUsers();
-          setSingleUser([]);
-          setisEditing(false);
-        });
       }
     } catch (error) {
       console.error("User save error", error.response.data);
@@ -94,7 +103,7 @@ const AdminDashboard = () => {
         setisEditing(false);
       }
     } catch (err) {
-      console.error("Failed to delete internship", err);
+      console.error("Failed to delete user", err);
       Swal.fire({
         title: "Error!",
         text: "Failed to delete user",
@@ -141,7 +150,7 @@ const AdminDashboard = () => {
                   <button
                     className="btn btn-danger mr-2"
                     style={{ fontSize: "10px" }}
-                    onClick={() => deleteExpense(users.username)}
+                    onClick={() => deleteExpense(users._id)}
                   >
                     Delete
                   </button>

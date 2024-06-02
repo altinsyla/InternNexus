@@ -51,7 +51,7 @@ const SearchStudents = () => {
         <h1 className="fontregular" style={{ marginTop: "3rem" }}>
           Search Students
         </h1>
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ display: "flex", flexDirection: "row" }}>
           <input
             type="text"
             placeholder="Search..."
@@ -61,8 +61,8 @@ const SearchStudents = () => {
           ></input>
           {isTyping ? (
             <button
-              className="btn btn-primary mr-2"
-              style={{ width: "fit-content", alignSelf: "center" }}
+              className="btn btn-dark mr-2"
+              style={{ width: "fit-content", alignSelf: "center", marginTop:"0.5rem", padding: "0.1rem 0.4rem", fontFamily: 'poppins_thin'}}
               onClick={clearFilter}
             >
               Clear Filter
@@ -105,7 +105,7 @@ const SearchStudents = () => {
             >
               Username
             </ToggleButton>
-            <ToggleButton
+            {/* <ToggleButton
               id="tbg-radio-3"
               value={3}
               variant="outline-dark"
@@ -115,7 +115,7 @@ const SearchStudents = () => {
               onChange={() => applyFilter()}
             >
               Skill
-            </ToggleButton>
+            </ToggleButton> */}
           </ToggleButtonGroup>
         </div>
         <p className="fontthin" style={{ marginTop: "0.2rem" }}>

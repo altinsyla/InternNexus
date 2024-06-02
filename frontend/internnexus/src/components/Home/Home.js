@@ -7,12 +7,26 @@ import Card from "react-bootstrap/Card";
 import Footer from "../../components/Footer/Footer";
 import { Link, useHistory } from "react-router-dom";
 import api from "../../api.js";
+import Swal from "sweetalert2";
+import "../../styles/_globals.scss";
 
 function Home() {
-  const [isDark, setIsDark] = useState(false);
   const history = useHistory();
   const [users, setUsers] = useState([]);
   const [customUsers, setCustomUsers] = useState([]);
+  const [currentUser, setcurrentUser] = useState([]);
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    },
+  });
 
   const getAllUsers = async () => {
     try {
@@ -33,16 +47,47 @@ function Home() {
     }
   };
 
+  const getcurrentuser = async () => {
+    try {
+      const response = await api.get(
+        "/user/" + localStorage.getItem("username")
+      );
+      setcurrentUser(response.data);
+    } catch (err) {
+      console.log("You need to be logged in first!");
+    }
+  };
+
   useEffect(() => {
     let customlimit = 20; // sa usera dojna mi marr
 
-
     getAllUsers();
     getcustomUsers(customlimit);
+    if (localStorage.getItem("token")) {
+      getcurrentuser();
+    }
   }, []);
 
+  const handleInternshipButtonClick = async () => {
+    if (localStorage.getItem("token")) {
+      if (currentUser.role == 1) {
+        Toast.fire({
+          icon: "error",
+          title: "A student account cannot post internships!",
+        });
+      } else {
+        history.push("/internshipform");
+      }
+    } else {
+      Toast.fire({
+        icon: "error",
+        title: "You need to be logged in first!",
+      });
+    }
+  };
+
   return (
-    <div id="body">
+    <div id="homebody">
       <NavBar />
       <div id="container">
         <div className="banner">
@@ -50,7 +95,8 @@ function Home() {
             {/* */}
             <div className="banner_maindiv">
               <div>
-                <h1 className="fontbold">
+                {/* <h1 className="fontbold"> */}
+                <h1 className={`fontbold `}>
                   {/*fontbold osht ni klass mrena _globals qe e bon font-family = poppins_bold */}
                   Quickest way to hire fit remote developer
                 </h1>
@@ -62,7 +108,7 @@ function Home() {
               <div className="banner_buttondiv">
                 <button
                   className="button_registercompany"
-                  onClick={() => history.push("/internshipform")}
+                  onClick={handleInternshipButtonClick}
                 >
                   Create an Internship
                 </button>
@@ -123,7 +169,7 @@ function Home() {
         <h1 className="poweredby">FIND STUDENTS</h1>
         <div className="studentcarddiv">
           {customUsers.map((user) => (
-            <Studentcard key={user._id} username={user.username}/>
+            <Studentcard key={user._id} username={user.username} />
           ))}
         </div>
         <h1 className="fontblack poweredby" style={{ textAlign: "center" }}>
@@ -141,7 +187,10 @@ function Home() {
               <Card.Text className="cardText fontthin">
                 Full Stack Web Developer
               </Card.Text>
-              <Link to="/student" className="button_details linknodecoration">
+              <Link
+                to="/student/Altin"
+                className="button_details linknodecoration"
+              >
                 Details
               </Link>
             </Card.Body>
@@ -158,7 +207,10 @@ function Home() {
               <Card.Text className="cardText fontthin">
                 Full Stack Web Developer
               </Card.Text>
-              <Link to="/student" className="button_details linknodecoration">
+              <Link
+                to="/student/Kifa"
+                className="button_details linknodecoration"
+              >
                 Details
               </Link>
             </Card.Body>
@@ -175,7 +227,10 @@ function Home() {
               <Card.Text className="cardText fontthin">
                 Full Stack Web Developer
               </Card.Text>
-              <Link to="/student" className="button_details linknodecoration">
+              <Link
+                to="/student/Flamur"
+                className="button_details linknodecoration"
+              >
                 Details
               </Link>
             </Card.Body>

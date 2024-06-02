@@ -12,6 +12,7 @@ function CompanySignUp() {
     email: "",
     fullname: "",
     password: "",
+    role: 1,
   });
 
   const history = useHistory();
@@ -24,10 +25,10 @@ function CompanySignUp() {
         .post("/user", info)
         .then((response) => {
           alert("Account created successfully");
-          history.push("/home");
+          history.push("/login");
         })
         .catch((err) => {
-          alert("User with this username or email already exists!");
+          console.log(err);
         });
     } catch (error) {
       console.error(error);

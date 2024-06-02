@@ -31,7 +31,7 @@ function StudentCard({ username }) {
   const history = useHistory();
 
   useEffect(() => {
-    const fetchInternship = async () => {
+    const fetchUser = async () => {
       try {
         const response = await api.get(`/user/${username}`);
         setUser(response.data);
@@ -40,12 +40,12 @@ function StudentCard({ username }) {
       }
     };
 
-    fetchInternship();
+    fetchUser();
   }, [username]);
 
   const handleLink = () => {
     history.push(`/student/${username}`);
-  }
+  };
 
   return (
     <div className="studentcard-body container" onClick={handleLink}>
@@ -54,7 +54,13 @@ function StudentCard({ username }) {
         <h3 className="fullName">{user.fullname}</h3>
         <h6 className="userName">{user.username}</h6>
         <div className="skillsContainer">
-          <p className="skills">Full Stack Developer</p>
+          {/* max 6 skills */}
+          <span className="skills">Full Stack Developer</span>{" "}
+          <span className="skills">Full Stack Developer</span>
+          <span className="skills">Full Stack Developer</span>
+          <span className="skills">Full Stack Developer</span>
+          <span className="skills">Full Stack Developer</span>
+          <span className="skills">Full Stack Developer</span>
         </div>
       </div>
     </div>
