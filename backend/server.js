@@ -21,6 +21,8 @@ const internshipApplicationRouter = require('./Routes/internshipApplicationRoute
 app.use('/internshipapplication',  internshipApplicationRouter);
 const userRouter = require('./Routes/userRouter');
 app.use('/user',  userRouter);
+const skillsRouter = require('./Routes/skillsRouter');
+app.use('/skills',  skillsRouter);
 
 app.use(express.static('public'))
 

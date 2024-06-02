@@ -51,8 +51,6 @@ const getSingleUser = async (req, res) => {
   }
 };
 
-
-
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
@@ -69,7 +67,7 @@ const loginUser = async (req, res) => {
         }
       );
 
-      res.json({token, username}); //kthehet tokeni si response
+      res.json({ token, username }); //kthehet tokeni si response
     }
   } else {
     res.status(404).json({ message: "Incorrect username or password" });
@@ -77,7 +75,18 @@ const loginUser = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
-  const { username, fullname, email, password, role } = req.body;
+  const {
+    username,
+    fullname,
+    email,
+    password,
+    role,
+    about,
+    courses,
+    university,
+    highschool,
+    skills,
+  } = req.body;
 
   if (!username || !fullname || !email || !password || !role) {
     return res.status(400).json({ message: "Required fields are missing" });
@@ -103,6 +112,11 @@ const createUser = async (req, res) => {
       email,
       password,
       role,
+      about,
+      courses,
+      university,
+      highschool,
+      skills,
     });
 
     res.status(201).json(newUser);

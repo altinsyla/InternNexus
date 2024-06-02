@@ -19,13 +19,19 @@ const User = new Schema({
     type: String,
     required: true,
   },
-  //   skills: {
-  //     type: [String],
-  //   },
   role: {
     type: Number, // 1 for Student, 2 for company, 3 for admin
     required: true,
   },
+  about: {
+    type: String,
+  },
+
+  //arrays
+  courses: { type: [String], default: [] },
+  university: { type: [String], default: [] },
+  highschool: { type: [String], default: [] },
+  skills: [{ type: mongoose.Schema.Types.ObjectId, ref: "skillsModel" }],
 });
 
 User.pre("save", async function (next) {
