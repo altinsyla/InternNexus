@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./SearchStudents.scss";
-import NavBar from "../NavBar/NavBar.js";
-import Footer from "../Footer/Footer.js";
-import StudentCard from "./StudentCard.js";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import api from "../../api.js";
+import Footer from "../Footer/Footer.js";
+import NavBar from "../NavBar/NavBar.js";
+import "./SearchStudents.scss";
+import StudentCard from "./StudentCard.js";
 
 const SearchStudents = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -51,7 +51,7 @@ const SearchStudents = () => {
         <h1 className="fontregular" style={{ marginTop: "3rem" }}>
           Search Students
         </h1>
-        <div style={{ display: "flex", flexDirection: "row" }}>
+        {/* <div style={{ display: "flex", flexDirection: "row" }}> */}
           <input
             type="text"
             placeholder="Search..."
@@ -62,7 +62,7 @@ const SearchStudents = () => {
           {isTyping ? (
             <button
               className="btn btn-dark mr-2"
-              style={{ width: "fit-content", alignSelf: "center", marginTop:"0.5rem", padding: "0.1rem 0.4rem", fontFamily: 'poppins_thin'}}
+              style={{  alignSelf: "center", marginTop:"0.5rem", padding: "0.15rem 0.5rem", fontFamily: 'poppins_thin'}}
               onClick={clearFilter}
             >
               Clear Filter
@@ -70,7 +70,7 @@ const SearchStudents = () => {
           ) : (
             ""
           )}
-        </div>
+        {/* </div> */}
 
         <h4
           style={{

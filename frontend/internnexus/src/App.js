@@ -3,19 +3,19 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"; // per linqe
 import "../src/styles/App.css";
 
 // Pages
+import AdminDashboard from "./components/AdminDashboard/AdminDashboard.js";
 import Companies from "./components/Companies/Company.js";
+import Error from './components/Error/Error.js';
 import Home from "./components/Home/Home.js";
 import InternshipApply from "./components/InternshipApply/InternshipApply.js";
+import InternshipForm from "./components/InternshipForm/InternshipForm.js";
 import Internships from "./components/Internships/Internships.js";
 import Login from "./components/Login.js";
 import MyProfile from "./components/MyProfile/MyProfile.js";
-import Student from "./components/Students/Students.js";
 import SearchStudents from "./components/SearchStudents/SearchStudents.js";
-import InternshipForm from "./components/InternshipForm/InternshipForm.js";
 import SignUpForm from "./components/SignUpForm/SignUpForm.js";
-import Error from './components/Error/Error.js';
-import AdminDashboard from "./components/AdminDashboard/AdminDashboard.js";
 import ADInternship from './components/AD-Internship/ADInternship.js';
+import Student from "./components/Students/Students.js";
 
 function App() {
   return (
@@ -90,6 +90,10 @@ function App() {
 
         <Route exact path="*">
           <Error />
+        </Route>
+
+        <Route exact path="/myprofile/:username"> 
+          <MyProfile />
         </Route>
         
       </Switch>

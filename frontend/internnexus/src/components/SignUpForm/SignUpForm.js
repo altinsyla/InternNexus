@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
-import "../SignUpForm/SignUpForm.scss";
 import { Link, useHistory } from "react-router-dom";
+import Swal from "sweetalert2";
 import api from "../../../src/api";
-import cors from "cors";
+import "../SignUpForm/SignUpForm.scss";
 
 function CompanySignUp() {
   const [info, setInfo] = useState({
@@ -24,27 +24,33 @@ function CompanySignUp() {
       await api
         .post("/user", info)
         .then((response) => {
-          alert("Account created successfully");
+          Swal.fire({
+            title:"Account created successfully!",
+            icon: "success",
+          });
           history.push("/login");
         })
         .catch((err) => {
-          console.log(err);
+          Swal.fire({
+            title: err.response.data.message,
+            icon: "error",
+          });
         });
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
   return (
     <>
-    <Link to='/'>
-      <div className="complogodiv">
-        <img
-          src={require("../../../src/imgsrc/internnexus.png")}
-          alt="logo1"
-          className="c-logo-company"
-        />
-      </div>
+      <Link to="/">
+        <div className="complogodiv">
+          <img
+            src={require("../../../src/imgsrc/internnexus.png")}
+            alt="logo1"
+            className="c-logo-company"
+          />
+        </div>
       </Link>
       <div className="c-signup-maindiv">
         <div className="c-signupformdiv">

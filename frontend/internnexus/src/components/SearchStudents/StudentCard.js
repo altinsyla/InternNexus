@@ -1,7 +1,7 @@
-import "./StudentCard.scss";
 import React, { useEffect, useState } from "react";
-import api from "../../api";
 import { useHistory } from "react-router-dom";
+import api from "../../api";
+import "./StudentCard.scss";
 
 // VERSIONI MAIN
 
@@ -61,6 +61,12 @@ function StudentCard({ username }) {
           <span className="skills">Full Stack Developer</span>
           <span className="skills">Full Stack Developer</span>
           <span className="skills">Full Stack Developer</span>
+
+          {/* {user.skills?.map((user) => (
+            <span className="skills" key={user._id}>
+              {user.skillName}
+            </span>
+          ))} */}
         </div>
       </div>
     </div>

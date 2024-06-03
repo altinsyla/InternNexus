@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import "../Students/Students.scss";
-import AltinSyla from "../Students/AltinSyla.jpg";
-import NavBar from "../NavBar/NavBar.js";
-import Footer from "../Footer/Footer.js";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import api from "../../api.js";
-import { useParams, useHistory } from "react-router-dom";
+import Footer from "../Footer/Footer.js";
+import NavBar from "../NavBar/NavBar.js";
+import AltinSyla from "../Students/AltinSyla.jpg";
+import "../Students/Students.scss";
 
 // boni me props
 // marginen te student search
@@ -14,6 +14,9 @@ function Students() {
   const { username } = useParams();
   const [user, setUser] = useState([]);
 
+
+  useEffect(() => {
+    
   const fetchUser = async () => {
     try {
       const response = await api.get(`/user/${username}`);
@@ -23,9 +26,8 @@ function Students() {
     }
   };
 
-  useEffect(() => {
     fetchUser();
-  }, []);
+  }, [username]);
 
   return (
     <div className="studentcontainer">
@@ -69,7 +71,7 @@ function Students() {
         </h4>
         <table className="skillstable">
           <tr>
-            {user.skills.map((skill) => (
+            {user.skills?.map((skill) => (
               <td key={skill._id}>{skill.skillName}</td>
             ))}
           </tr>
@@ -90,7 +92,7 @@ function Students() {
           <tr>
             <th>University</th>
           </tr>
-          {user.university.map((skill) => (
+          {user.university?.map((skill) => (
             <tr key={skill._id} className="fontthin">{skill}</tr>
           ))}
         </table>
@@ -99,7 +101,7 @@ function Students() {
           <tr>
             <th>High School</th>
           </tr>
-          {user.highschool.map((skill) => (
+          {user.highschool?.map((skill) => (
             <tr key={skill._id} className="fontthin">{skill}</tr>
           ))}
         </table>
@@ -108,7 +110,7 @@ function Students() {
           <tr>
             <th>Courses</th>
           </tr>
-          {user.courses.map((skill) => (
+          {user.courses?.map((skill) => (
             <tr key={skill._id} className="fontthin">{skill}</tr>
           ))}
         </table>
