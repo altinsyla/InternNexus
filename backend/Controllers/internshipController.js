@@ -50,7 +50,7 @@ const createInternship = async (req, res) => {
     requirements,
     offers
   } = req.body;
-
+  
   const image = req.file ? req.file.filename : "";
 
   try {

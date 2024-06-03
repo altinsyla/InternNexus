@@ -7,6 +7,10 @@ const User = new Schema({
     type: String,
     required: true,
   },
+  image: {
+    type: String,
+    required: true,
+  },
   fullname: {
     type: String,
     required: true,

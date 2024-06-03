@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { SiFacebook } from "react-icons/si";
+import React, { useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
+import { SiFacebook } from "react-icons/si";
 import { useHistory } from "react-router-dom";
+import Swal from "sweetalert2";
+import api from "../api";
 import internnexus from "../imgsrc/internnexus.png";
 import "../styles/App.css";
-import api from "../api";
-import Swal from "sweetalert2";
 
 const Login = () => {
   useEffect(() => {
@@ -55,7 +54,10 @@ const Login = () => {
         title: "Logged in successfully",
       });
     } catch (error) {
-      console.log("Login Error");
+      Swal.fire({
+        title: "Email or password is incorrect!",
+        icon: "error",
+      });
     }
   };
 

@@ -3,13 +3,21 @@ const userController = require("../Controllers/userController");
 const verifyToken = require("../verifyToken");
 const router = express.Router();
 
-router.get("/",userController.getAllUsers);
-router.get("/limit/:limit",userController.getcustomlimitusers);
-router.get("/:username",userController.getSingleUser);
-router.post("/",userController.createUser);
-router.patch("/:id",userController.updateUser);
-router.delete("/:id",userController.deleteUser);
+router.get("/", userController.getAllUsers);
+router.get("/limit/:limit", userController.getcustomlimitusers);
+router.get("/:username", userController.getSingleUser);
+router.post(
+  "/",
+  userController.upload.single("image"),
+  userController.createUser
+);
+router.patch(
+  "/:id",
+  userController.upload.single("image"),
+  userController.updateUser
+);
+router.delete("/:id", userController.deleteUser);
 
-router.post("/login",userController.loginUser);
+router.post("/login", userController.loginUser);
 
 module.exports = router;

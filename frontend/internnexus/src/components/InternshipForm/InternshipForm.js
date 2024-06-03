@@ -10,7 +10,7 @@ function InternshipForm() {
   const history = useHistory();
   const { id } = useParams();
   const [internship, setInternship] = useState({
-    username: localStorage.getItem('username'),
+    username: localStorage.getItem("username"),
     image: null,
     title: "",
     type: "",
@@ -26,7 +26,7 @@ function InternshipForm() {
         try {
           const response = await api.get(`/internships/${id}`);
           setInternship({
-            username: localStorage.getItem('username'),
+            username: localStorage.getItem("username"),
             image: response.data.image,
             title: response.data.title,
             type: response.data.type,
