@@ -1,4 +1,5 @@
-@import '../../styles/globals';
+@import "../../styles/_globals.scss";
+
 
 * {
     margin: 0;
@@ -15,7 +16,7 @@
     object-fit: contain;
 }
 .btn-apply{
-    background-color: #b3a398;
+    background-color: $clr-caramel;
     border: none;
     box-shadow: 2px 2px 2px #555555;
     width: 20%;
@@ -24,6 +25,22 @@
     font-family: poppins_regular;
     border-radius: 6px;
     transition: transform 0.3s, background-color 0.3s, color 0.2s;
+}
+.btn-delete{
+    background-color: $clr-caramel;
+    border: none;
+    box-shadow: 2px 2px 2px #555555;
+    width: 20%;
+    height: 40px;
+    cursor: pointer;
+    font-family: poppins_regular;
+    border-radius: 6px;
+    transition: transform 0.3s, background-color 0.3s, color 0.2s;
+}
+.btn-delete:hover {
+    transform: translateY(-2px);
+    background-color: #555;
+    color: white;
 }
 .btn-apply:hover {
     transform: translateY(-2px);
@@ -68,7 +85,7 @@
 }
 .int-requirements{
     align-self: center;
-    font-family: poppins_bold;
+    font-family: poppins_regular;
     font-size: 1.5rem;
   }
 

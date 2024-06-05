@@ -18,6 +18,7 @@ function InternshipForm() {
     duration: "",
     requirements: "",
     offers: "",
+    category: "",
   });
 
   useEffect(() => {
@@ -34,6 +35,7 @@ function InternshipForm() {
             duration: response.data.duration,
             requirements: response.data.requirements,
             offers: response.data.offers,
+            category: response.data.category,
           });
         } catch (error) {
           console.error("Error fetching internship data", error);
@@ -65,6 +67,7 @@ function InternshipForm() {
     formData.append("duration", internship.duration);
     formData.append("requirements", internship.requirements);
     formData.append("offers", internship.offers);
+    formData.append("category", internship.category);
 
     try {
       if (id) {
@@ -91,7 +94,11 @@ function InternshipForm() {
       }
       history.push("/internships");
     } catch (error) {
-      console.error("Internship save error", error);
+      Swal.fire({
+        title: "Something went wrong!",
+        text: "Fields needs to be filled!",
+        icon: "error",
+      });
     }
   };
 
@@ -141,6 +148,36 @@ function InternshipForm() {
               value={internship.title}
               onChange={handleChange}
             />
+          </div>
+          <div className="form-group">
+            <label className="internshipform-labels">Internship category</label>
+            <select
+              name="category"
+              className="internshipform-inputs"
+              value={internship.category}
+              onChange={handleChange}
+            >
+              <option value="">Select a Category</option>
+              <option value="Front-End Developer">Front-End Developer</option>
+              <option value="Back-End Developer">Back-End Developer</option>
+              <option value="Full Stack Developer">Full Stack Developer</option>
+              <option value="Data Scientist">Data Scientist</option>
+              <option value="Machine Learning Engineer">
+                Machine Learning Engineer
+              </option>
+              <option value="DevOps Engineer">DevOps Engineer</option>
+              <option value="Cloud Architect">Cloud Architect</option>
+              <option value="Cybersecurity Analyst">
+                Cybersecurity Analyst
+              </option>
+              <option value="AI Engineer">AI Engineer</option>
+              <option value="Blockchain Developer">Blockchain Developer</option>
+              <option value="IoT Developer">IoT Developer</option>
+              <option value="Mobile Application Developer">
+                Mobile Application Developer
+              </option>
+              <option value="UI/UX Designer">UI/UX Designer</option>
+            </select>
           </div>
           <div className="form-group">
             <label className="internshipform-labels">Internship Type</label>

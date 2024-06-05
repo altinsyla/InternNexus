@@ -25,7 +25,7 @@ const NavBar = () => {
   function handleLogOut() {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
-    history.push("/login"); 
+    history.push("/login");
 
     Toast.fire({
       icon: "success",
@@ -38,7 +38,7 @@ const NavBar = () => {
       <Link to="/">
         <img src={require("./internnexus.png")} className="navbarlogo" />
       </Link>
-      <div className="navbartabs"> 
+      <div className="navbartabs">
         <div>
           <Link to="/Internships" className={`navbarlinks navbarsimplelinks`}>
             INTERNSHIPS

@@ -39,6 +39,10 @@ const Internship = new Schema({
     default: Date.now,
     required: true,
   },
+  category: {
+    type: String,
+    required: true,
+  }
 });
 
 module.exports = mongoose.model("internshipModel", Internship);

@@ -2,7 +2,7 @@ import React from "react";
 import "../Internships/InternshipCard.scss";
 import { useHistory } from "react-router-dom";
 
-function InternshipCard({ _id, title, type, location, image, registeredDate }) {
+function InternshipCard({ _id, title, type, location, image, registeredDate, category }) {
   const history = useHistory();
 
   const handleInternship = () => {
@@ -14,9 +14,10 @@ function InternshipCard({ _id, title, type, location, image, registeredDate }) {
       <img src={`http://localhost:5001/images/${image}`} alt="Company Logo" className="company_logo" />
       <div className="positionInfo">
         <p className="companyName">{title}</p>
+        <p className="companyType">{category}</p>
         <p className="companyType">{type}</p>
-        <p className="locationName">{location}</p>
-        <p className="registered-date"><strong>Published on: </strong>{new Date(registeredDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+        <p className="locationName">📍 {location}</p>
+        <p className="registered-date"><strong>🗓 Published on: </strong>{new Date(registeredDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
       </div>
     </div>
   );

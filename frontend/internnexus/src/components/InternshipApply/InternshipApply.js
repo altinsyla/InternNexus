@@ -129,7 +129,7 @@ function InternshipApply() {
                   >
                     Edit
                   </button>
-                  <button className="btn-apply" onClick={deleteInternship}>
+                  <button className="btn-delete" onClick={deleteInternship}>
                     Delete
                   </button>
                 </>
