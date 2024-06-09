@@ -1,127 +1,133 @@
-body {
+@import "../../styles/_globals.scss";
+@import "../../styles/_fonts";
 
-    margin-top: 36px;
-    background-color: #f2f2f2;
+body {
+  margin-top: 36px;
+  background-color: #f2f2f2;
 }
 
 .internshipcard_body {
-    width: 100%;
-    padding: 0 2rem;
-    border-radius: 20px;
-    height: 250px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 36px;
-    background-color: #FEF8F8;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  padding: 0 2rem;
+  border-radius: 20px;
+  height: 250px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 36px;
+  background-color: #fef8f8;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.internshipcard_body:hover{
+.internshipcard_body:hover {
   transform: scale(1.05);
   transition: ease-in 0.15s;
-  
 }
-.company_logo { 
-    width: 20%;
-    height: 70%;
-    object-fit: contain;
-    margin-left: 36px;
-    margin-right: 36px;
-    background-color: #FEF8F8;
+.company_logo {
+  width: 20%;
+  height: 70%;
+  object-fit: contain;
+  margin-left: 36px;
+  margin-right: 36px;
+  background-color: #fef8f8;
 }
-  
 
 .positionInfo {
-    width: 70%;
-    height: 60%;
-    display: flex;
-    flex-direction: column;
-    margin-left: 40px;
-    padding-top: 20px;
-    background-color: #FEF8F8;
+  width: 70%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  padding-top: 20px;
+  background-color: #fef8f8;
 }
 
 .locationName {
-    justify-self: baseline;
-    width: fit-content;
-    align-self: flex-end;
-    margin-bottom: 10px;
-    background-color: #FEF8F8;
-    font-family: poppins_regular;   
-    font-size: 1.2rem;
+  justify-self: baseline;
+  width: fit-content;
+  align-self: flex-end;
+  margin-bottom: 10px;
+  background-color: #fef8f8;
+  font-family: poppins_regular;
+  font-size: 1.2rem;
 }
 .registered-date {
   justify-self: baseline;
-    width: fit-content;
-    align-self: flex-end;
-    margin-bottom: 10px;
-    background-color: #FEF8F8;
-    font-family: poppins_regular;   
-    font-size: 0.9rem;
-    font-style: italic;
-  
+  width: fit-content;
+  align-self: flex-end;
+  margin-bottom: 10px;
+  background-color: #fef8f8;
+  font-family: poppins_regular;
+  font-size: 0.75rem;
 }
 
-.companyName { 
-    background-color: #FEF8F8;
-    font-family: poppins_bold;   
-    font-size: 1.4rem;
+.companyName {
+  background-color: #fef8f8;
+  font-family: poppins_bold;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.companyType {
+  background-color: #fef8f8;
+  font-family: poppins_regular;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  text-align: left;
+}
+.categoryType {
+  border-radius: 5px;
+  width: 40%;
+  height: 30px;
+  font-family: poppins_regular;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .internshipcard_body {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+  .company_logo {
+    width: 30%;
+    height: 50%;
+  }
+  .positionInfo {
+    width: 60%;
+    height: 50%;
+  }
+}
+@media (max-width: 480px) {
+  .internshipcard_body {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+  .company_logo {
+    width: 25%;
+    height: 30%;
+  }
+  .positionInfo {
+    width: 60%;
+    height: 50%;
+  }
+  .locationName {
+    justify-self: baseline;
+    width: fit-content;
+    align-self: flex-start;
     margin-bottom: 10px;
-    text-align: left;
+    background-color: #fef8f8;
+    font-family: poppins_regular;
+    font-size: 0.9rem;
   }
-  
-  .companyType { 
-    background-color: #FEF8F8;
-    font-family: poppins_regular;   
-    font-size: 1rem;
-    margin-bottom: 10px;
-    text-align: left;
-  }
-  
-  @media (max-width: 768px) {
-   .internshipcard_body {
-      width: 100%;
-      height: auto;
-      padding: 10px;
-    }
-   .company_logo {
-      width: 30%;
-      height: 50%;
-    }
-   .positionInfo {
-      width: 60%;
-      height: 50%;
-    }
-  }
-  @media (max-width: 480px) {
-    .internshipcard_body {
-       width: 100%;
-       height: auto;
-       padding: 10px;
-      }
-    .company_logo {
-       width: 25%;
-       height: 30%;
-     }
-    .positionInfo {
-       width: 60%;
-       height: 50%;
-     }
-     .locationName {
-      justify-self: baseline;
-      width: fit-content;
-      align-self: flex-start;
-      margin-bottom: 10px;
-      background-color: #FEF8F8;
-      font-family: poppins_regular;   
-      font-size: 0.9rem;
-  }
-  .companyName{
+  .companyName {
     font-size: 1.1rem;
   }
-  .companyType{
+  .companyType {
     font-size: 0.8rem;
   }
-   }
-   
+}

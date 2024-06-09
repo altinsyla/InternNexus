@@ -1,242 +1,241 @@
 @import "../../styles/_globals.scss";
 
-
 * {
-    margin: 0;
-    padding: 0;
-    // background-color: #f2f2f2;
+  margin: 0;
+  padding: 0;
+  // background-color: #f2f2f2;
 }
-.applymainContainer{
-    width: 100%;
-    padding: $_margin;
+.applymainContainer {
+  width: 100%;
+  padding: $_margin;
 }
 .applycompanyLogo {
-    width: 360px;
-    height: 310px;
-    object-fit: contain;
+  width: 360px;
+  height: 310px;
+  object-fit: contain;
 }
-.btn-apply{
-    background-color: $clr-caramel;
-    border: none;
-    box-shadow: 2px 2px 2px #555555;
-    width: 20%;
-    height: 40px;
-    cursor: pointer;
-    font-family: poppins_regular;
-    border-radius: 6px;
-    transition: transform 0.3s, background-color 0.3s, color 0.2s;
+.btn-apply {
+  background-color: $clr-caramel;
+  border: none;
+  box-shadow: 2px 2px 2px #555555;
+  width: 20%;
+  height: 40px;
+  cursor: pointer;
+  color: black;
+  font-family: poppins_regular;
+  border-radius: 6px;
+  transition: transform 0.3s, background-color 0.3s, color 0.2s;
 }
-.btn-delete{
-    background-color: $clr-caramel;
-    border: none;
-    box-shadow: 2px 2px 2px #555555;
-    width: 20%;
-    height: 40px;
-    cursor: pointer;
-    font-family: poppins_regular;
-    border-radius: 6px;
-    transition: transform 0.3s, background-color 0.3s, color 0.2s;
+.btn-delete {
+  background-color: #c41b1b;
+  border: none;
+  box-shadow: 2px 2px 2px #c41b1b;
+  width: 20%;
+  height: 40px;
+  cursor: pointer;
+  font-family: poppins_regular;
+  border-radius: 6px;
+  transition: transform 0.3s, background-color 0.3s, color 0.2s;
+  color: white;
 }
 .btn-delete:hover {
-    transform: translateY(-2px);
-    background-color: #555;
-    color: white;
+  transform: translateY(-2px);
+  background-color: #d61d1d;
+  color: black;
 }
 .btn-apply:hover {
-    transform: translateY(-2px);
-    background-color: #555;
-    color: white;
-  }
-
-.applyCard { 
-    display: flex;
-    flex-direction: row;
-    margin-top: 5%;
+  transform: translateY(-2px);
+  background-color: #555;
+  color: white;
 }
-.specifications { 
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-left: 10%;
-    background-color: #FEF8F8;
-    gap: 7%;
-    padding-left: 3%;
-    padding-top: 3%;
-    border-radius: 20px;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+.applyCard {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5%;
+}
+.specifications {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: 10%;
+  background-color: #fef8f8;
+  gap: 7%;
+  padding-left: 3%;
+  padding-top: 3%;
+  border-radius: 20px;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .intapplydescription {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 5%;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  margin-bottom: 5%;
+  font-family: poppins_regular;
+  border-radius: 20px;
+  background-color: #fef8f8;
+  padding: 3% 3%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  // align-items: center;
+}
+.int-requirements {
+  align-self: center;
+  font-family: poppins_regular;
+  font-size: 1.5rem;
+}
+
+.edit-delete-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+@media (max-width: 480px) {
+  .applyCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .applycompanyLogo {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: $_margin;
+    margin-bottom: 10%;
+  }
+  .int-requirements {
+    align-self: center;
+    font-family: poppins_bold;
+    font-size: 1rem;
+  }
+  .specifications {
     width: 100%;
     height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin-top: 5%;
-    border-radius: 20px;
-    font-size: 1.1rem;
+    align-items: center;
+    margin: $_margin;
     margin-bottom: 5%;
+    align-items: center;
+    gap: 5px;
+  }
+  .btn-apply {
+    background-color: #b3a398;
+    box-shadow: 3px 3px 3px #555555;
+    width: 40%;
+    height: 35px;
+    cursor: pointer;
     font-family: poppins_regular;
-    border-radius: 20px;
-    background-color: #FEF8F8;
-    padding: 3% 3%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    // align-items: center;
-}
-.int-requirements{
-    align-self: center;
-    font-family: poppins_regular;
-    font-size: 1.5rem;
+    border-radius: 6px;
+    transition: transform 0.3s, background-color 0.3s, color 0.2s;
   }
 
-  .edit-delete-btn{
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
+  .intapplydescription {
+    font-size: 0.8rem;
+    font-family: poppins_regular;
   }
-  
-@media (max-width: 480px) {
-    .applyCard{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-    }
-    .applycompanyLogo {
-        width: 80%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: $_margin;
-        margin-bottom: 10%;
-    }
-    .int-requirements{
-        align-self: center;
-        font-family: poppins_bold;
-        font-size: 1rem;
-      }
-    .specifications {
-        width: 100%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: $_margin;
-        margin-bottom: 5%;
-        align-items: center;
-        gap: 5px;
-    }
-    .btn-apply{
-        background-color: #b3a398;
-        box-shadow: 3px 3px 3px #555555;
-        width: 40%;
-        height: 35px;
-        cursor: pointer;
-        font-family: poppins_regular;
-        border-radius: 6px;
-        transition: transform 0.3s, background-color 0.3s, color 0.2s;
-    }
-
-    .intapplydescription{
-        font-size: 0.8rem;
-        font-family: poppins_regular;
-    }
-    h2{
-        font-size: 1.2rem;
-    }
-    h5 {
-        font-size: 0.9rem;
-    }
-    h6 {
-        font-size: 0.8rem;
-    }
+  h2 {
+    font-size: 1.2rem;
+  }
+  h5 {
+    font-size: 0.9rem;
+  }
+  h6 {
+    font-size: 0.8rem;
+  }
 }
 
 @media (max-width: 768px) {
-    .applyCard{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .applycompanyLogo {
-        width: 80%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: $_margin;
-        margin-bottom: 10%;
-    }
-    .btn-apply{
-        background-color: #b3a398;
-        box-shadow: 3px 3px 3px #555555;
-        width: 40%;
-        height: 35px;
-        cursor: pointer;
-        font-family: poppins_regular;
-        border-radius: 6px;
-        transition: transform 0.3s, background-color 0.3s, color 0.2s;
-    }
-    .int-requirements{
-        align-self: center;
-        font-family: poppins_bold;
-        font-size: 1rem;
-      }
-    .specifications {
-        width: 100%;
-        height: 220px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: $_margin;
-        margin-bottom: 5%;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    h2{
-        font-size: 1.2rem;
-    }
-    h5 {
-        font-size: 1rem;
-    }
-    h6 {
-        font-size: 0.9rem;
-    }
+  .applyCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .applycompanyLogo {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: $_margin;
+    margin-bottom: 10%;
+  }
+  .btn-apply {
+    background-color: #b3a398;
+    box-shadow: 3px 3px 3px #555555;
+    width: 40%;
+    height: 35px;
+    cursor: pointer;
+    font-family: poppins_regular;
+    border-radius: 6px;
+    transition: transform 0.3s, background-color 0.3s, color 0.2s;
+  }
+  .int-requirements {
+    align-self: center;
+    font-family: poppins_bold;
+    font-size: 1rem;
+  }
+  .specifications {
+    width: 100%;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: $_margin;
+    margin-bottom: 5%;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+  h5 {
+    font-size: 1rem;
+  }
+  h6 {
+    font-size: 0.9rem;
+  }
 }
 
-@media (max-width: 1024px){
-    .applyCard{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .applycompanyLogo {
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: $_margin;
-        margin-bottom: 10%;
-    }
-    .btn-apply{
-        background-color: #b3a398;
-        box-shadow: 3px 3px 3px #555555;
-        width: 40%;
-        height: 35px;
-        cursor: pointer;
-        font-family: poppins_regular;
-        border-radius: 6px;
-        transition: transform 0.3s, background-color 0.3s, color 0.2s;
-    }
-    .specifications {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: $_margin;
-        margin-bottom: 5%;
-        align-items: center;
-        gap: 5px;
-    }
-
+@media (max-width: 1024px) {
+  .applyCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .applycompanyLogo {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: $_margin;
+    margin-bottom: 10%;
+  }
+  .btn-apply {
+    background-color: #b3a398;
+    box-shadow: 3px 3px 3px #555555;
+    width: 40%;
+    height: 35px;
+    cursor: pointer;
+    font-family: poppins_regular;
+    border-radius: 6px;
+    transition: transform 0.3s, background-color 0.3s, color 0.2s;
+  }
+  .specifications {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: $_margin;
+    margin-bottom: 5%;
+    align-items: center;
+    gap: 5px;
+  }
 }

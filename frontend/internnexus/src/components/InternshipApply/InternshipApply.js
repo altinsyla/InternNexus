@@ -49,12 +49,7 @@ function InternshipApply() {
   };
 
   const handleApply = () => {
-    Swal.fire({
-      title: "Applied!",
-      text: "You successfully applied!",
-      icon: "success",
-    });
-    history.push("/internships");
+    history.push(`/internshipapplyform/${id}`);
   };
 
   const deleteInternship = async () => {
@@ -106,18 +101,18 @@ function InternshipApply() {
             className="applycompanyLogo"
           />
           <div className="specifications">
-            <h2 className="fontbold" style={{ backgroundColor: "#FEF8F8" }}>
+            <h3 className="fontbold" style={{ backgroundColor: "#FEF8F8" }}>
               {internship.title}
-            </h2>
-            <h5 className="fontregular" style={{ backgroundColor: "#FEF8F8" }}>
-              <strong>Location: </strong> {internship.location}
-            </h5>
+            </h3>
             <h5 className="fontregular" style={{ backgroundColor: "#FEF8F8" }}>
               <strong>Type:</strong> {internship.type}
             </h5>
-            <h5 className="fontregular" style={{ backgroundColor: "#FEF8F8" }}>
+            <h6 className="fontregular" style={{ backgroundColor: "#FEF8F8" }}>
               <strong>Duration:</strong> {internship.duration}
-            </h5>
+            </h6>
+            <h6 className="fontregular" style={{ backgroundColor: "#FEF8F8" }}>
+              <strong>Location: </strong> {internship.location}
+            </h6>
             <div className="edit-delete-btn">
               {(internship.username === currentUser.username &&
                 currentUser.role === 2) ||

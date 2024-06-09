@@ -16,6 +16,7 @@ import SearchStudents from "./components/SearchStudents/SearchStudents.js";
 import SignUpForm from "./components/SignUpForm/SignUpForm.js";
 import ADInternship from './components/AD-Internship/ADInternship.js';
 import Student from "./components/Students/Students.js";
+import InternshipApplyForm from './components/InternshipApply/InternshipApplyForm.js';
 
 function App() {
   return (
@@ -32,11 +33,6 @@ function App() {
         <Route exact path='/adinternship'>
         <ADInternship />
         </Route>
-        <Route exact path='/adinternship/:id'>
-        <ADInternship />
-        </Route>
-        
-
         <Route exact path="/login">
           <Login />
         </Route>
@@ -84,6 +80,14 @@ function App() {
         <Route exact path="/internshipForm">
           <InternshipForm />
         </Route>
+        <Route exact path="/internshipapplyform">
+          <InternshipApplyForm />
+        </Route>
+        
+        <Route exact path="/internshipapplyform/:internshipID">
+          <InternshipApplyForm />
+        </Route>
+
         <Route exact path="/internshipForm/:id"> 
           <InternshipForm />
         </Route>

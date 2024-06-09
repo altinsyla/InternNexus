@@ -88,7 +88,7 @@ function InternshipForm() {
         });
         Swal.fire({
           title: "Good job!",
-          text: "Internship succesfully created!",
+          text: "Internship successfully created!",
           icon: "success",
         });
       }

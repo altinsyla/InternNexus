@@ -2,14 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const InternshipApplication = new Schema({
-  applicationID: {
-    type: Number,
-    required: true
-  },
   internshipID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Internship',
-    required: true
+    required: true,
   },
   username: {
     type: String,
@@ -17,7 +13,15 @@ const InternshipApplication = new Schema({
   },
   applyDate: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    required: true,
+  },
+  cv: {
+    type: String,
+    required: true,
+  },
+  additionalMessage: {
+    type: String,
   }
 });
 
