@@ -5,6 +5,9 @@ import NavBar from "../NavBar/NavBar.js";
 import { useParams, useHistory } from "react-router-dom";
 import api from "../../api.js";
 import Swal from "sweetalert2";
+import { IoTimeOutline, IoLocationOutline } from "react-icons/io5";
+import { LiaBusinessTimeSolid } from "react-icons/lia";
+import { MdEuroSymbol } from "react-icons/md";
 
 function InternshipApply() {
   const { id } = useParams();
@@ -101,18 +104,25 @@ function InternshipApply() {
             className="applycompanyLogo"
           />
           <div className="specifications">
-            <h3 className="fontbold" style={{ backgroundColor: "#FEF8F8" }}>
-              {internship.title}
-            </h3>
-            <h5 className="fontregular" style={{ backgroundColor: "#FEF8F8" }}>
-              <strong>Type:</strong> {internship.type}
-            </h5>
-            <h6 className="fontregular" style={{ backgroundColor: "#FEF8F8" }}>
-              <strong>Duration:</strong> {internship.duration}
-            </h6>
-            <h6 className="fontregular" style={{ backgroundColor: "#FEF8F8" }}>
-              <strong>Location: </strong> {internship.location}
-            </h6>
+            <div>
+              <h4 className="title-specs">{internship.title}</h4>
+            </div>
+            <div className="specifiations-div">
+              <h6 className="specifiations-details">
+                <MdEuroSymbol className="apply-icons" /> {internship.salary}
+              </h6>
+              <h6 className="specifiations-details">
+                <LiaBusinessTimeSolid className="apply-icons" />{" "}
+                {internship.type}
+              </h6>
+              <h6 className="specifiations-details">
+                <IoTimeOutline className="apply-icons" /> {internship.duration}
+              </h6>
+              <h6 className="specifiations-details">
+                <IoLocationOutline className="apply-icons" />{" "}
+                {internship.location}
+              </h6>
+            </div>
             <div className="edit-delete-btn">
               {(internship.username === currentUser.username &&
                 currentUser.role === 2) ||

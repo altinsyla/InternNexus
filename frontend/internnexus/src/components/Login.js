@@ -52,6 +52,7 @@ const Login = () => {
       Toast.fire({
         icon: "success",
         title: "Logged in successfully",
+        timer: 1000,
       });
     } catch (error) {
       Swal.fire({

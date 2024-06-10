@@ -42,6 +42,10 @@ const Internship = new Schema({
   category: {
     type: String,
     required: true,
+  },
+  salary: {
+    type: String,
+    required: true,
   }
 });
 

@@ -82,6 +82,7 @@ const createInternship = async (req, res) => {
     requirements,
     offers,
     category,
+    salary,
   } = req.body;
 
   const image = req.file ? req.file.filename : "";
@@ -97,6 +98,7 @@ const createInternship = async (req, res) => {
       requirements,
       offers,
       category,
+      salary,
     });
 
     res.status(201).json(newInternship);
@@ -107,7 +109,7 @@ const createInternship = async (req, res) => {
 
 const updateInternship = async (req, res) => {
   const { id } = req.params;
-  const { title, type, location, duration, requirements, offers, category } =
+  const { title, type, location, duration, requirements, offers, category, salary} =
     req.body;
   const updatedData = {
     title,
@@ -117,6 +119,7 @@ const updateInternship = async (req, res) => {
     requirements,
     offers,
     category,
+    salary,
   };
 
   if (req.file) {

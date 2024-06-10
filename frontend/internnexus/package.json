@@ -25,6 +25,7 @@
     "react-placeholder-image": "^0.1.8",
     "react-router-dom": "^5.3.4",
     "react-scripts": "5.0.1",
+    "react-spinners": "^0.13.8",
     "react-toastify": "^10.0.5",
     "sass": "^1.75.0",
     "styled-components": "^6.1.8",

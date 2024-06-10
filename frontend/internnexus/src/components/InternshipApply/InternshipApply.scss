@@ -1,17 +1,18 @@
 @import "../../styles/_globals.scss";
 
+
 * {
   margin: 0;
   padding: 0;
-  // background-color: #f2f2f2;
+
 }
 .applymainContainer {
   width: 100%;
   padding: $_margin;
 }
 .applycompanyLogo {
-  width: 360px;
-  height: 310px;
+  width: 250px;
+  height: 200px;
   object-fit: contain;
 }
 .btn-apply {
@@ -19,7 +20,7 @@
   border: none;
   box-shadow: 2px 2px 2px #555555;
   width: 20%;
-  height: 40px;
+  height: 35px;
   cursor: pointer;
   color: black;
   font-family: poppins_regular;
@@ -31,12 +32,30 @@
   border: none;
   box-shadow: 2px 2px 2px #c41b1b;
   width: 20%;
-  height: 40px;
+  height: 35px;
   cursor: pointer;
   font-family: poppins_regular;
   border-radius: 6px;
   transition: transform 0.3s, background-color 0.3s, color 0.2s;
   color: white;
+}
+.specifiations-details{
+  width: 150px;
+  height: 30px;
+  background-color: $clr_graywhite;
+  border-radius: 15px;
+  padding: 5px 10px;
+  text-align: center;
+}
+.specifiations-div{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 2%;
+}
+.title-specs{
+  text-align: center;
 }
 .btn-delete:hover {
   transform: translateY(-2px);
@@ -54,15 +73,20 @@
   flex-direction: row;
   margin-top: 5%;
 }
+.apply-icons{
+  width: 20px;
+  height: 20px;
+}
 .specifications {
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 200px;
   margin-left: 10%;
   background-color: #fef8f8;
   gap: 7%;
   padding-left: 3%;
-  padding-top: 3%;
+  padding-top: 2%;
   border-radius: 20px;
   align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -117,7 +141,7 @@
   }
   .specifications {
     width: 100%;
-    height: auto;
+    height: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -126,17 +150,35 @@
     align-items: center;
     gap: 5px;
   }
+  .specifiations-div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
   .btn-apply {
     background-color: #b3a398;
-    box-shadow: 3px 3px 3px #555555;
-    width: 40%;
+    box-shadow: 2px 2px 2px #555555;
+    width: 30%;
     height: 35px;
     cursor: pointer;
     font-family: poppins_regular;
     border-radius: 6px;
     transition: transform 0.3s, background-color 0.3s, color 0.2s;
   }
-
+  .btn-delete {
+    background-color: #c41b1b;
+    border: none;
+    box-shadow: 2px 2px 2px #c41b1b;
+    width: 30%;
+    height: 35px;
+    cursor: pointer;
+    font-family: poppins_regular;
+    border-radius: 6px;
+    transition: transform 0.3s, background-color 0.3s, color 0.2s;
+    color: white;
+  }
   .intapplydescription {
     font-size: 0.8rem;
     font-family: poppins_regular;
@@ -169,7 +211,7 @@
   .btn-apply {
     background-color: #b3a398;
     box-shadow: 3px 3px 3px #555555;
-    width: 40%;
+    width: 30%;
     height: 35px;
     cursor: pointer;
     font-family: poppins_regular;
@@ -183,7 +225,7 @@
   }
   .specifications {
     width: 100%;
-    height: 220px;
+    height: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -191,6 +233,12 @@
     margin-bottom: 5%;
     align-items: center;
     gap: 10px;
+  }
+  .specifiations-div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
   }
 
   h2 {
@@ -221,7 +269,7 @@
   .btn-apply {
     background-color: #b3a398;
     box-shadow: 3px 3px 3px #555555;
-    width: 40%;
+    width: 30%;
     height: 35px;
     cursor: pointer;
     font-family: poppins_regular;

@@ -147,4 +147,12 @@
     height: 35px;
     font-size: 20px;
   }
+  .filter-select, .sort-select{
+    width: 22%;
+    font-size: 0.7rem;
+  }
+  .filter-select option {
+    width: 20px;
+    font-size: 0.5rem;
+  }
 }

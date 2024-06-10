@@ -19,6 +19,7 @@ function InternshipForm() {
     requirements: "",
     offers: "",
     category: "",
+    salary: "",
   });
 
   useEffect(() => {
@@ -36,6 +37,7 @@ function InternshipForm() {
             requirements: response.data.requirements,
             offers: response.data.offers,
             category: response.data.category,
+            salary: response.data.salary,
           });
         } catch (error) {
           console.error("Error fetching internship data", error);
@@ -68,6 +70,7 @@ function InternshipForm() {
     formData.append("requirements", internship.requirements);
     formData.append("offers", internship.offers);
     formData.append("category", internship.category);
+    formData.append("salary", internship.salary);
 
     try {
       if (id) {
@@ -209,6 +212,17 @@ function InternshipForm() {
               name="duration"
               placeholder="e.g. 3 months, 6 months"
               value={internship.duration}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label className="internshipform-labels">Salary</label>
+            <input
+              type="text"
+              className="internshipform-inputs"
+              name="salary"
+              placeholder="e.g. 500/monthly"
+              value={internship.salary}
               onChange={handleChange}
             />
           </div>

@@ -30,6 +30,7 @@ const NavBar = () => {
     Toast.fire({
       icon: "success",
       title: "Logged out successfully",
+      timer: 1500,
     });
   }
 
