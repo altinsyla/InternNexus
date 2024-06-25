@@ -19,7 +19,7 @@
   border-radius: 15px;
   border: none;
   padding: 15px;
-  cursor: pointer;
+  cursor: text;
   background-color: #fef8f8;
   margin-top: 3%;
   font-size: 1.3rem;
@@ -68,7 +68,7 @@
 
 .filter-sort-container {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   margin-bottom: 20px;
   margin-top: 10px;
 }
@@ -83,6 +83,10 @@
   border-radius: 5px;
   border: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.sorticon{
+  width: 30px;
+  height: 30px;
 }
 
 @media only screen and (max-width: 1024px) {

@@ -108,7 +108,7 @@ function CompanySignUp() {
                 // onChange={handlePasswordChange}
               />
             </div>
-            <ToggleButtonGroup
+            {/* <ToggleButtonGroup
               type="radio"
               name="options"
               style={{ width: "100%" }}
@@ -130,7 +130,7 @@ function CompanySignUp() {
               >
                 Username
               </ToggleButton>
-            </ToggleButtonGroup>
+            </ToggleButtonGroup> */}
           </form>
         </div>
         <div className="c-second-div">

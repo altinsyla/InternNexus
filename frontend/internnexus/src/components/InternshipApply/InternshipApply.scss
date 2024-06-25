@@ -60,12 +60,12 @@
 .btn-delete:hover {
   transform: translateY(-2px);
   background-color: #d61d1d;
-  color: black;
+  color: white;
 }
 .btn-apply:hover {
   transform: translateY(-2px);
-  background-color: #555;
-  color: white;
+  background-color: #DCD6D6;
+  color: black;
 }
 
 .applyCard {
@@ -119,6 +119,13 @@
   display: flex;
   justify-content: space-evenly;
 }
+.svg-icons{
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+
 
 @media (max-width: 480px) {
   .applyCard {

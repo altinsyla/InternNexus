@@ -5,6 +5,8 @@ import Footer from "../Footer/Footer.js";
 import NavBar from "../NavBar/NavBar.js";
 import api from "../../api.js";
 import { useHistory } from "react-router-dom";
+import sorticon from '../../imgsrc/sorticon.svg';
+import categories from '../../imgsrc/categories.svg';
 
 function Internships() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -80,6 +82,8 @@ function Internships() {
     <div>
       <NavBar />
       <div className="internship_body">
+        {/* <h1 style={{textAlign:"center", marginTop: "2rem"}}>Got Talent?<br /> Meet our Opportunity</h1>
+        <h5 style={{textAlign: "center"}}>Find Jobs, Employment & Career Opportunities. Some of the companies <br /> we've helped recruit excellent applicants over the years.</h5> */}
         <h2 className="fontregular" style={{ marginTop: "5%" }}>
           Search Internships
         </h2>
@@ -103,6 +107,7 @@ function Internships() {
             <option value="part-time">Part-Time</option>
             <option value="full-time">Full-Time</option>
           </select>
+          <img src={categories} className="sorticon"></img>
           <select
             name="category"
             value={filter.category}
@@ -129,6 +134,7 @@ function Internships() {
             </option>
             <option value="UI/UX Designer">UI/UX Designer</option>
           </select>
+          <img src={sorticon} className="sorticon"></img>
           <select
             value={sortOrder}
             onChange={handleSortChange}

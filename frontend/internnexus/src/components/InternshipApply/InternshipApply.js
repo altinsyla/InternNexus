@@ -8,6 +8,9 @@ import Swal from "sweetalert2";
 import { IoTimeOutline, IoLocationOutline } from "react-icons/io5";
 import { LiaBusinessTimeSolid } from "react-icons/lia";
 import { MdEuroSymbol } from "react-icons/md";
+import deletebutton from '../../imgsrc/deletebutton.svg';
+import editbutton from '../../imgsrc/editbuttonn.svg';
+import applybutton from '../../imgsrc/applybutton.svg';
 
 function InternshipApply() {
   const { id } = useParams();
@@ -132,15 +135,18 @@ function InternshipApply() {
                     className="btn-apply"
                     onClick={() => handleEdit(internship._id)}
                   >
+                    <img src={editbutton} className="svg-icons"></img>
                     Edit
                   </button>
                   <button className="btn-delete" onClick={deleteInternship}>
+                  <img src={deletebutton} className="svg-icons"></img>
                     Delete
                   </button>
                 </>
               ) : (
                 currentUser.role === 1 && (
                   <button className="btn-apply" onClick={handleApply}>
+                     <img src={applybutton} className="svg-icons"></img>
                     Apply Now
                   </button>
                 )
