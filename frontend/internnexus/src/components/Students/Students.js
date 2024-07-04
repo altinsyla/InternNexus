@@ -43,6 +43,7 @@ function Students() {
           <h4
             className="fontregular"
             style={{
+              
               marginTop: "4rem",
               marginBottom: "1.5rem",
               borderBottom: "1px solid black",

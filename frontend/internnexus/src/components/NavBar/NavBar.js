@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import "./NavBar.scss";
 import Dropdown from "react-bootstrap/Dropdown";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import api from "../../api.js";
 
 //Hover logo with box-shadow
 const NavBar = () => {
   const history = useHistory();
-
+  
   const Toast = Swal.mixin({
     toast: true,
     position: "top-end",
@@ -33,6 +33,7 @@ const NavBar = () => {
       timer: 1500,
     });
   }
+
 
   return (
     <div className="navbarcontainer">

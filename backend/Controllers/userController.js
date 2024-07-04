@@ -1,4 +1,5 @@
 const User = require("../Models/userModel");
+const Skills = require('../Models/skillsModel');
 const jwt = require("jsonwebtoken");
 const { model } = require("mongoose");
 const multer = require("multer");
@@ -6,7 +7,7 @@ const path = require("path");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "public/images");
+    cb(null, "public/userimages");
   },
   filename: (req, file, cb) => {
     cb(
@@ -15,10 +16,41 @@ const storage = multer.diskStorage({
     );
   },
 });
+// Create the multer upload instance
 
 const upload = multer({
   storage: storage,
 });
+
+// const uploadProfileImage = async (req, res) => {
+//   const username = req.params.username;
+//   try {
+//     const user = await User.findOne({ username: username });
+//     if (!user) {
+//       return res.status(404).json({ message: "User not found" });
+//     }
+
+//     if (req.file) {
+//       user.profileImage = req.file.filename;
+//       await user.save();
+//       res.status(200).json({ message: "Profile image uploaded successfully", profileImage: user.profileImage });
+//     } else {
+//       res.status(400).json({ message: "No file uploaded" });
+//     }
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
+
+const getSingleUser = async (req, res) => {
+  const username = req.params.username;
+  try {
+    const user = await User.findOne({ username: username }).populate("skills");
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
 
 const getAllUsers = async (req, res) => {
   const { username, fullname } = req.query;
@@ -55,16 +87,6 @@ const getcustomlimitusers = async (req, res) => {
   try {
     const Users = await User.find().limit(limit);
     res.status(200).json(Users);
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-};
-
-const getSingleUser = async (req, res) => {
-  const username = req.params.username;
-  try {
-    const user = await User.findOne({ username: username }).populate("skills");
-    res.status(200).json(user);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
@@ -172,19 +194,21 @@ const updateUser = async (req, res) => {
     courses,
     university,
     highschool,
-    skills,
   };
 
   if (req.file) {
     updatedData.image = req.file.filename;
   }
 
+  if (skills) {
+    const skillIds = await Skills.find({ name: { $in: skills } }).select('_id');
+    updatedData.skills = skillIds.map(skill => skill._id);
+  }
+
   try {
-    const updateUser = await User.findByIdAndUpdate(
-      id,
-      updatedData,
-      { new: true }
-    );
+    const updateUser = await User.findByIdAndUpdate(id, updatedData, {
+      new: true,
+    });
     res.status(200).json(updateUser);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -209,5 +233,5 @@ module.exports = {
   deleteUser,
   getcustomlimitusers,
   loginUser,
-  upload
+  upload,
 };
