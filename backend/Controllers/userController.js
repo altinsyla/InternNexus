@@ -161,7 +161,6 @@ const createUser = async (req, res) => {
       courses,
       university,
       highschool,
-      skills,
     });
 
     res.status(201).json(newUser);
@@ -194,6 +193,7 @@ const updateUser = async (req, res) => {
     courses,
     university,
     highschool,
+    skills
   };
 
   if (req.file) {

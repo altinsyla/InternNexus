@@ -187,7 +187,7 @@ function MyProfile() {
         <img
   src={`http://localhost:5001/userimages/${currentUser.image}`}
   alt="studentPhoto"
-  className="studentPhoto"
+  className="imgprofilephoto"
 />
         </div>
       </div>
@@ -205,7 +205,7 @@ function MyProfile() {
         <table className="skillstable">
           <tbody>
             <tr>
-              {user.skills?.map((skill) => (
+              {currentUser.skills?.map((skill) => (
                 <td key={skill._id}>{skill.skillName}</td>
               ))}
             </tr>
@@ -228,7 +228,7 @@ function MyProfile() {
             <tr>
               <th>University</th>
             </tr>
-            {user.university?.map((university, index) => (
+            {currentUser.university?.map((university, index) => (
               <tr key={index} className="fontthin">
                 {university}
               </tr>
@@ -241,7 +241,7 @@ function MyProfile() {
             <tr>
               <th>High School</th>
             </tr>
-            {user.highschool?.map((highschool, index) => (
+            {currentUser.highschool?.map((highschool, index) => (
               <tr key={index} className="fontthin">
                 {highschool}
               </tr>
@@ -254,7 +254,7 @@ function MyProfile() {
             <tr>
               <th>Courses</th>
             </tr>
-            {user.courses?.map((course, index) => (
+            {currentUser.courses?.map((course, index) => (
               <tr key={index} className="fontthin">
                 {course}
               </tr>
