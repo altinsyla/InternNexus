@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import "../InternshipForm/InternshipForm.scss";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
@@ -35,26 +35,49 @@ function InternshipApplyForm() {
     formData.append("internshipID", internshipID);
 
     try {
-      await api.post("/internshipapplication", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+      const result = await Swal.fire({
+        title: "Are you sure you want to apply?",
+        text: "NOTE: You can apply only once in 24h",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, apply!",
+        position: "center"
       });
-      Swal.fire({
-        title: "Good job!",
-        text: "Good luck, You have applied successfully on this internship!",
-        icon: "success",
-      });
-      history.push("/internships");
+    
+      if (result.isConfirmed) {
+        const response = await api.post("/internshipapplication", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+    
+        if (response.status === 201) {
+          Swal.fire({
+            title: "Good job!",
+            text: "Good luck, You have applied successfully for this internship!",
+            icon: "success",
+          });
+          history.push("/internships");
+        }
+      }
     } catch (error) {
-      Swal.fire({
-        title: "Something went wrong!",
-        text: "Fields need to be filled!",
-        icon: "error",
-      });
+      if (error.response && error.response.status === 403) {
+        Swal.fire({
+          title: "You can apply only once in 24 hours",
+          icon: "warning",
+        });
+      } else {
+        console.error("Failed to apply for internship", error);
+        Swal.fire({
+          title: "Something went wrong!",
+          icon: "error",
+        });
+      }
     }
   };
-
+  
   const handleCancel = () => {
     history.push("/internships");
   };

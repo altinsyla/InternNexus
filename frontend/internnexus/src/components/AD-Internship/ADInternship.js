@@ -18,10 +18,18 @@ const ADInternship = () => {
     requirements: "",
     offers: "",
     category: "",
+    salary: "",
   });
   const [show, setShow] = useState(false);
-  const [isEditing, setisEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const { id } = useParams();
+
+  useEffect(() => {
+    getAllInternships();
+    if (isEditing && id) {
+      getSingleInternship(id);
+    }
+  }, [id, isEditing]);
 
   const getAllInternships = async () => {
     try {
@@ -45,6 +53,7 @@ const ADInternship = () => {
         requirements: response.data.requirements,
         offers: response.data.offers,
         category: response.data.category,
+        salary: response.data.salary,
       });
     } catch (err) {
       console.log(err);
@@ -60,14 +69,10 @@ const ADInternship = () => {
     setSingleInternship({ ...singleInternship, image: e.target.files[0] });
   };
 
-  useEffect(() => {
-    getAllInternships();
-  }, []);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    if (singleInternship.image) {
+    if (singleInternship.image instanceof File) {
       formData.append("image", singleInternship.image);
     }
     formData.append("username", singleInternship.username);
@@ -78,6 +83,7 @@ const ADInternship = () => {
     formData.append("requirements", singleInternship.requirements);
     formData.append("offers", singleInternship.offers);
     formData.append("category", singleInternship.category);
+    formData.append("salary", singleInternship.salary);
 
     try {
       if (isEditing && id) {
@@ -103,9 +109,10 @@ const ADInternship = () => {
         });
       }
       setShow(false);
-      setisEditing(false);
+      setIsEditing(false);
       getAllInternships();
       setSingleInternship({
+        username: localStorage.getItem("username"),
         image: null,
         title: "",
         type: "",
@@ -114,6 +121,7 @@ const ADInternship = () => {
         requirements: "",
         offers: "",
         category: "",
+        salary: "",
       });
     } catch (error) {
       console.error("Internship save error", error);
@@ -148,6 +156,7 @@ const ADInternship = () => {
       });
     }
   };
+
   const formatList = (input) => {
     if (input.trim() === "") return "";
     const listItems = input.split("\n");
@@ -172,6 +181,7 @@ const ADInternship = () => {
               <th>Type</th>
               <th>Location</th>
               <th>Duration</th>
+              <th>Salary</th>
               <th>Registered Date</th>
               <th>Actions</th>
             </tr>
@@ -185,6 +195,7 @@ const ADInternship = () => {
                 <td>{internship.type}</td>
                 <td>{internship.location}</td>
                 <td>{internship.duration}</td>
+                <td>{internship.salary}</td>
                 <td>
                   {new Date(internship.registeredDate).toLocaleDateString(
                     "en-US",
@@ -197,7 +208,7 @@ const ADInternship = () => {
                     style={{ fontSize: "10px" }}
                     onClick={() => {
                       getSingleInternship(internship._id);
-                      setisEditing(true);
+                      setIsEditing(true);
                       setShow(true);
                     }}
                   >
@@ -219,7 +230,7 @@ const ADInternship = () => {
           className="btn btn-success"
           onClick={() => {
             setShow(true);
-            setisEditing(false);
+            setIsEditing(false);
           }}
         >
           Create Internship
@@ -238,6 +249,7 @@ const ADInternship = () => {
           onHide={() => {
             setShow(false);
             setSingleInternship({
+              username: localStorage.getItem("username"),
               image: null,
               title: "",
               type: "",
@@ -246,8 +258,9 @@ const ADInternship = () => {
               requirements: "",
               offers: "",
               category: "",
+              salary: "",
             });
-            setisEditing(false);
+            setIsEditing(false);
           }}
         >
           <Modal.Title id="example-modal-sizes-title-lg">
@@ -285,40 +298,38 @@ const ADInternship = () => {
               value={singleInternship.type}
               onChange={handleChange}
             />
-              <label className="internshipform-labels">
-                Internship category
-              </label>
-              <select
-                name="category"
-                className="internshipform-inputs"
-                value={singleInternship.category}
-                onChange={handleChange}
-              >
-                <option value="">Select a Category</option>
-                <option value="Front-End Developer">Front-End Developer</option>
-                <option value="Back-End Developer">Back-End Developer</option>
-                <option value="Full Stack Developer">
-                  Full Stack Developer
-                </option>
-                <option value="Data Scientist">Data Scientist</option>
-                <option value="Machine Learning Engineer">
-                  Machine Learning Engineer
-                </option>
-                <option value="DevOps Engineer">DevOps Engineer</option>
-                <option value="Cloud Architect">Cloud Architect</option>
-                <option value="Cybersecurity Analyst">
-                  Cybersecurity Analyst
-                </option>
-                <option value="AI Engineer">AI Engineer</option>
-                <option value="Blockchain Developer">
-                  Blockchain Developer
-                </option>
-                <option value="IoT Developer">IoT Developer</option>
-                <option value="Mobile Application Developer">
-                  Mobile Application Developer
-                </option>
-                <option value="UI/UX Designer">UI/UX Designer</option>
-              </select>
+            <label className="internshipform-labels">
+              Internship Category
+            </label>
+            <select
+              name="category"
+              className="internshipform-inputs"
+              value={singleInternship.category}
+              onChange={handleChange}
+            >
+              <option value="">Select a Category</option>
+              <option value="Front-End Developer">Front-End Developer</option>
+              <option value="Back-End Developer">Back-End Developer</option>
+              <option value="Full Stack Developer">Full Stack Developer</option>
+              <option value="Data Scientist">Data Scientist</option>
+              <option value="Machine Learning Engineer">
+                Machine Learning Engineer
+              </option>
+              <option value="DevOps Engineer">DevOps Engineer</option>
+              <option value="Cloud Architect">Cloud Architect</option>
+              <option value="Cybersecurity Analyst">
+                Cybersecurity Analyst
+              </option>
+              <option value="AI Engineer">AI Engineer</option>
+              <option value="Blockchain Developer">
+                Blockchain Developer
+              </option>
+              <option value="IoT Developer">IoT Developer</option>
+              <option value="Mobile Application Developer">
+                Mobile Application Developer
+              </option>
+              <option value="UI/UX Designer">UI/UX Designer</option>
+            </select>
             <label>Location</label>
             <input
               type="text"
@@ -335,6 +346,15 @@ const ADInternship = () => {
               name="duration"
               placeholder="e.g. 3 months, 6 months"
               value={singleInternship.duration}
+              onChange={handleChange}
+            />
+            <label>Salary</label>
+            <input
+              type="text"
+              className="internshipform-inputs"
+              name="salary"
+              placeholder=""
+              value={singleInternship.salary}
               onChange={handleChange}
             />
             <label>Internship Requirements</label>
@@ -363,6 +383,7 @@ const ADInternship = () => {
             onClick={() => {
               setShow(false);
               setSingleInternship({
+                username: localStorage.getItem("username"),
                 image: null,
                 title: "",
                 type: "",
@@ -370,8 +391,10 @@ const ADInternship = () => {
                 duration: "",
                 requirements: "",
                 offers: "",
+                category: "",
+                salary: "",
               });
-              setisEditing(false);
+              setIsEditing(false);
             }}
           >
             Close

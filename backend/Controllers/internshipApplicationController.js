@@ -34,20 +34,24 @@ const getSingleInternshipApplication = async (req, res) => {
 };
 
 const createInternshipApplication = async (req, res) => {
-  const {
-    internshipID,
-    username,
-    additionalMessage,
-  } = req.body;
-
+  const { internshipID, username, additionalMessage } = req.body;
   const cv = req.file ? req.file.filename : "";
 
   try {
+    // qikjo e gjen aplikimin e fundit te nje useri n'baze te username
+    const lastApplication = await InternshipApplication.findOne({ username }).sort({ applyDate: -1 });
+
+    // qikjo e kontrollon nese ka pas naj internship brenda 24h nese ka, nconsole e qet errorin(mir o me ba si alert)
+    if (lastApplication && (Date.now() - lastApplication.applyDate.getTime()) < (24 * 60 * 60 * 1000)) {
+      return res.status(403).json({ message: "You can apply only once in 24 hours." });
+    }
+
     const newInternshipApplication = await InternshipApplication.create({
       internshipID,
-      cv: cv,
+      cv,
       username,
       additionalMessage,
+      applyDate: Date.now(),
     });
 
     res.status(201).json(newInternshipApplication);
