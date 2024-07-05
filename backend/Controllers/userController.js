@@ -181,8 +181,9 @@ const updateUser = async (req, res) => {
     courses,
     university,
     highschool,
-    skills,
+    skills, // Skills should be an array of skill names
   } = req.body;
+
   const updatedData = {
     username,
     fullname,
@@ -190,19 +191,24 @@ const updateUser = async (req, res) => {
     password,
     role,
     about,
-    courses,
-    university,
-    highschool,
-    skills
+    courses: Array.isArray(courses) ? courses : [courses],
+    university: Array.isArray(university) ? university : [university],
+    highschool: Array.isArray(highschool) ? highschool : [highschool],
+    skills: [], // Initialize an empty array for skills
   };
+
+  // Convert skill names to ObjectIds
+  if (Array.isArray(skills)) {
+    try {
+      const skillIds = await Skills.find({ skillName: { $in: skills } }).select('_id');
+      updatedData.skills = skillIds.map(skill => skill._id);
+    } catch (error) {
+      return res.status(400).json({ message: 'Error fetching skill IDs', error: error.message });
+    }
+  }
 
   if (req.file) {
     updatedData.image = req.file.filename;
-  }
-
-  if (skills) {
-    const skillIds = await Skills.find({ name: { $in: skills } }).select('_id');
-    updatedData.skills = skillIds.map(skill => skill._id);
   }
 
   try {
@@ -214,6 +220,8 @@ const updateUser = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+
 
 const deleteUser = async (req, res) => {
   const id = req.params.id;

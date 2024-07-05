@@ -22,6 +22,7 @@ function MyProfile() {
     password: "",
     courses: [],
     role: 1,
+    about: "",
     university: [],
     highschool: [],
     skills: [],
@@ -54,6 +55,7 @@ function MyProfile() {
             university: response.data.university,
             highschool: response.data.highschool,
             skills: response.data.skills,
+            about: response.data.about,
           });
         } catch (err) {
           console.log("Failed to fetch user info!");
@@ -93,7 +95,7 @@ function MyProfile() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     // Check required fields
     if (!user.username || !user.fullname || !user.email || !user.password) {
       Swal.fire({
@@ -103,7 +105,7 @@ function MyProfile() {
       });
       return;
     }
-
+  
     const formData = new FormData();
     if (user.image) {
       formData.append("image", user.image);
@@ -113,23 +115,30 @@ function MyProfile() {
     formData.append("email", user.email);
     formData.append("password", user.password);
     formData.append("role", user.role);
-
-    user.courses.forEach(course => formData.append("courses[]", course));
-    user.university.forEach(uni => formData.append("university[]", uni));
-    user.highschool.forEach(school => formData.append("highschool[]", school));
-    user.skills.forEach(skill => formData.append("skills[]", skill));
-
+    formData.append("about", user.about)
+  
+    // Append arrays properly
+    user.courses.forEach((course, index) => formData.append(`courses[${index}]`, course));
+    user.university.forEach((uni, index) => formData.append(`university[${index}]`, uni));
+    user.highschool.forEach((school, index) => formData.append(`highschool[${index}]`, school));
+    user.skills.forEach((skill, index) => formData.append(`skills[${index}]`, skill));
+  
+    // Debugging: Log formData entries
+    for (let pair of formData.entries()) {
+      console.log(`${pair[0]}: ${pair[1]}`);
+    }
+  
     try {
-      await api.patch(`/user/` + currentUser._id, formData, {
+      await api.patch(`/user/${currentUser._id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
       Swal.fire({
-        text: "Internship successfully edited!",
+        text: "Profile successfully edited!",
         icon: "success",
       });
-
+  
       history.push("/myprofile");
     } catch (error) {
       console.log(error);
@@ -140,6 +149,7 @@ function MyProfile() {
       });
     }
   };
+  
 
   const formatList = (input) => {
     if (typeof input !== "string" || input.trim() === "") return "";
@@ -287,6 +297,17 @@ function MyProfile() {
               />
             </div>
             <div className="form-group">
+              <label className="internshipform-labels">About Me:</label>
+              <input
+                type="text"
+                className="internshipform-inputs"
+                name="about"
+                placeholder="Write about yourself"
+                value={user.about || ""}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-group">
               <label className="internshipform-labels">Change Fullname</label>
               <input
                 type="text"
@@ -356,7 +377,7 @@ function MyProfile() {
             </div>
             <div className="form-group">
               <label className="internshipform-labels">Skills</label>
-              <textarea
+              <input
                 className="internshipform-inputs"
                 name="skills"
                 placeholder="Write some of your skills"
