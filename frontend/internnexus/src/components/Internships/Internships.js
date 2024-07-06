@@ -32,6 +32,10 @@ function Internships() {
   };
 
   useEffect(() => {
+    // if (!localStorage.getItem("token")) {
+    //   history.push("/");
+    //   return;
+    // }
     getAllInternships();
   }, [history]);
 

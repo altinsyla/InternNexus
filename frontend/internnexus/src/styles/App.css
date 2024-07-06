@@ -1,17 +1,19 @@
 .logo {
   width: 189.95px; /* Adjust width as needed */
   height: 60px; /* Maintain aspect ratio */
-  transition: transform 0.3s ease-out, box-shadow 0.3s ease-in, ;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-in;
 
   border-radius: 0px;
 }
 .logo:hover {
   transform: scale(1.2);
   box-shadow: 0px 0px 10px 5px #ccc;
+
+  cursor: pointer;
 }
 
-
-a.nav-link { /* Kjo sherben me ndrru ngjyren e fontit te Nav Barit edhe me ja hek underline-n*/
+a.nav-link {
+  /* Kjo sherben me ndrru ngjyren e fontit te Nav Barit edhe me ja hek underline-n*/
   color: #555555;
   text-decoration: none;
 }
@@ -24,14 +26,14 @@ a.nav-link { /* Kjo sherben me ndrru ngjyren e fontit te Nav Barit edhe me ja he
   margin-top: 75px;
 }
 
-.mainDivLogin .logo{
+.mainDivLogin .logo {
   width: 350px;
   border: 1 solid black;
   height: 100px;
 }
 
-.robot-font{
-  font-family: 'Roboto', sans-serif;
+.robot-font {
+  font-family: "Roboto", sans-serif;
 }
 
 .Inputs {
@@ -65,7 +67,7 @@ a.nav-link { /* Kjo sherben me ndrru ngjyren e fontit te Nav Barit edhe me ja he
   justify-content: space-between;
   padding-top: 20px;
 }
-.signuptext{
+.signuptext {
   text-decoration: none;
   cursor: pointer;
   color: #555555;
@@ -81,40 +83,41 @@ a.nav-link { /* Kjo sherben me ndrru ngjyren e fontit te Nav Barit edhe me ja he
   width: 150px;
   margin-top: 35px;
 }
-.btn-google-fb{
+.btn-google-fb {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+
+  margin-top: 2rem;
+  gap: 1rem;
   height: 10rem;
 }
-.googlebtn{
-height: 2.8rem;
-width: 18.5rem;
-border-radius: 10px;
-border: 1px solid #ccc;
-background-color: white;
-font-weight: 500;
-
+.googlebtn {
+  height: 2.8rem;
+  width: 18.5rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: white;
+  font-weight: 500;
 }
-.googleicon{
-margin-right: 5px;
-width: 1.7rem;
-height: 1.7rem;
+.googleicon {
+  margin-right: 5px;
+  width: 1.7rem;
+  height: 1.7rem;
 }
-.facebookbtn{
+.facebookbtn {
   display: flex;
   height: 2.8rem;
-width: 18.5rem;
-border-radius: 10px;
-border: 1px solid #ccc;
-background-color: white;
-font-weight: 500;
-align-items: center;
-justify-content: center;
-
+  width: 18.5rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: white;
+  font-weight: 500;
+  align-items: center;
+  justify-content: center;
 }
-.fbicon{
+.fbicon {
   margin-right: 5px;
-width: 1.7rem;
-height: 1.7rem;
+  width: 1.7rem;
+  height: 1.7rem;
 }

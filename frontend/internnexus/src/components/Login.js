@@ -63,24 +63,28 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if(localStorage.getItem("token")){
+    if (localStorage.getItem("token")) {
       history.push("/");
       Swal.fire("You are already logged in!");
     }
   }, []);
 
-  const fontiPerTekste = "robot-font";
-
   return (
     <div>
       <div className="mainDivLogin">
-        <img src={internnexus} alt="Logo" className="logo" />
+        <img
+          src={internnexus}
+          alt="Logo"
+          className="logo"
+          onClick={() => history.push("/")}
+        />
         <p
           style={{
-            fontWeight: "bold",
-            fontFamily: fontiPerTekste,
-            fontSize: 30,
+            fontSize: "26px",
+
+            marginTop: "2rem",
           }}
+          className="fontbold"
         >
           Log in to InternNexus
         </p>

@@ -75,7 +75,7 @@ const NavBar = () => {
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-                style={{ backgroundColor: "#D3C0B4" }}
+                style={{ backgroundColor: "#d3c0b4" }}
               >
                 My Profile
               </button>

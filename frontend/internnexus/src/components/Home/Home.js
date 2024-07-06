@@ -33,7 +33,7 @@ function Home() {
       const response = await api.get("/user");
       setUsers(response.data);
     } catch (err) {
-      console.log("You need to be logged in first!");
+      console.log("Error getting users");
     }
   };
 
@@ -43,7 +43,7 @@ function Home() {
       setCustomUsers([]); // niher e bajna clear arrayn
       setCustomUsers(response.data); // taj e mushum tre
     } catch (err) {
-      console.log("You need to be logged in first!");
+      console.log("Error getting custom users");
     }
   };
 
@@ -54,7 +54,7 @@ function Home() {
       );
       setcurrentUser(response.data);
     } catch (err) {
-      console.log("You need to be logged in first!");
+      console.log("Error getting custom users");
     }
   };
 
@@ -132,39 +132,41 @@ function Home() {
 
         <h1 className="poweredby">POWERED BY</h1>
 
-        <div className="ph_grid">
-          <div className="poweredbygrid">
-            <img
-              src={require("./img/gjirafalab.png")}
-              className="gridphotos img1"
-              alt="company"
-            ></img>
-            <img
-              src={require("./img/frakton.png")}
-              className="gridphotos img2"
-              alt="company"
-            ></img>
-            <img
-              src={require("./img/ict.png")}
-              className="gridphotos img3"
-              alt="company"
-            ></img>
-            <img
-              src={require("./img/solaborate.png")}
-              className="gridphotos img4"
-              alt="company"
-            ></img>
-            <img
-              src={require("./img/starlabs.png")}
-              className="gridphotos img5"
-              alt="company"
-            ></img>
-            <img
-              src={require("./img/xponent.jpg")}
-              className="gridphotos img6"
-              alt="company"
-            ></img>
-          </div>
+        <button onClick={() => console.log(currentUser)}>
+          Click me 
+        </button>
+
+        <div className="poweredbygrid">
+          <img
+            src={require("./img/gjirafalab.png")}
+            className="gridphotos img1"
+            alt="company"
+          ></img>
+          <img
+            src={require("./img/frakton.png")}
+            className="gridphotos img2"
+            alt="company"
+          ></img>
+          <img
+            src={require("./img/ict.png")}
+            className="gridphotos img3"
+            alt="company"
+          ></img>
+          <img
+            src={require("./img/solaborate.png")}
+            className="gridphotos img4"
+            alt="company"
+          ></img>
+          <img
+            src={require("./img/starlabs.png")}
+            className="gridphotos img5"
+            alt="company"
+          ></img>
+          <img
+            src={require("./img/xponent.jpg")}
+            className="gridphotos img6"
+            alt="company"
+          ></img>
         </div>
         <h1 className="poweredby">FIND STUDENTS</h1>
         <div className="studentcarddiv">

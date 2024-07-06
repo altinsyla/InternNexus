@@ -13,9 +13,7 @@ html {
 }
 
 #homebody {
-  // background-color: $clr_softwhite;
   font-family: poppins_regular;
-  // background-color: black;
 }
 
 #container {
@@ -27,8 +25,8 @@ html {
   justify-content: space-between;
 
   gap: 2vw;
-  // margin: 5vh 12.5vw;
-  padding: 2rem;
+  margin-top: 5rem;
+  // padding: 2rem;
   background-color: $lightbg;
   // border: 1px solid black;
 }
@@ -110,28 +108,22 @@ html {
   margin-bottom: 5rem;
 }
 
-.ph_grid {
-  // border: 1px solid black;
-  display: flex;
-  justify-content: center;
-}
-
 .poweredbygrid {
   display: grid;
 
-  // border: 1px solid black;
-  height: 50rem;
-  // width: 60%;
+  height: 20rem;
 
   justify-content: center;
   align-items: center;
 
   grid-template-columns: repeat(3, 33%);
   grid-template-rows: repeat(2, 50%);
+
+  row-gap: 5rem;
 }
 
 .gridphotos {
-  width: 70%;
+  width: 50%;
   height: 100%;
   object-fit: contain;
 
@@ -148,7 +140,7 @@ html {
 
   display: flex;
   flex-direction: row;
-  margin: 0 auto;
+  // margin: 0 auto;
 
   // flex-wrap: nowrap;
   // overflow-y: scroll;
@@ -181,7 +173,7 @@ html {
 
 .devcarddiv {
   // margin-top: 10rem;
-
+  margin-bottom: 10rem;
   display: flex;
   justify-content: center;
   height: fit-content;
