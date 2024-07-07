@@ -7,3 +7,17 @@
     display: flex;
     flex-direction: column;
 }
+.admindashboard-table{
+    width: 84%;
+    margin-left: 15%;
+    height: auto;
+    margin-top: 2rem;
+}
+.admindashboard-table th {
+    background-color: lightblue;
+    text-align: center;
+}
+.admindashboard-table td{
+    border: 1px solid black;
+    text-align: center;
+}

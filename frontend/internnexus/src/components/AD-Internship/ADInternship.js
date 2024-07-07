@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
+import Sidebar from '../Sidebar/Sidebar.js';
 
 const ADInternship = () => {
   const [internships, setInternships] = useState([]);
@@ -171,8 +172,10 @@ const ADInternship = () => {
 
   return (
     <div>
+       <Sidebar />
       <div>
-        <table className="table">
+        <h4 style={{width: "100%", marginLeft: "15%", marginTop: "1rem"}}>Admin Dashboard for Internships</h4>
+        <table className="adinternship-table">
           <thead>
             <tr>
               <th>ID</th>
@@ -202,7 +205,7 @@ const ADInternship = () => {
                     { month: "long", day: "numeric", year: "numeric" }
                   )}
                 </td>
-                <td style={{ display: "flex", gap: "1rem" }}>
+                <td style={{ display: "flex", justifyContent: "space-between", padding: "5px 10px"}}>
                   <button
                     className="btn btn-warning mr-2"
                     style={{ fontSize: "10px" }}
@@ -228,6 +231,7 @@ const ADInternship = () => {
         </table>
         <button
           className="btn btn-success"
+          style={{width: "100", marginLeft: "15%", marginTop: "1rem"}}
           onClick={() => {
             setShow(true);
             setIsEditing(false);
@@ -269,7 +273,7 @@ const ADInternship = () => {
         </Modal.Header>
         <Modal.Body>
           <form
-            className="modalform"
+            className="adinternship-modalform"
             onSubmit={handleSubmit}
             encType="multipart/form-data"
           >
@@ -353,7 +357,7 @@ const ADInternship = () => {
               type="text"
               className="internshipform-inputs"
               name="salary"
-              placeholder=""
+              placeholder="e.g. 300$, 500$"
               value={singleInternship.salary}
               onChange={handleChange}
             />

@@ -4,6 +4,7 @@ import "./AdminDashboard.scss";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Swal from "sweetalert2";
+import Sidebar from '../Sidebar/Sidebar.js';
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
@@ -115,7 +116,9 @@ const AdminDashboard = () => {
   return (
     <div>
       <div>
-        <table className="table">
+      <Sidebar />
+      <h4 style={{width: "100%", marginLeft: "15%", marginTop: "1rem"}}>Admin Dashboard for Users</h4>
+        <table className="admindashboard-table">
           <thead>
             <tr>
               <th>User ID</th>
@@ -123,7 +126,7 @@ const AdminDashboard = () => {
               <th>Username</th>
               <th>Email</th>
               <th>Role</th>
-              <th>Buttons</th>
+              <th style={{width: "150px"}}>Buttons</th>
             </tr>
           </thead>
           <tbody>
@@ -134,7 +137,7 @@ const AdminDashboard = () => {
                 <td>{users.username}</td>
                 <td>{users.email}</td>
                 <td>{users.role}</td>
-                <td style={{ display: "flex", gap: "1rem" }}>
+                <td style={{ display: "flex", justifyContent: "space-between", padding: "5px 10px"}}>
                   <button
                     className="btn btn-warning mr-2"
                     style={{ fontSize: "10px" }}
@@ -161,6 +164,7 @@ const AdminDashboard = () => {
         </table>
         <button
           className="btn btn-success"
+          style={{width: "100", marginLeft: "15%", marginTop: "1rem"}}
           onClick={() => {
             setShow(true);
             setisEditing(false);
