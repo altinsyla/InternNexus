@@ -3,23 +3,23 @@
     padding: 0;
 }
 
-.adinternship-modalform{
+.modalform{
     display: flex;
     flex-direction: column;
 }
-.adinternship-table{
+.adapplications-table{
     width: 84%;
     margin-left: 15%;
     height: auto;
     border: 1px solid black;
     margin-top: 2rem;
 }
-.adinternship-table th {
+.adapplications-table th {
     background-color: lightblue;
     border: 1px solid black;
     text-align: center;
 }
-.adinternship-table td{
+.adapplications-table td{
     border: 1px solid black;
     text-align: center;
 }

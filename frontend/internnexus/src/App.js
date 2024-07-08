@@ -18,6 +18,7 @@ import ADInternship from './components/AD-Internship/ADInternship.js';
 import Student from "./components/Students/Students.js";
 import InternshipApplyForm from './components/InternshipApply/InternshipApplyForm.js';
 import EditProfile from "./components/MyProfile/EditProfile.js";
+import ADApplications from "./components/AD-Applications/ADApplications.js";
 
 function App() {
   return (
@@ -30,9 +31,11 @@ function App() {
         <Route exact path="/home">
           <Home />
         </Route>
-
         <Route exact path='/adinternship'>
         <ADInternship />
+        </Route>
+        <Route exact path='/adapplications'>
+          <ADApplications />
         </Route>
         <Route exact path="/login">
           <Login />
