@@ -29,10 +29,12 @@
 .studentbannerrightside img {
   display: block;
   max-width: 100%;
-  // width: 200px;
-  height: 400px;
+  width: 300px;
+  height: 300px;
   border-radius: 20px;
   object-fit: contain;
+
+  // border: 1px solid black;
 }
 
 .skillstable,

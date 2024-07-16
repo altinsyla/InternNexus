@@ -59,6 +59,7 @@ const Login = () => {
         title: "Email or password is incorrect!",
         icon: "error",
       });
+      console.log(error);
     }
   };
 

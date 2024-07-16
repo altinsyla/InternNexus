@@ -49,24 +49,17 @@ function StudentCard({ username }) {
 
   return (
     <div className="studentcard-body container" onClick={handleLink}>
-      <img src={require("../Home/img/AltinSyla.jpg")} alt="Company Logo" />
+      <img src={`http://localhost:5001/userimages/${user.image}`} alt="User Profile" />
       <div className="student-card-content">
         <h3 className="fullName">{user.fullname}</h3>
         <h6 className="userName">{user.username}</h6>
         <div className="skillsContainer">
           {/* max 6 skills */}
-          <span className="skills">Full Stack Developer</span>{" "}
-          <span className="skills">Full Stack Developer</span>
-          <span className="skills">Full Stack Developer</span>
-          <span className="skills">Full Stack Developer</span>
-          <span className="skills">Full Stack Developer</span>
-          <span className="skills">Full Stack Developer</span>
-
-          {/* {user.skills?.map((user) => (
+          {user.skills?.map((user) => (
             <span className="skills" key={user._id}>
               {user.skillName}
             </span>
-          ))} */}
+          ))}
         </div>
       </div>
     </div>

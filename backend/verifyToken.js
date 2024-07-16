@@ -5,7 +5,6 @@ const verifyToken = (req, res, next) => {
 
     let  token = req.headers['authorization'];
     token = token.substring(7);
-    console.log(token);
     
     if (!token) {
         res.status(403).json({message: 'token required'});
@@ -21,4 +20,4 @@ const verifyToken = (req, res, next) => {
     return next();
 };
 
-module.exports = verifyToken;
+module.exports = {verifyToken};

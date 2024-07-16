@@ -97,6 +97,7 @@ const loginUser = async (req, res) => {
   const user = await User.findOne({ email });
   if (user) {
     const isvalid = await user.isValidPassword(password);
+
     const username = user.username;
     if (isvalid) {
       // username edhe pw correct
@@ -104,14 +105,17 @@ const loginUser = async (req, res) => {
         { id: user._id },
         process.env.JWT_SECRET || "qelsi",
         {
-          expiresIn: "1d",
+          expiresIn: `${3600 * 1000}`, // 1 hour
+          // expiresIn: `${5000}`, // 5 seconds
         }
       );
 
       res.json({ token, username }); //kthehet tokeni si response
+    } else{
+      res.status(400).json({ message: "Invalid credentials" });
     }
   } else {
-    res.status(404).json({ message: "Incorrect username or password" });
+    res.status(404).json({ message: "User does not exist" });
   }
 };
 
@@ -129,7 +133,7 @@ const createUser = async (req, res) => {
     skills,
   } = req.body;
 
-  const image = req.file ? req.file.filename : "";
+  const image = req.file ? req.file.filename : "default.jpg";
 
   if (!username || !fullname || !email || !password || !role) {
     return res.status(400).json({ message: "Required fields are missing" });
@@ -161,6 +165,7 @@ const createUser = async (req, res) => {
       courses,
       university,
       highschool,
+      skills
     });
 
     res.status(201).json(newUser);
@@ -188,7 +193,6 @@ const updateUser = async (req, res) => {
     username,
     fullname,
     email,
-    password,
     role,
     about,
     courses: Array.isArray(courses) ? courses : [courses],
@@ -196,6 +200,10 @@ const updateUser = async (req, res) => {
     highschool: Array.isArray(highschool) ? highschool : [highschool],
     skills: [], // Initialize an empty array for skills
   };
+
+  if (password) {
+    updatedData.password = password;
+  }
 
   // Convert skill names to ObjectIds
   if (Array.isArray(skills)) {
@@ -212,9 +220,7 @@ const updateUser = async (req, res) => {
   }
 
   try {
-    const updateUser = await User.findByIdAndUpdate(id, updatedData, {
-      new: true,
-    });
+    const updateUser = await User.findByIdAndUpdate(id, updatedData, { new: true, runValidators: true });
     res.status(200).json(updateUser);
   } catch (error) {
     res.status(400).json({ message: error.message });

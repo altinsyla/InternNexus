@@ -1,39 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import "./NavBar.scss";
 import Dropdown from "react-bootstrap/Dropdown";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link, useHistory, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import api from "../../api.js";
+import useGlobalFunctions from "../globalFunctions.js";
 
 //Hover logo with box-shadow
 const NavBar = () => {
-  const history = useHistory();
-  
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.onmouseenter = Swal.stopTimer;
-      toast.onmouseleave = Swal.resumeTimer;
-    },
-  });
+  const { handleLogOut } = useGlobalFunctions();
 
-  function handleLogOut() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("username");
-    history.push("/login");
+  const [currentUser, setcurrentUser] = useState([]);
 
-    Toast.fire({
-      icon: "success",
-      title: "Logged out successfully",
-      timer: 1500,
-    });
-  }
+  const getcurrentuser = async () => {
+    try {
+      const response = await api.get(
+        "/user/" + localStorage.getItem("username")
+      );
+      setcurrentUser(response.data);
+    } catch (err) {
+      console.log("Error getting custom users");
+    }
+  };
 
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      getcurrentuser();
+    }
+  }, []);
 
   return (
     <div className="navbarcontainer">
@@ -75,9 +71,21 @@ const NavBar = () => {
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-                style={{ backgroundColor: "#d3c0b4" }}
+                style={{ backgroundColor: "#d3c0b4", width: "fit-content" }}
               >
-                My Profile
+                {currentUser.username}{" "}
+                <img
+                  src={`http://localhost:5001/userimages/${currentUser.image}`}
+                  alt="studentPhoto"
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    padding: 0,
+                    margin: 0,
+                    marginBottom: "1px",
+                    borderRadius: "10px",
+                  }}
+                />
               </button>
               <ul className="dropdown-menu">
                 <li>

@@ -1,10 +1,11 @@
 const express = require("express");
 const userController = require("../Controllers/userController");
-const verifyToken = require("../verifyToken");
+const tokenVerification = require("../verifyToken");
 const upload = userController.upload; // Correctly import the upload middleware
 const router = express.Router();
 
 router.get("/", userController.getAllUsers);
+router.get("/verifytoken", tokenVerification.verifyToken);
 router.get("/limit/:limit", userController.getcustomlimitusers);
 router.get("/:username", userController.getSingleUser);
 router.post(

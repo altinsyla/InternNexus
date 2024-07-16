@@ -24,7 +24,7 @@ function Card({username}) {
 
   return (
     <div className="cardcontainer">
-      <img src={require("./img/AltinSyla.jpg")} className="cardimg"></img>
+      <img src={`http://localhost:5001/userimages/${user.image}`} className="cardimg"></img>
 
       <div className="cardbody">
         <div className="studentname fontbold">{user.fullname}</div>

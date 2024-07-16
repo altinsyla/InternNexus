@@ -5,10 +5,15 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Swal from "sweetalert2";
 import Sidebar from '../Sidebar/Sidebar.js';
+import useGlobalFunctions from "../globalFunctions.js";
 
 const AdminDashboard = () => {
+  const { getCurrentUser } = useGlobalFunctions();
+
+
   const [users, setUsers] = useState([]);
   const [singleUser, setSingleUser] = useState([]);
+  const [currentUser, setcurrentUser] = useState([]);
   const [show, setShow] = useState(false);
   const [isEditing, setisEditing] = useState(false);
 
@@ -37,12 +42,13 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     getAllUsers();
+    setcurrentUser(getCurrentUser());
   }, []);
 
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (isEditing) {
+      if (isEditing){
         api
           .patch("/user/" + singleUser._id, singleUser)
           .then((response) => {

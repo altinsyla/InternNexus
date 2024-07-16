@@ -3,9 +3,9 @@ import { useHistory, useParams, Link } from "react-router-dom";
 import api from "../../api.js";
 import Footer from "../Footer/Footer.js";
 import NavBar from "../NavBar/NavBar.js";
-import AltinSyla from "./AltinSyla.jpg"
 import "../MyProfile/MyProfile.scss";
 import Swal from "sweetalert2";
+import bcrypt from "bcryptjs";
 
 function MyProfile() {
   const { username, id } = useParams();
@@ -14,19 +14,6 @@ function MyProfile() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [showFilterModal, setShowFilterModal] = useState(false);
 
-  const [user, setUser] = useState({
-    username: localStorage.getItem("username"),
-    image: null,
-    fullname: "",
-    email: "",
-    password: "",
-    courses: [],
-    role: 1,
-    about: "",
-    university: [],
-    highschool: [],
-    skills: [],
-  });
 
   const getcurrentUser = async () => {
     try {
@@ -41,40 +28,14 @@ function MyProfile() {
 
   useEffect(() => {
     getcurrentUser()
-    if (username) {
-      const fetchUser = async () => {
-        try {
-          const response = await api.get(`/user/${username}`);
-          setUser({
-            username: localStorage.getItem("username"),
-            image: response.data.image,
-            fullname: response.data.fullname,
-            email: response.data.email,
-            password: response.data.password,
-            courses: response.data.courses,
-            university: response.data.university,
-            highschool: response.data.highschool,
-            skills: response.data.skills,
-            about: response.data.about,
-          });
-        } catch (err) {
-          console.log("Failed to fetch user info!");
-        }
-      };
 
-      const fetchData = async () => {
-        if (localStorage.getItem("token")) {
-          await getcurrentUser();
-        }
-        await fetchUser();
-      };
-
-      fetchData();
+    if(!localStorage.getItem("token")){
+      history.push("/login");
     }
   }, [username]);
 
   const handleFileChange = (e) => {
-    setUser({ ...user, image: e.target.files[0] });
+    setcurrentUser({ ...currentUser, image: e.target.files[0] });
   };
 
   const handleChange = (e) => {
@@ -87,9 +48,9 @@ function MyProfile() {
       name === "highschool" ||
       name === "skills"
     ) {
-      setUser({ ...user, [name]: value.split(",").map((item) => item.trim()) });
+      setcurrentUser({ ...currentUser, [name]: value.split(",").map((item) => item.trim()) });
     } else {
-      setUser({ ...user, [name]: value });
+      setcurrentUser({ ...currentUser, [name]: value });
     }
   };
 
@@ -97,7 +58,7 @@ function MyProfile() {
     event.preventDefault();
   
     // Check required fields
-    if (!user.username || !user.fullname || !user.email || !user.password) {
+    if (!currentUser.username || !currentUser.fullname || !currentUser.email || !currentUser.password) {
       Swal.fire({
         title: "Error!",
         text: "All fields need to be filled!",
@@ -107,21 +68,25 @@ function MyProfile() {
     }
   
     const formData = new FormData();
-    if (user.image) {
-      formData.append("image", user.image);
+    if (currentUser.image) {
+      formData.append("image", currentUser.image);
     }
-    formData.append("username", user.username);
-    formData.append("fullname", user.fullname);
-    formData.append("email", user.email);
-    formData.append("password", user.password);
-    formData.append("role", user.role);
-    formData.append("about", user.about)
+    formData.append("username", currentUser.username);
+    formData.append("fullname", currentUser.fullname);
+    formData.append("email", currentUser.email);
+
+    //hash the password then send it to the backend
+    const salt = await bcrypt.genSalt(12);
+    currentUser.password = await bcrypt.hash(currentUser.password, salt);
+    formData.append("password", currentUser.password);
+    formData.append("role", currentUser.role);
+    formData.append("about", currentUser.about)
   
     // Append arrays properly
-    user.courses.forEach((course, index) => formData.append(`courses[${index}]`, course));
-    user.university.forEach((uni, index) => formData.append(`university[${index}]`, uni));
-    user.highschool.forEach((school, index) => formData.append(`highschool[${index}]`, school));
-    user.skills.forEach((skill, index) => formData.append(`skills[${index}]`, skill));
+    currentUser.courses.forEach((course, index) => formData.append(`courses[${index}]`, course));
+    currentUser.university.forEach((uni, index) => formData.append(`university[${index}]`, uni));
+    currentUser.highschool.forEach((school, index) => formData.append(`highschool[${index}]`, school));
+    currentUser.skills.forEach((skill, index) => formData.append(`skills[${index}]`, skill));
   
     // Debugging: Log formData entries
     for (let pair of formData.entries()) {
@@ -139,7 +104,7 @@ function MyProfile() {
         icon: "success",
       });
   
-      history.push("/myprofile");
+      history.go(0);
     } catch (error) {
       console.log(error);
       Swal.fire({
@@ -292,7 +257,7 @@ function MyProfile() {
                 className="internshipform-inputs"
                 name="username"
                 placeholder="Change your username"
-                value={user.username || ""}
+                value={currentUser.username}
                 onChange={handleChange}
               />
             </div>
@@ -303,7 +268,7 @@ function MyProfile() {
                 className="internshipform-inputs"
                 name="about"
                 placeholder="Write about yourself"
-                value={user.about || ""}
+                value={currentUser.about || ""}
                 onChange={handleChange}
               />
             </div>
@@ -314,7 +279,7 @@ function MyProfile() {
                 className="internshipform-inputs"
                 name="fullname"
                 placeholder="Change your Full Name"
-                value={user.fullname || ""}
+                value={currentUser.fullname || ""}
                 onChange={handleChange}
               />
             </div>
@@ -325,7 +290,8 @@ function MyProfile() {
                 className="internshipform-inputs"
                 name="email"
                 placeholder="Write your new email"
-                value={user.email || ""}
+                // value={user.email || ""}
+                value={currentUser.email}
                 onChange={handleChange}
               />
             </div>
@@ -336,7 +302,7 @@ function MyProfile() {
                 className="internshipform-inputs"
                 name="password"
                 placeholder="Write your new password"
-                value={user.password || ""}
+                value={currentUser.password || ""}
                 onChange={handleChange}
               />
             </div>
@@ -347,11 +313,11 @@ function MyProfile() {
                 className="internshipform-inputs"
                 name="courses"
                 placeholder="e.g. 3 months, 6 months"
-                value={user.courses.join(", ") || ""}
+                value={currentUser.courses.join(", ") || ""}
                 onChange={handleChange}
               />
               <div className="formatted-requirements">
-                {formatList(user.courses.join("\n"))}
+                {formatList(currentUser.courses.join("\n"))}
               </div>
             </div>
             <div className="form-group">
@@ -361,7 +327,7 @@ function MyProfile() {
                 className="internshipform-inputs"
                 name="university"
                 placeholder="Write your University"
-                value={user.university.join(", ") || ""}
+                value={currentUser.university.join(", ") || ""}
                 onChange={handleChange}
               />
             </div>
@@ -371,7 +337,7 @@ function MyProfile() {
                 className="internshipform-inputs"
                 name="highschool"
                 placeholder="Write your High School"
-                value={user.highschool.join(", ") || ""}
+                value={currentUser.highschool.join(", ") || ""}
                 onChange={handleChange}
               />
             </div>
@@ -381,11 +347,11 @@ function MyProfile() {
                 className="internshipform-inputs"
                 name="skills"
                 placeholder="Write some of your skills"
-                value={user.skills.join(", ") || ""}
+                value={currentUser.skills.join(", ") || ""}
                 onChange={handleChange}
               />
               <div className="formatted-requirements">
-                {formatList(user.skills.join("\n"))}
+                {formatList(currentUser.skills.join("\n"))}
               </div>
             </div>
             <div className="form-buttons">

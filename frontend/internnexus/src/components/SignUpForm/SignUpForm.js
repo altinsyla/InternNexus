@@ -24,34 +24,54 @@ function CompanySignUp() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    if (info.password === info.confirmpassword) {
-      try {
-        await api
-          .post("/user", info)
-          .then((response) => {
-            Swal.fire({
-              title: "Account created successfully!",
-              icon: "success",
+    if (emailVerify(info.email) == "success") {
+      if (info.password === info.confirmpassword) {
+        try {
+          await api
+            .post("/user", info)
+            .then((response) => {
+              Swal.fire({
+                title: "Account created successfully!",
+                icon: "success",
+              });
+              history.push("/login");
+            })
+            .catch((err) => {
+              Swal.fire({
+                title: err.response.data.message,
+                icon: "error",
+              });
             });
-            history.push("/login");
-          })
-          .catch((err) => {
-            Swal.fire({
-              title: err.response.data.message,
-              icon: "error",
-            });
-          });
-      } catch (error) {
-        console.log(error);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        Swal.fire({
+          title: "Passwords do not match",
+          icon: "error",
+        });
       }
     } else {
       Swal.fire({
-        title: 'Passwords do not match',
+        title: "Invalid email format!",
         icon: "error",
       });
     }
   };
+
+  function emailVerify(x) {
+    let regEmail =
+      /.+@.+/;
+    if (!regEmail.test(x)) {
+      // return Swal.fire({
+      //   title: "Incorrect email format!",
+      //   icon: "error",
+      // });
+      return "error";
+    } else{
+      return "success";
+    }
+  }
 
   return (
     <>
@@ -83,10 +103,13 @@ function CompanySignUp() {
               // value={name}
             />
             <input
-              type="email"
+              type="text"
+              required
+              id="email"
               placeholder="Email Address"
               className="c-formInputs"
               onChange={(e) => setInfo({ ...info, email: e.target.value })}
+              onBlur={() => emailVerify(info.email)}
               // value={email}
             />
             <div style={{ display: "flex", gap: "0.5rem" }}>

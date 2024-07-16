@@ -9,9 +9,12 @@ import { Link, useHistory } from "react-router-dom";
 import api from "../../api.js";
 import Swal from "sweetalert2";
 import "../../styles/_globals.scss";
+import useGlobalFunctions from "../globalFunctions.js";
 
 function Home() {
   const history = useHistory();
+  const { verifyTokenExpiration } = useGlobalFunctions();
+
   const [users, setUsers] = useState([]);
   const [customUsers, setCustomUsers] = useState([]);
   const [currentUser, setcurrentUser] = useState([]);
@@ -66,6 +69,15 @@ function Home() {
     if (localStorage.getItem("token")) {
       getcurrentuser();
     }
+    // if(currentUser.role == 3){
+    //   history.push("/admindashboard")
+    // }
+
+    const interval = setInterval(() => {
+      verifyTokenExpiration();
+    }, 3600 * 1000);
+    // 3600 * 1000 1 hour
+    return () => clearInterval(interval);
   }, []);
 
   const handleInternshipButtonClick = async () => {
@@ -90,6 +102,9 @@ function Home() {
     <div id="homebody">
       <NavBar />
       <div id="container">
+        {/* <button onClick={() => verifyToken()}>
+          Click me
+        </button> */}
         <div className="banner">
           <div className="banner_main">
             {/* */}
@@ -131,10 +146,6 @@ function Home() {
         </div>
 
         <h1 className="poweredby">POWERED BY</h1>
-
-        <button onClick={() => console.log(currentUser)}>
-          Click me 
-        </button>
 
         <div className="poweredbygrid">
           <img
