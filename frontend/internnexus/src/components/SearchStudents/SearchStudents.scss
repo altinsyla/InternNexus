@@ -37,6 +37,29 @@
   // justify-content: center;
   // border: 1px solid black;
 }
+.student-pagination{
+  display: flex;
+  justify-content: center;
+}
+.student-pagination button {
+  align-items: center;
+  padding: 8px 12px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 4px;
+  background-color:  #d3c0b4;
+  color: black;
+  cursor: pointer;
+  font-size: 14px;
+}
+.student-pagination button:hover{
+  background-color: #666666;
+}
+.student-pagination button:active{
+  background-color: #666666;
+  cursor: default;
+  color: white;
+}
 
   
   /* 2xl */

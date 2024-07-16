@@ -88,6 +88,32 @@
   width: 30px;
   height: 30px;
 }
+.internship-pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.internship-pagination button {
+  align-items: center;
+  padding: 8px 12px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 4px;
+  background-color:  #d3c0b4;
+  color: black;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.internship-pagination button:hover {
+  background-color: #666666;
+}
+
+.internship-pagination button.active {
+  background-color: #666666;
+  cursor: default;
+  color: white;
+}
 
 @media only screen and (max-width: 1024px) {
   .internship_body {

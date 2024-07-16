@@ -12,11 +12,19 @@ const SearchStudents = () => {
   const [filter, setFilter] = useState("fullname"); // default fullname, pastaj jon username edhe skills
   const [users, setUsers] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
+  const [sortOrder, setSortOrder] = useState("newest");
+  const [total, setTotal] = useState(0);
+  const [limit, setLimit] = useState(50);
+  const [page, setPage] = useState(1);
 
   const getUsers = async () => {
     try {
-      const response = await api.get("/user");
-      setUsers(response.data);
+      const response = await api.get("/user", {
+        params: {...filter, page, limit, sortOrder}
+      });
+      setUsers(response.data.users);
+      setTotal(response.data.total);
+
     } catch (err) {
       console.log("You need to be logged in first!");
     }
@@ -24,8 +32,11 @@ const SearchStudents = () => {
 
   const applyFilter = async () => {
     const response = await api.get("/user?" + filter + "=" + searchQuery);
-    setUsers(response.data);
+    setUsers(response.data.users);
+    setTotal(response.data.total)
   };
+
+ 
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
@@ -38,11 +49,17 @@ const SearchStudents = () => {
     setUsers(response.data);
     setSearchQuery("");
     setIsTyping(false);
+
   };
 
   useEffect(() => {
     getUsers();
-  }, []);
+  }, [filter, sortOrder, page, limit]);
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+  };
+
 
   return (
     <div>
@@ -126,8 +143,20 @@ const SearchStudents = () => {
             <StudentCard key={user._id} username={user.username} />
           ))}
         </div>
+        <div className="student-pagination">
+        {Array.from({ length: Math.ceil(total / limit) }, (_, i) => (
+          <button
+            key={i}
+            onClick={() => handlePageChange(i + 1)}
+            className={page === i + 1 ? "active" : ""}
+          >
+            {i + 1}
+          </button>
+        ))}
       </div>
-      <Footer></Footer>
+      </div>
+     
+      <Footer></Footer>   
     </div>
   );
 };

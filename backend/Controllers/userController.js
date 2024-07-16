@@ -5,6 +5,7 @@ const { model } = require("mongoose");
 const multer = require("multer");
 const path = require("path");
 const bcrypt = require("bcryptjs");
+const express = require("express")
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -22,6 +23,8 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
 });
+
+
 
 // const uploadProfileImage = async (req, res) => {
 //   const username = req.params.username;
@@ -54,7 +57,8 @@ const getSingleUser = async (req, res) => {
 };
 
 const getAllUsers = async (req, res) => {
-  const { username, fullname } = req.query;
+  const { username, fullname, category, page = 1, limit = 50, sortOrder } = req.query;
+
 
   let query = {};
 
@@ -62,16 +66,31 @@ const getAllUsers = async (req, res) => {
     query.username = { $regex: new RegExp(username, "i") };
   }
 
+  const options = {
+    skip: (page - 1) * limit,
+    limit: parseInt(limit),
+  };
+  
+
   if (fullname) {
     query.fullname = { $regex: new RegExp(fullname, "i") };
   }
 
-  try {
-    const Users = await User.find(query).populate("skills");
-    res.status(200).json(Users);
-  } catch (error) {
-    res.status(404).json({ message: error.message });
+  if (sortOrder) {
+    options.sort = { registeredDate: sortOrder === "asc" ? 1 : -1 };
   }
+
+
+  try {
+    const users = await User.find(query, null, options).populate("skills");
+    const total = await User.countDocuments(query);
+    res.status(200).json({users, total, page: parseInt(page), limit: parseInt(limit)})
+  } catch (error) {
+    res.status(404).jsonjson({ message: "Error fetching students: " + error.message });
+  }
+
+ 
+  
 };
 
 // const getAllUsers = async (req, res) => {
@@ -82,6 +101,8 @@ const getAllUsers = async (req, res) => {
 //     res.status(404).json({ message: error.message });
 //   }
 // };
+
+
 
 const getcustomlimitusers = async (req, res) => {
   let limit = req.params.limit;

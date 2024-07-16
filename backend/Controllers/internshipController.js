@@ -1,8 +1,8 @@
+const express = require("express");
 const Internship = require("../Models/internshipModel");
 const multer = require("multer");
 const path = require("path");
 
-//qikjo ta mundson me i ru fotot, 'public/images' veni ku ruhen fotot kur bohen upload
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "public/images");
@@ -15,46 +15,31 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({
-  storage: storage,
-});
+const upload = multer({ storage });
 
 const getAllInternships = async (req, res) => {
-  const { category } = req.query;
+  const { category, page = 1, limit = 10, sortOrder } = req.query;
   let query = {};
 
-  if (category === "Front-End Developer") {
-    query.category = category;
-  } else if (category === "Back-End Developer") {
-    query.category = category;
-  } else if (category === "Full Stack Developer") {
-    query.category = category;
-  } else if (category === "Data Scientist") {
-    query.category = category;
-  } else if (category === "Machine Learning Engineer") {
-    query.category = category;
-  } else if (category === "DevOps Engineer") {
-    query.category = category;
-  } else if (category === "Cloud Architect") {
-    query.category = category;
-  } else if (category === "Cybersecurity Analyst") {
-    query.category = category;
-  } else if (category === "AI Engineer") {
-    query.category = category;
-  } else if (category === "Blockchain Developer") {
-    query.category = category;
-  } else if (category === "IoT Developer") {
-    query.category = category;
-  } else if (category === "Mobile Application Developer") {
-    query.category = category;
-  } else if (category === "UI/UX Designer") {
+  if (category && category !== "all") {
     query.category = category;
   }
+
+  const options = {
+    skip: (page - 1) * limit,
+    limit: parseInt(limit),
+  };
+
+  if (sortOrder) {
+    options.sort = { registeredDate: sortOrder === "asc" ? 1 : -1 };
+  }
+
   try {
-    const internships = await Internship.find(query);
-    res.status(200).json(internships);
+    const internships = await Internship.find(query, null, options);
+    const total = await Internship.countDocuments(query);
+    res.status(200).json({ internships, total, page: parseInt(page), limit: parseInt(limit) });
   } catch (error) {
-    res.status(404).json({ message: error.message });
+    res.status(404).json({ message: "Error fetching internships: " + error.message });
   }
 };
 
@@ -68,7 +53,7 @@ const getSingleInternship = async (req, res) => {
     res.json(internship);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ error: "Server error: " + err.message });
   }
 };
 
@@ -90,7 +75,7 @@ const createInternship = async (req, res) => {
   try {
     const newInternship = await Internship.create({
       username,
-      image: image,
+      image,
       title,
       type,
       location,
@@ -103,14 +88,23 @@ const createInternship = async (req, res) => {
 
     res.status(201).json(newInternship);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: "Error creating internship: " + error.message });
   }
 };
 
 const updateInternship = async (req, res) => {
   const { id } = req.params;
-  const { title, type, location, duration, requirements, offers, category, salary} =
-    req.body;
+  const {
+    title,
+    type,
+    location,
+    duration,
+    requirements,
+    offers,
+    category,
+    salary,
+  } = req.body;
+
   const updatedData = {
     title,
     type,
@@ -127,14 +121,10 @@ const updateInternship = async (req, res) => {
   }
 
   try {
-    const updatedInternship = await Internship.findByIdAndUpdate(
-      id,
-      updatedData,
-      { new: true }
-    );
+    const updatedInternship = await Internship.findByIdAndUpdate(id, updatedData, { new: true });
     res.status(200).json(updatedInternship);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json({ message: "Error updating internship: " + error.message });
   }
 };
 
@@ -147,7 +137,7 @@ const deleteInternship = async (req, res) => {
     }
     res.status(204).json({ message: "Internship deleted successfully" });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json({ message: "Error deleting internship: " + error.message });
   }
 };
 

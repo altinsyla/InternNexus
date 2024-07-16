@@ -24,6 +24,7 @@ const ADInternship = () => {
   const [show, setShow] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const { id } = useParams();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getAllInternships();
@@ -35,9 +36,11 @@ const ADInternship = () => {
   const getAllInternships = async () => {
     try {
       const response = await api.get("/internships");
-      setInternships(response.data);
+      setInternships(response.data.internships);
+      setLoading(false);
     } catch (err) {
       console.log("You need to be logged in first!");
+      setLoading(false);
     }
   };
 
@@ -73,7 +76,7 @@ const ADInternship = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    if (singleInternship.image instanceof File) {
+    if (singleInternship.image) {
       formData.append("image", singleInternship.image);
     }
     formData.append("username", singleInternship.username);
@@ -88,7 +91,7 @@ const ADInternship = () => {
 
     try {
       if (isEditing && id) {
-        await api.patch(`/internships/${id}`, formData, {
+        await api.put(`/internships/${id}`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -170,11 +173,17 @@ const ADInternship = () => {
     );
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
-       <Sidebar />
+      <Sidebar />
       <div>
-        <h4 style={{width: "100%", marginLeft: "15%", marginTop: "1rem"}}>Admin Dashboard for Internships</h4>
+        <h4 style={{ width: "100%", marginLeft: "15%", marginTop: "1rem" }}>
+          Admin Dashboard for Internships
+        </h4>
         <table className="adinternship-table">
           <thead>
             <tr>
@@ -205,7 +214,13 @@ const ADInternship = () => {
                     { month: "long", day: "numeric", year: "numeric" }
                   )}
                 </td>
-                <td style={{ display: "flex", justifyContent: "space-between", padding: "5px 10px"}}>
+                <td
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    padding: "5px 10px",
+                  }}
+                >
                   <button
                     className="btn btn-warning mr-2"
                     style={{ fontSize: "10px" }}
@@ -231,7 +246,7 @@ const ADInternship = () => {
         </table>
         <button
           className="btn btn-success"
-          style={{width: "100", marginLeft: "15%", marginTop: "1rem"}}
+          style={{ width: "100", marginLeft: "15%", marginTop: "1rem" }}
           onClick={() => {
             setShow(true);
             setIsEditing(false);
