@@ -43,6 +43,8 @@ const AdminDashboard = () => {
   useEffect(() => {
     getAllUsers();
     setcurrentUser(getCurrentUser());
+
+    
   }, []);
 
   const onSubmit = async (e) => {

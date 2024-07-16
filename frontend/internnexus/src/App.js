@@ -5,7 +5,7 @@ import "../src/styles/App.css";
 // Pages
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard.js";
 import Companies from "./components/Companies/Company.js";
-import Error from './components/Error/Error.js';
+import Error from "./components/Error/Error.js";
 import Home from "./components/Home/Home.js";
 import InternshipApply from "./components/InternshipApply/InternshipApply.js";
 import InternshipForm from "./components/InternshipForm/InternshipForm.js";
@@ -14,10 +14,9 @@ import Login from "./components/Login.js";
 import MyProfile from "./components/MyProfile/MyProfile.js";
 import SearchStudents from "./components/SearchStudents/SearchStudents.js";
 import SignUpForm from "./components/SignUpForm/SignUpForm.js";
-import ADInternship from './components/AD-Internship/ADInternship.js';
+import ADInternship from "./components/AD-Internship/ADInternship.js";
 import Student from "./components/Students/Students.js";
-import InternshipApplyForm from './components/InternshipApply/InternshipApplyForm.js';
-import EditProfile from "./components/MyProfile/EditProfile.js";
+import InternshipApplyForm from "./components/InternshipApply/InternshipApplyForm.js";
 import ADApplications from "./components/AD-Applications/ADApplications.js";
 
 function App() {
@@ -31,17 +30,19 @@ function App() {
         <Route exact path="/home">
           <Home />
         </Route>
-        <Route exact path='/adinternship'>
-        <ADInternship />
+        <Route exact path="/adinternship">
+          <ADInternship />
         </Route>
-        <Route exact path='/adapplications'>
+        <Route exact path="/adapplications">
           <ADApplications />
         </Route>
         <Route exact path="/login">
           <Login />
         </Route>
 
-        <Route exact path="/admindashboard"> {/*FOR TESTING ONLY, DELETE AFTER ADMIN SESSION IS OVER */}
+        <Route exact path="/admindashboard">
+          {" "}
+          {/*FOR TESTING ONLY, DELETE AFTER ADMIN SESSION IS OVER */}
           <AdminDashboard />
         </Route>
 
@@ -87,12 +88,12 @@ function App() {
         <Route exact path="/internshipapplyform">
           <InternshipApplyForm />
         </Route>
-        
+
         <Route exact path="/internshipapplyform/:internshipID">
           <InternshipApplyForm />
         </Route>
 
-        <Route exact path="/internshipForm/:id"> 
+        <Route exact path="/internshipForm/:id">
           <InternshipForm />
         </Route>
 
@@ -100,19 +101,9 @@ function App() {
           <Error />
         </Route>
 
-        <Route exact path="/myprofile/:username"> 
+        <Route exact path="/myprofile/:username">
           <MyProfile />
         </Route>
-
-        
-        <Route exact path="/editprofile/">
-          <EditProfile />
-        </Route>
-
-        <Route exact path="/editprofile/:username">
-          <EditProfile />
-        </Route>
-        
       </Switch>
     </BrowserRouter>
   );

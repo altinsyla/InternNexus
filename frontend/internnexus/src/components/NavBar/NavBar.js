@@ -73,9 +73,9 @@ const NavBar = () => {
                 aria-expanded="false"
                 style={{ backgroundColor: "#d3c0b4", width: "fit-content" }}
               >
-                {currentUser.username}{" "}
+                {currentUser?.username}{" "}
                 <img
-                  src={`http://localhost:5001/userimages/${currentUser.image}`}
+                  src={`http://localhost:5001/userimages/${currentUser?.image}`}
                   alt="studentPhoto"
                   style={{
                     width: "20px",

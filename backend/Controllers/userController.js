@@ -1,9 +1,10 @@
 const User = require("../Models/userModel");
-const Skills = require('../Models/skillsModel');
+const Skills = require("../Models/skillsModel");
 const jwt = require("jsonwebtoken");
 const { model } = require("mongoose");
 const multer = require("multer");
 const path = require("path");
+const bcrypt = require("bcryptjs");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -111,7 +112,7 @@ const loginUser = async (req, res) => {
       );
 
       res.json({ token, username }); //kthehet tokeni si response
-    } else{
+    } else {
       res.status(400).json({ message: "Invalid credentials" });
     }
   } else {
@@ -165,7 +166,7 @@ const createUser = async (req, res) => {
       courses,
       university,
       highschool,
-      skills
+      skills,
     });
 
     res.status(201).json(newUser);
@@ -202,16 +203,22 @@ const updateUser = async (req, res) => {
   };
 
   if (password) {
-    updatedData.password = password;
+    const salt = await bcrypt.genSalt(12);
+    let hashedPassword = await bcrypt.hash(password, salt);
+    updatedData.password = hashedPassword;
   }
 
   // Convert skill names to ObjectIds
   if (Array.isArray(skills)) {
     try {
-      const skillIds = await Skills.find({ skillName: { $in: skills } }).select('_id');
-      updatedData.skills = skillIds.map(skill => skill._id);
+      const skillIds = await Skills.find({ skillName: { $in: skills } }).select(
+        "_id"
+      );
+      updatedData.skills = skillIds.map((skill) => skill._id);
     } catch (error) {
-      return res.status(400).json({ message: 'Error fetching skill IDs', error: error.message });
+      return res
+        .status(400)
+        .json({ message: "Error fetching skill IDs", error: error.message });
     }
   }
 
@@ -220,14 +227,15 @@ const updateUser = async (req, res) => {
   }
 
   try {
-    const updateUser = await User.findByIdAndUpdate(id, updatedData, { new: true, runValidators: true });
+    const updateUser = await User.findByIdAndUpdate(id, updatedData, {
+      new: true,
+      runValidators: true,
+    });
     res.status(200).json(updateUser);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
-
-
 
 const deleteUser = async (req, res) => {
   const id = req.params.id;

@@ -13,16 +13,10 @@
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
-.imgprofilephoto{
-  width: 200px;
-  height: 200px;
-  object-fit: contain;
-}
 
 .studentbanner {
   display: flex;
   justify-content: space-between;
-
   margin: 0 5rem;
   margin-top: 3.5rem;
 }
@@ -31,15 +25,13 @@
   width: 100%;
 }
 
-
-
-.studentbannerrightside img {
-  display: block;
+.imgprofilephoto {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border: 1px solid black;
   max-width: 100%;
-  // width: 200px;
-  height: 400px;
   border-radius: 20px;
-  object-fit: contain;
 }
 
 .skillstable,
@@ -72,35 +64,27 @@
 .educationstable td {
   font-family: poppins_thin;
 }
-.editing-buttons{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-        gap: 10px;
-    
-}
+
 .editing-buttons button:nth-of-type(1) {
-    width: 10rem;
-    border-radius: 1;
-    padding: 5px;
-    border-radius: 10px;
-    border: 1px solid rgb(0, 0, 0);
-    background-color: transparent;
-color: black;    
+  width: 10rem;
+  padding: 5px;
+  border: 0.5px solid black;
+  border-radius: 10px;
+  background-color: $clr-caramel;
+  color: black;
 }
 .editing-buttons button:nth-of-type(2) {
-    width: 10rem;
-    padding: 5px;
-    border-radius: 10px;
-    color: white;    
-    border: 1px solid #5555;
-    background-color: #555555;
+  width: 10rem;
+  padding: 5px;
+  border-radius: 10px;
+  color: white;
+  border: 1px solid #5555;
+  background-color: #555555;
 }
 
 /* lg */
 @media (max-width: 1024px) {
-  .studentcontainer{
+  .studentcontainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -132,6 +116,13 @@ color: black;
   .studentskillscontainer,
   .studenteducationscontainer {
     margin: 0;
+  }
+
+  .studentbannerrightside {
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    border: 1px solid black;
   }
 
   .studentbannerrightside img {
@@ -168,7 +159,6 @@ color: black;
     flex-direction: column;
     align-items: center;
   }
-
 
   .educationstable tr {
     display: flex;
@@ -257,13 +247,14 @@ color: black;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 75%; /* Adjust width as needed */
+  width: 30%; /* Adjust width as needed */
+  height: 80%;
   max-height: 100vh; /* To ensure it doesn't exceed the viewport height */
   overflow-y: auto; /* Enables vertical scrolling */
   background-color: white;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
   padding: 20px;
-  z-index: 1000; 
+  z-index: 1000;
   border-radius: 10px;
 }
 
@@ -306,4 +297,3 @@ color: black;
   background-color: #f44336;
   color: white;
 }
-

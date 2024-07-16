@@ -5,7 +5,6 @@ import Footer from "../Footer/Footer.js";
 import NavBar from "../NavBar/NavBar.js";
 import "../MyProfile/MyProfile.scss";
 import Swal from "sweetalert2";
-import bcrypt from "bcryptjs";
 
 function MyProfile() {
   const { username, id } = useParams();
@@ -13,7 +12,7 @@ function MyProfile() {
   const [currentUser, setcurrentUser] = useState({});
   const [selectedFile, setSelectedFile] = useState(null);
   const [showFilterModal, setShowFilterModal] = useState(false);
-
+  const [show, setShow] = useState(false);
 
   const getcurrentUser = async () => {
     try {
@@ -27,9 +26,9 @@ function MyProfile() {
   };
 
   useEffect(() => {
-    getcurrentUser()
+    getcurrentUser();
 
-    if(!localStorage.getItem("token")){
+    if (!localStorage.getItem("token")) {
       history.push("/login");
     }
   }, [username]);
@@ -48,7 +47,10 @@ function MyProfile() {
       name === "highschool" ||
       name === "skills"
     ) {
-      setcurrentUser({ ...currentUser, [name]: value.split(",").map((item) => item.trim()) });
+      setcurrentUser({
+        ...currentUser,
+        [name]: value.split(",").map((item) => item.trim()),
+      });
     } else {
       setcurrentUser({ ...currentUser, [name]: value });
     }
@@ -56,9 +58,14 @@ function MyProfile() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     // Check required fields
-    if (!currentUser.username || !currentUser.fullname || !currentUser.email || !currentUser.password) {
+    if (
+      !currentUser.username ||
+      !currentUser.fullname ||
+      !currentUser.email ||
+      !currentUser.password
+    ) {
       Swal.fire({
         title: "Error!",
         text: "All fields need to be filled!",
@@ -66,7 +73,7 @@ function MyProfile() {
       });
       return;
     }
-  
+
     const formData = new FormData();
     if (currentUser.image) {
       formData.append("image", currentUser.image);
@@ -74,25 +81,29 @@ function MyProfile() {
     formData.append("username", currentUser.username);
     formData.append("fullname", currentUser.fullname);
     formData.append("email", currentUser.email);
-
-    //hash the password then send it to the backend
-    const salt = await bcrypt.genSalt(12);
-    currentUser.password = await bcrypt.hash(currentUser.password, salt);
     formData.append("password", currentUser.password);
     formData.append("role", currentUser.role);
-    formData.append("about", currentUser.about)
-  
+    formData.append("about", currentUser.about);
+
     // Append arrays properly
-    currentUser.courses.forEach((course, index) => formData.append(`courses[${index}]`, course));
-    currentUser.university.forEach((uni, index) => formData.append(`university[${index}]`, uni));
-    currentUser.highschool.forEach((school, index) => formData.append(`highschool[${index}]`, school));
-    currentUser.skills.forEach((skill, index) => formData.append(`skills[${index}]`, skill));
-  
-    // Debugging: Log formData entries
-    for (let pair of formData.entries()) {
-      console.log(`${pair[0]}: ${pair[1]}`);
-    }
-  
+    currentUser.courses.forEach((course, index) =>
+      formData.append(`courses[${index}]`, course)
+    );
+    currentUser.university.forEach((uni, index) =>
+      formData.append(`university[${index}]`, uni)
+    );
+    currentUser.highschool.forEach((school, index) =>
+      formData.append(`highschool[${index}]`, school)
+    );
+    currentUser.skills.forEach((skill, index) =>
+      formData.append(`skills[${index}]`, skill)
+    );
+
+    // // Debugging: Log formData entries
+    // for (let pair of formData.entries()) {
+    //   console.log(`${pair[0]}: ${pair[1]}`);
+    // }
+
     try {
       await api.patch(`/user/${currentUser._id}`, formData, {
         headers: {
@@ -103,7 +114,7 @@ function MyProfile() {
         text: "Profile successfully edited!",
         icon: "success",
       });
-  
+
       history.go(0);
     } catch (error) {
       console.log(error);
@@ -114,7 +125,6 @@ function MyProfile() {
       });
     }
   };
-  
 
   const formatList = (input) => {
     if (typeof input !== "string" || input.trim() === "") return "";
@@ -133,11 +143,6 @@ function MyProfile() {
       <NavBar />
       <div className="utilitycontainer studentbanner">
         <div className="studentbannerleftside">
-          <div className="editing-buttons">
-            <button onClick={() => setShowFilterModal(true)}>Edit</button>
-            <button onClick={() => console.log(currentUser)}>Check</button>
-          </div>
-      
           <div className="studentUsername">
             <h2 style={{ fontFamily: "poppins_bold", marginBottom: 0 }}>
               {currentUser.fullname}
@@ -157,13 +162,16 @@ function MyProfile() {
           </h4>
           <p className="fontthin">{currentUser.about}</p>
         </div>
-      
-        <div className="studentbannerrightside">
-        <img
-  src={`http://localhost:5001/userimages/${currentUser.image}`}
-  alt="studentPhoto"
-  className="imgprofilephoto"
-/>
+
+        <div className="myprofilebannerrightside" style={{textAlign: 'center'}}>
+          <img
+            src={`http://localhost:5001/userimages/${currentUser.image}`}
+            alt="studentPhoto"
+            className="imgprofilephoto"
+          />
+          <div className="editing-buttons" style={{marginTop: '5px'}}>
+            <button onClick={() => setShowFilterModal(true)}>Edit Profile <i class="bi bi-pencil-square"></i></button>
+          </div>
         </div>
       </div>
       <div className="studentskillscontainer utilitycontainer">
@@ -243,6 +251,9 @@ function MyProfile() {
           <form onSubmit={handleSubmit} encType="form-type">
             <p className="internshipform-details">Edit Your Profile</p>
             <div className="form-group">
+              <label className="internshipform-labels">
+                Change Profile Picture
+              </label>
               <input
                 type="file"
                 className="internshipform-inputs"
@@ -296,15 +307,35 @@ function MyProfile() {
               />
             </div>
             <div className="form-group">
-              <label className="internshipform-labels">Change Password</label>
-              <input
-                type="text"
-                className="internshipform-inputs"
-                name="password"
-                placeholder="Write your new password"
-                value={currentUser.password || ""}
-                onChange={handleChange}
-              />
+              <div style={{ display: "flex" }}>
+                <label
+                  className="internshipform-labels"
+                  style={{
+                    display: "inline-block",
+                    margin: 0,
+                    marginRight: "10px",
+                  }}
+                >
+                  Change Password{" "}
+                </label>
+                <input
+                  type="checkbox"
+                  style={{ width: "15px" }}
+                  onClick={() => setShow(!show)}
+                />
+              </div>
+              {show && (
+                <div style={{ marginTop: "10px" }}>
+                  {" "}
+                  <input
+                    type="text"
+                    className="internshipform-inputs"
+                    name="password"
+                    placeholder="Write your new password"
+                    onChange={handleChange}
+                  />
+                </div>
+              )}
             </div>
             <div className="form-group">
               <label className="internshipform-labels">Courses</label>
@@ -313,11 +344,11 @@ function MyProfile() {
                 className="internshipform-inputs"
                 name="courses"
                 placeholder="e.g. 3 months, 6 months"
-                value={currentUser.courses.join(", ") || ""}
+                // value={currentUser?.courses.join(", ") || ""}
                 onChange={handleChange}
               />
               <div className="formatted-requirements">
-                {formatList(currentUser.courses.join("\n"))}
+                {/* {formatList(currentUser?.courses.join("\n"))} */}
               </div>
             </div>
             <div className="form-group">
@@ -327,7 +358,7 @@ function MyProfile() {
                 className="internshipform-inputs"
                 name="university"
                 placeholder="Write your University"
-                value={currentUser.university.join(", ") || ""}
+                // value={currentUser?.university.join(", ") || ""}
                 onChange={handleChange}
               />
             </div>
@@ -337,7 +368,7 @@ function MyProfile() {
                 className="internshipform-inputs"
                 name="highschool"
                 placeholder="Write your High School"
-                value={currentUser.highschool.join(", ") || ""}
+                // value={currentUser?.highschool.join(", ") || ""}
                 onChange={handleChange}
               />
             </div>
@@ -347,11 +378,12 @@ function MyProfile() {
                 className="internshipform-inputs"
                 name="skills"
                 placeholder="Write some of your skills"
-                value={currentUser.skills.join(", ") || ""}
+                // value={currentUser?.skills.join(", ") || ""}
                 onChange={handleChange}
               />
               <div className="formatted-requirements">
-                {formatList(currentUser.skills.join("\n"))}
+                {/* {formatList(currentUser?.skills.join("\n"))} */}
+                {/* {currentUser.skills?.map((skill) => skill.skillName)} */}
               </div>
             </div>
             <div className="form-buttons">

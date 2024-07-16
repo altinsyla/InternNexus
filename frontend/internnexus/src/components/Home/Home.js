@@ -69,9 +69,8 @@ function Home() {
     if (localStorage.getItem("token")) {
       getcurrentuser();
     }
-    // if(currentUser.role == 3){
-    //   history.push("/admindashboard")
-    // }
+
+    // checkIfAdmin();
 
     const interval = setInterval(() => {
       verifyTokenExpiration();
@@ -97,6 +96,12 @@ function Home() {
       });
     }
   };
+
+  // const checkIfAdmin = () =>{
+  //   if (currentUser.role == 2) {
+  //     history.push("/admindashboard")
+  //   }
+  // }
 
   return (
     <div id="homebody">
