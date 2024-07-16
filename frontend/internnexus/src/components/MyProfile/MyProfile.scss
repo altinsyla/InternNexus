@@ -34,6 +34,18 @@
   border-radius: 20px;
 }
 
+.editProfilePhoto {
+  align-self: center;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 1px solid black;
+  max-width: 100%;
+  border-radius: 20px;
+
+  margin-bottom: 10px;
+}
+
 .skillstable,
 .educationstable {
   width: 100%;
@@ -296,4 +308,23 @@
 .Edit-Profile-Container .form-buttons .cancel-internship {
   background-color: #f44336;
   color: white;
+}
+.skillsListDiv {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  margin: 10px 5px;
+}
+.skillsList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.inputDisclaimer{
+  font-size: 0.7rem;
+  margin: 0;
+  margin-left: 10px;
 }

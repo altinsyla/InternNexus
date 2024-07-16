@@ -18,7 +18,6 @@ function CompanySignUp() {
     role: 1,
   });
 
-  const [bg, setbg] = useState(false);
 
   const history = useHistory();
 

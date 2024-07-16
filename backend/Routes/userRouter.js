@@ -5,6 +5,7 @@ const upload = userController.upload; // Correctly import the upload middleware
 const router = express.Router();
 
 router.get("/", userController.getAllUsers);
+router.get("/admin", userController.getAllUsersForDashboard);
 router.get("/verifytoken", tokenVerification.verifyToken);
 router.get("/limit/:limit", userController.getcustomlimitusers);
 router.get("/:username", userController.getSingleUser);

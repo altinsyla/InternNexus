@@ -1,25 +1,13 @@
-*{
-    margin: 0;
-    padding: 0;
-}
-
 .modalform{
     display: flex;
     flex-direction: column;
 }
 .adapplications-table{
-    width: 84%;
-    margin-left: 15%;
     height: auto;
-    border: 1px solid black;
-    margin-top: 2rem;
 }
 .adapplications-table th {
-    background-color: lightblue;
-    border: 1px solid black;
     text-align: center;
 }
 .adapplications-table td{
-    border: 1px solid black;
     text-align: center;
 }

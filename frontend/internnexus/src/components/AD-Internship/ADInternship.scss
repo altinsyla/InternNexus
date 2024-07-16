@@ -1,25 +1,10 @@
-*{
-    margin: 0;
-    padding: 0;
-}
-
 .adinternship-modalform{
     display: flex;
     flex-direction: column;
 }
-.adinternship-table{
-    width: 84%;
-    margin-left: 15%;
-    height: auto;
-    border: 1px solid black;
-    margin-top: 2rem;
-}
 .adinternship-table th {
-    background-color: lightblue;
-    border: 1px solid black;
     text-align: center;
 }
 .adinternship-table td{
-    border: 1px solid black;
     text-align: center;
 }

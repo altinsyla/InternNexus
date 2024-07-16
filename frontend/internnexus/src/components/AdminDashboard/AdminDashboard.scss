@@ -1,23 +1,30 @@
-*{
-    margin: 0;
-    padding: 0;
-}
-
 .modalform{
     display: flex;
     flex-direction: column;
 }
 .admindashboard-table{
-    width: 84%;
-    margin-left: 15%;
-    height: auto;
     margin-top: 2rem;
+    border: 1px solid #333;
 }
 .admindashboard-table th {
     background-color: lightblue;
     text-align: center;
 }
 .admindashboard-table td{
-    border: 1px solid black;
     text-align: center;
+}
+
+.admininternshipmaindiv{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    
+}
+
+.admindashboardrightside{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    // padding-top: 5rem;
 }

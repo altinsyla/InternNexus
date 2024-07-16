@@ -4,12 +4,11 @@ import "./AdminDashboard.scss";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Swal from "sweetalert2";
-import Sidebar from '../Sidebar/Sidebar.js';
+import Sidebar from "../Sidebar/Sidebar.js";
 import useGlobalFunctions from "../globalFunctions.js";
 
 const AdminDashboard = () => {
   const { getCurrentUser } = useGlobalFunctions();
-
 
   const [users, setUsers] = useState([]);
   const [singleUser, setSingleUser] = useState([]);
@@ -19,7 +18,7 @@ const AdminDashboard = () => {
 
   const getAllUsers = async () => {
     try {
-      const response = await api.get("/user");
+      const response = await api.get("/user/admin");
       setUsers(response.data);
     } catch (err) {
       console.log("You need to be logged in first!");
@@ -42,27 +41,22 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     getAllUsers();
-    setcurrentUser(getCurrentUser());
-
-    
   }, []);
 
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (isEditing){
-        api
-          .patch("/user/" + singleUser._id, singleUser)
-          .then((response) => {
-            Swal.fire({
-              title: "Edit Success!",
-              icon: "success",
-            });
-            setShow(false);
-            setisEditing(false);
-            getAllUsers();
-            setSingleUser([]);
+      if (isEditing) {
+        api.patch("/user/" + singleUser._id, singleUser).then((response) => {
+          Swal.fire({
+            title: "Edit Success!",
+            icon: "success",
           });
+          setShow(false);
+          setisEditing(false);
+          getAllUsers();
+          setSingleUser([]);
+        });
       } else {
         api
           .post("/user/", singleUser)
@@ -122,11 +116,24 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div>
-      <div>
+    <div className="admininternshipmaindiv">
       <Sidebar />
-      <h4 style={{width: "100%", marginLeft: "15%", marginTop: "1rem"}}>Admin Dashboard for Users</h4>
-        <table className="admindashboard-table">
+      <div className="admindashboardrightside">
+        <h4 style={{ alignSelf: "center" }}>Admin Dashboard for Users</h4>
+        <button
+          className="btn btn-success"
+          style={{ width: "fit-content", alignSelf: "center" }}
+          onClick={() => {
+            setShow(true);
+            setisEditing(false);
+          }}
+        >
+          Create User
+        </button>
+        <table
+          className="admindashboard-table table"
+          style={{ width: "80%", alignSelf: "center" }}
+        >
           <thead>
             <tr>
               <th>User ID</th>
@@ -134,18 +141,24 @@ const AdminDashboard = () => {
               <th>Username</th>
               <th>Email</th>
               <th>Role</th>
-              <th style={{width: "150px"}}>Buttons</th>
+              <th style={{ width: "150px" }}>Buttons</th>
             </tr>
           </thead>
           <tbody>
-            {users.map((users) => (
+            {users?.map((users) => (
               <tr key={users._id}>
                 <td>{users._id}</td>
                 <td>{users.fullname}</td>
                 <td>{users.username}</td>
                 <td>{users.email}</td>
                 <td>{users.role}</td>
-                <td style={{ display: "flex", justifyContent: "space-between", padding: "5px 10px"}}>
+                <td
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    // padding: "5px 10px",
+                  }}
+                >
                   <button
                     className="btn btn-warning mr-2"
                     style={{ fontSize: "10px" }}
@@ -170,105 +183,104 @@ const AdminDashboard = () => {
             ))}
           </tbody>
         </table>
-        <button
-          className="btn btn-success"
-          style={{width: "100", marginLeft: "15%", marginTop: "1rem"}}
-          onClick={() => {
-            setShow(true);
-            setisEditing(false);
-          }}
+
+        <Modal
+          size="sm"
+          show={show}
+          aria-labelledby="example-modal-sizes-title-sm"
+          centered={true}
+          keyboard={true}
         >
-          Create User
-        </button>
-      </div>
-
-      <Modal
-        size="sm"
-        show={show}
-        aria-labelledby="example-modal-sizes-title-sm"
-        centered={true}
-        keyboard={true}
-      >
-        <Modal.Header
-          closeButton
-          onHide={() => {
-            setShow(false);
-            setSingleUser([]);
-            setisEditing(false);
-          }}
-        >
-          <Modal.Title id="example-modal-sizes-title-sm">User</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form className="modalform" onSubmit={onSubmit}>
-            <label>Full Name</label>
-            <input
-              placeholder="e.g. John Doe"
-              type="text"
-              value={singleUser.fullname}
-              onChange={onChange}
-              name="fullname"
-            />
-
-            <label>Username</label>
-            <input
-              placeholder="e.g. John1"
-              type="text"
-              onChange={onChange}
-              value={singleUser.username}
-              name="username"
-            />
-
-            <label>Email</label>
-            <input
-              placeholder="e.g. john.doe@gmail.com"
-              type="text"
-              onChange={onChange}
-              value={singleUser.email}
-              name="email"
-            />
-
-            {!isEditing ? (
-              <>
-                <label>Password</label>
-                <input
-                  placeholder="e.g. password"
-                  type="password"
-                  onChange={onChange}
-                  value={singleUser.password}
-                  name="password"
-                />
-              </>
-            ) : (
-              ""
-            )}
-
-            <label>Role</label>
-            <input
-              placeholder="e.g. 1"
-              type="number"
-              onChange={onChange}
-              value={singleUser.role}
-              name="role"
-            />
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="secondary"
-            onClick={() => {
+          <Modal.Header
+            closeButton
+            onHide={() => {
               setShow(false);
               setSingleUser([]);
               setisEditing(false);
             }}
           >
-            Close
-          </Button>
-          <Button variant="primary" onClick={onSubmit}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+            <Modal.Title id="example-modal-sizes-title-sm">User</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <form className="modalform" onSubmit={onSubmit}>
+              <label>Full Name</label>
+              <input
+                placeholder="e.g. John Doe"
+                type="text"
+                value={singleUser.fullname}
+                onChange={onChange}
+                name="fullname"
+              />
+
+              <label>Username</label>
+              <input
+                placeholder="e.g. John1"
+                type="text"
+                onChange={onChange}
+                value={singleUser.username}
+                name="username"
+              />
+
+              <label>Email</label>
+              <input
+                placeholder="e.g. john.doe@gmail.com"
+                type="text"
+                onChange={onChange}
+                value={singleUser.email}
+                name="email"
+              />
+
+              {!isEditing ? (
+                <>
+                  <label>Password</label>
+                  <input
+                    placeholder="e.g. password"
+                    type="password"
+                    onChange={onChange}
+                    value={singleUser.password}
+                    name="password"
+                  />
+                </>
+              ) : (
+                ""
+              )}
+
+              <label>Role</label>
+              <input
+                placeholder="e.g. 1"
+                type="number"
+                onChange={onChange}
+                value={singleUser.role}
+                name="role"
+              />
+
+              <label>About</label>
+              <input
+                placeholder="e.g. 1"
+                type="text"
+                onChange={onChange}
+                value={singleUser.about}
+                name="role"
+              />
+            </form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="secondary"
+              onClick={() => {
+                setShow(false);
+                setSingleUser([]);
+                setisEditing(false);
+              }}
+            >
+              Close
+            </Button>
+            <Button variant="primary" onClick={onSubmit}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
     </div>
   );
 };

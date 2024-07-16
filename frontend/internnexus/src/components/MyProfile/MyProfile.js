@@ -5,14 +5,21 @@ import Footer from "../Footer/Footer.js";
 import NavBar from "../NavBar/NavBar.js";
 import "../MyProfile/MyProfile.scss";
 import Swal from "sweetalert2";
+import Dropdown from "react-bootstrap/Dropdown";
+import useGlobalFunctions from "../globalFunctions.js";
 
 function MyProfile() {
+  const { getAllSkills } = useGlobalFunctions();
+
   const { username, id } = useParams();
   const history = useHistory();
   const [currentUser, setcurrentUser] = useState({});
+  const [allSkills, setAllSkills] = useState({});
+  const [newSkills, setnewSkills] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [show, setShow] = useState(false);
+  const [imagePreviewUrl, setimagePreviewUrl] = useState("");
 
   const getcurrentUser = async () => {
     try {
@@ -20,6 +27,7 @@ function MyProfile() {
         "/user/" + localStorage.getItem("username")
       );
       setcurrentUser(response.data);
+      setnewSkills(response.data.skills);
     } catch (err) {
       console.log("Error getting custom users");
     }
@@ -27,6 +35,13 @@ function MyProfile() {
 
   useEffect(() => {
     getcurrentUser();
+    getAllSkills()
+      .then((result) => {
+        setAllSkills(result);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
 
     if (!localStorage.getItem("token")) {
       history.push("/login");
@@ -38,34 +53,50 @@ function MyProfile() {
   };
 
   const handleChange = (e) => {
+    e.preventDefault();
     const { name, value } = e.target;
 
-    // Check if the field should be an array and handle it properly
-    if (
-      name === "courses" ||
-      name === "university" ||
-      name === "highschool" ||
-      name === "skills"
-    ) {
-      setcurrentUser({
-        ...currentUser,
-        [name]: value.split(",").map((item) => item.trim()),
-      });
-    } else {
-      setcurrentUser({ ...currentUser, [name]: value });
+    setcurrentUser({ ...currentUser, [name]: value });
+  };
+
+  const handleSkillAdd = (e, skillName) => {
+    e.preventDefault();
+
+    // let uniqueSkills = [...new Set(newSkills)];
+    
+    if (!newSkills.includes(skillName)) {
+      setnewSkills([...newSkills, skillName]);
+    }
+  };
+
+  const checkIfEnteronArray = (e) => {
+    const { name, value } = e.target;
+    if (e.key === "Enter") {
+      e.preventDefault();
+
+      if (name === "courses") {
+        setcurrentUser({
+          ...currentUser,
+          courses: [...currentUser.courses, value],
+        });
+      } else if (name === "highschool") {
+        setcurrentUser({
+          ...currentUser,
+          highschool: [...currentUser.highschool, value],
+        });
+      } else if (name === "university") {
+        setcurrentUser({
+          ...currentUser,
+          university: [...currentUser.university, value],
+        });
+      }
     }
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    // event.preventDefault();
 
-    // Check required fields
-    if (
-      !currentUser.username ||
-      !currentUser.fullname ||
-      !currentUser.email ||
-      !currentUser.password
-    ) {
+    if (!currentUser.username || !currentUser.email) {
       Swal.fire({
         title: "Error!",
         text: "All fields need to be filled!",
@@ -84,25 +115,10 @@ function MyProfile() {
     formData.append("password", currentUser.password);
     formData.append("role", currentUser.role);
     formData.append("about", currentUser.about);
-
-    // Append arrays properly
-    currentUser.courses.forEach((course, index) =>
-      formData.append(`courses[${index}]`, course)
-    );
-    currentUser.university.forEach((uni, index) =>
-      formData.append(`university[${index}]`, uni)
-    );
-    currentUser.highschool.forEach((school, index) =>
-      formData.append(`highschool[${index}]`, school)
-    );
-    currentUser.skills.forEach((skill, index) =>
-      formData.append(`skills[${index}]`, skill)
-    );
-
-    // // Debugging: Log formData entries
-    // for (let pair of formData.entries()) {
-    //   console.log(`${pair[0]}: ${pair[1]}`);
-    // }
+    formData.append("courses", JSON.stringify(currentUser.courses));
+    formData.append("university", JSON.stringify(currentUser.university));
+    formData.append("highschool", JSON.stringify(currentUser.highschool));
+    formData.append("skills", JSON.stringify(newSkills));
 
     try {
       await api.patch(`/user/${currentUser._id}`, formData, {
@@ -163,14 +179,19 @@ function MyProfile() {
           <p className="fontthin">{currentUser.about}</p>
         </div>
 
-        <div className="myprofilebannerrightside" style={{textAlign: 'center'}}>
+        <div
+          className="myprofilebannerrightside"
+          style={{ textAlign: "center" }}
+        >
           <img
             src={`http://localhost:5001/userimages/${currentUser.image}`}
             alt="studentPhoto"
             className="imgprofilephoto"
           />
-          <div className="editing-buttons" style={{marginTop: '5px'}}>
-            <button onClick={() => setShowFilterModal(true)}>Edit Profile <i class="bi bi-pencil-square"></i></button>
+          <div className="editing-buttons" style={{ marginTop: "5px" }}>
+            <button onClick={() => setShowFilterModal(true)}>
+              Edit Profile <i className="bi bi-pencil-square"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -248,9 +269,18 @@ function MyProfile() {
 
       {showFilterModal && (
         <div className="Edit-Profile-Container">
-          <form onSubmit={handleSubmit} encType="form-type">
+          <form
+            onSubmit={(e) => {
+              handleSubmit();
+              e.preventDefault();
+            }}
+            encType="form-type"
+          >
             <p className="internshipform-details">Edit Your Profile</p>
-            <div className="form-group">
+            <div
+              className="form-group"
+              style={{ display: "flex", flexDirection: "column" }}
+            >
               <label className="internshipform-labels">
                 Change Profile Picture
               </label>
@@ -269,7 +299,7 @@ function MyProfile() {
                 name="username"
                 placeholder="Change your username"
                 value={currentUser.username}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e)}
               />
             </div>
             <div className="form-group">
@@ -280,7 +310,7 @@ function MyProfile() {
                 name="about"
                 placeholder="Write about yourself"
                 value={currentUser.about || ""}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e)}
               />
             </div>
             <div className="form-group">
@@ -291,7 +321,7 @@ function MyProfile() {
                 name="fullname"
                 placeholder="Change your Full Name"
                 value={currentUser.fullname || ""}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e)}
               />
             </div>
             <div className="form-group">
@@ -303,7 +333,7 @@ function MyProfile() {
                 placeholder="Write your new email"
                 // value={user.email || ""}
                 value={currentUser.email}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e)}
               />
             </div>
             <div className="form-group">
@@ -332,66 +362,184 @@ function MyProfile() {
                     className="internshipform-inputs"
                     name="password"
                     placeholder="Write your new password"
-                    onChange={handleChange}
+                    onChange={(e) => handleChange(e)}
                   />
                 </div>
               )}
             </div>
             <div className="form-group">
               <label className="internshipform-labels">Courses</label>
+              <p className="inputDisclaimer">Press Enter to Submit</p>
               <input
                 type="text"
                 className="internshipform-inputs"
                 name="courses"
-                placeholder="e.g. 3 months, 6 months"
-                // value={currentUser?.courses.join(", ") || ""}
-                onChange={handleChange}
+                placeholder="Write your courses"
+                onKeyDown={(e) => checkIfEnteronArray(e)}
               />
-              <div className="formatted-requirements">
-                {/* {formatList(currentUser?.courses.join("\n"))} */}
+              <div className="skillsListDiv">
+                <ul className="skillsList">
+                  Current courses:
+                  {currentUser.courses?.map((skill) => (
+                    <li
+                      key={skill._id}
+                      style={{
+                        borderBottom: "1px solid black",
+                        width: "fit-content",
+                      }}
+                    >
+                      {skill}
+                      <i
+                        className="bi bi-trash dashboardActionIcons"
+                        style={{ marginLeft: "10px" }}
+                        onClick={(e) => {
+                          setcurrentUser({
+                            ...currentUser,
+                            courses: currentUser.courses.filter(
+                              (user) => user !== skill
+                            ),
+                          });
+                        }}
+                      ></i>
+                    </li>
+                  ))}
+                </ul>
               </div>
+              <div className="formatted-requirements"></div>
             </div>
             <div className="form-group">
               <label className="internshipform-labels">University</label>
+              <p className="inputDisclaimer">Press Enter to Submit</p>
               <input
                 type="text"
                 className="internshipform-inputs"
                 name="university"
                 placeholder="Write your University"
-                // value={currentUser?.university.join(", ") || ""}
-                onChange={handleChange}
+                onKeyDown={(e) => checkIfEnteronArray(e)}
               />
+              <div className="skillsListDiv">
+                <ul className="skillsList">
+                  Current University:
+                  {currentUser.university?.map((skill) => (
+                    <li
+                      key={skill._id}
+                      style={{
+                        borderBottom: "1px solid black",
+                        width: "fit-content",
+                      }}
+                    >
+                      {skill}
+                      <i
+                        style={{ marginLeft: "10px" }}
+                        className="bi bi-trash dashboardActionIcons"
+                        onClick={(e) => {
+                          setcurrentUser({
+                            ...currentUser,
+                            university: currentUser.university.filter(
+                              (user) => user !== skill
+                            ),
+                          });
+                        }}
+                      ></i>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
             <div className="form-group">
               <label className="internshipform-labels">Highschool</label>
+              <p className="inputDisclaimer">Press Enter to Submit</p>
               <input
                 className="internshipform-inputs"
                 name="highschool"
                 placeholder="Write your High School"
-                // value={currentUser?.highschool.join(", ") || ""}
-                onChange={handleChange}
+                onKeyDown={(e) => checkIfEnteronArray(e)}
               />
+              <div className="skillsListDiv">
+                <ul className="skillsList">
+                  Current Highschool:
+                  {currentUser.highschool?.map((skill) => (
+                    <li
+                      key={skill._id}
+                      style={{
+                        borderBottom: "1px solid black",
+                        width: "fit-content",
+                      }}
+                    >
+                      {skill}
+                      <i
+                        style={{ marginLeft: "10px" }}
+                        className="bi bi-trash dashboardActionIcons"
+                        onClick={(e) => {
+                          setcurrentUser({
+                            ...currentUser,
+                            highschool: currentUser.highschool.filter(
+                              (user) => user !== skill
+                            ),
+                          });
+                        }}
+                      ></i>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
             <div className="form-group">
               <label className="internshipform-labels">Skills</label>
-              <input
-                className="internshipform-inputs"
-                name="skills"
-                placeholder="Write some of your skills"
-                // value={currentUser?.skills.join(", ") || ""}
-                onChange={handleChange}
-              />
+              <div className="skillsListDiv">
+                <ul className="skillsList">
+                  {newSkills?.map((skill) => (
+                    <li
+                      style={{
+                        borderBottom: "1px solid black",
+                        width: "fit-content",
+                      }}
+                    >
+                      {skill.skillName}
+                      <i
+                        style={{ marginLeft: "10px" }}
+                        className="bi bi-trash dashboardActionIcons"
+                        onClick={(e) => {
+                          setnewSkills(
+                            newSkills.filter((skills) => skills._id !== skill._id)
+                          );
+                        }}
+                      ></i>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <Dropdown>
+                <Dropdown.Toggle
+                  className="internshipform-inputs"
+                  style={{ backgroundColor: "transparent", color: "black" }}
+                >
+                  Select your skills
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  {allSkills.map((skill) => (
+                    <Dropdown.Item onClick={(e) => handleSkillAdd(e, skill)}>
+                      {skill.skillName}
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown.Menu>
+              </Dropdown>
+
               <div className="formatted-requirements">
                 {/* {formatList(currentUser?.skills.join("\n"))} */}
                 {/* {currentUser.skills?.map((skill) => skill.skillName)} */}
               </div>
             </div>
             <div className="form-buttons">
-              <button type="button" className="cancel-internship">
+              <button
+                style={{ backgroundColor: "#ea738d" }}
+                onClick={() => setShowFilterModal(false)}
+              >
                 Cancel
               </button>
-              <button onClick={() => setShowFilterModal(false)}>Cancel</button>
-              <button type="submit">submit</button>
+              <button type="submit" style={{ backgroundColor: "#d3c0b4" }}>
+                Submit
+              </button>
             </div>
           </form>
         </div>

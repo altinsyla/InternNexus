@@ -8,20 +8,11 @@ import internnexus from "../imgsrc/internnexus.png";
 import "../styles/App.css";
 
 const Login = () => {
-  useEffect(() => {
-    const checkLogin = async () => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        // history.push("/");
-      }
-    };
-    checkLogin();
-  }, []);
-
   const history = useHistory();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [currentUser, setcurrentUser] = useState("");
   const [token, setToken] = useState("");
 
   const handleEmailChange = (event) => setEmail(event.target.value);
@@ -47,7 +38,6 @@ const Login = () => {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.username);
       setToken(response.data.token);
-      history.push("/");
 
       Toast.fire({
         icon: "success",

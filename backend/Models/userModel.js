@@ -2,8 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
 
-
-
 const User = new Schema({
   username: {
     type: String,
@@ -43,11 +41,8 @@ const User = new Schema({
 
 User.pre("save", async function (next) {
   if (this.isModified("password")) {
-    console.log("password before: \n" + this.password);
     const salt = await bcrypt.genSalt(12);
     this.password = await bcrypt.hash(this.password, salt);
-
-    console.log("password after: \n" + this.password);
   }
   next();
 });
@@ -58,7 +53,6 @@ User.pre("save", function (next) {
   }
   next();
 });
-
 
 User.methods.isValidPassword = async function (password) {
   return bcrypt.compare(password, this.password);

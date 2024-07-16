@@ -60,7 +60,17 @@ const useGlobalFunctions = () => {
     }
   }, []);
 
-  return { handleLogOut, verifyTokenExpiration, getCurrentUser };
+  const getAllSkills = useCallback(async () => {
+    try {
+      const response = await api.get("/skills");
+
+      return response.data
+    } catch(err){
+      console.log("Error getting skills");
+    }
+  });
+
+  return { handleLogOut, verifyTokenExpiration, getCurrentUser, getAllSkills };
 };
 
 export default useGlobalFunctions;

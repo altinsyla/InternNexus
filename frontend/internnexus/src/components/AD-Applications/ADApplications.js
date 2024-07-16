@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../../api.js";
-import '../AD-Applications/ADApplications.scss';
+import "../AD-Applications/ADApplications.scss";
 import Swal from "sweetalert2";
 import Sidebar from "../Sidebar/Sidebar.js";
 
@@ -50,11 +50,16 @@ const ADInternship = () => {
   };
 
   return (
-    <div>
+    <div className="admininternshipmaindiv">
       <Sidebar />
-      <div>
-      <h4 style={{width: "100%", marginLeft: "15%", marginTop: "1rem"}}>Admin Dashboard for Applications</h4>
-        <table className="adapplications-table">
+      <div className="admindashboardrightside">
+        <h4 style={{ alignSelf: "center", marginTop: "5rem" }}>
+          Admin Dashboard for Applications
+        </h4>
+        <table
+          className="adapplications-table table"
+          style={{ width: "80%", alignSelf: "center" }}
+        >
           <thead>
             <tr>
               <th>ID</th>
@@ -63,7 +68,7 @@ const ADInternship = () => {
               <th>Apply Date</th>
               <th>CV</th>
               <th>Additional Message</th>
-              <th style={{width: "50px"}}>Actions</th>
+              <th style={{ width: "50px" }}>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -73,10 +78,11 @@ const ADInternship = () => {
                 <td>{application.internshipID}</td>
                 <td>{application.username}</td>
                 <td>
-                  {new Date(application.applyDate).toLocaleDateString(
-                    "en-US",
-                    { month: "long", day: "numeric", year: "numeric" }
-                  )}
+                  {new Date(application.applyDate).toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
                 </td>
                 <td>{application.cv}</td>
                 <td>{application.additionalMessage}</td>

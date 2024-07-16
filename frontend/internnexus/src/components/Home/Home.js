@@ -61,6 +61,12 @@ function Home() {
     }
   };
 
+  // const checkIfAdmin = () => {
+  //   if (currentUser.role == 3) {
+  //     history.push('/admindashboard')
+  //   }
+  // };
+
   useEffect(() => {
     let customlimit = 20; // sa usera dojna mi marr
 

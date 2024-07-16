@@ -88,19 +88,16 @@ const getAllUsers = async (req, res) => {
   } catch (error) {
     res.status(404).jsonjson({ message: "Error fetching students: " + error.message });
   }
-
- 
-  
 };
 
-// const getAllUsers = async (req, res) => {
-//   try {
-//     const Users = await User.find();
-//     res.status(200).json(Users);
-//   } catch (error) {
-//     res.status(404).json({ message: error.message });
-//   }
-// };
+const getAllUsersForDashboard = async (req, res) => {
+  try {
+    const Users = await User.find();
+    res.status(200).json(Users);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
 
 
 
@@ -154,6 +151,10 @@ const createUser = async (req, res) => {
     highschool,
     skills,
   } = req.body;
+
+  // const parsedCourses = JSON.parse(courses);
+  // const parsedUni = JSON.parse(university);
+  // const parsedHs = JSON.parse(highschool);
 
   const image = req.file ? req.file.filename : "default.jpg";
 
@@ -211,16 +212,25 @@ const updateUser = async (req, res) => {
     skills, // Skills should be an array of skill names
   } = req.body;
 
+  const parsedCourses = JSON.parse(courses);
+  const parsedUni = JSON.parse(university);
+  const parsedHs = JSON.parse(highschool);
+  const parsedSkills = JSON.parse(skills);
+
   const updatedData = {
     username,
     fullname,
     email,
     role,
     about,
-    courses: Array.isArray(courses) ? courses : [courses],
-    university: Array.isArray(university) ? university : [university],
-    highschool: Array.isArray(highschool) ? highschool : [highschool],
-    skills: [], // Initialize an empty array for skills
+    courses: parsedCourses,
+    university: parsedUni,
+    highschool: parsedHs,
+
+    // courses,
+    // university,
+    // highschool,
+    skills: parsedSkills, // Initialize an empty array for skills
   };
 
   if (password) {
@@ -229,19 +239,19 @@ const updateUser = async (req, res) => {
     updatedData.password = hashedPassword;
   }
 
-  // Convert skill names to ObjectIds
-  if (Array.isArray(skills)) {
-    try {
-      const skillIds = await Skills.find({ skillName: { $in: skills } }).select(
-        "_id"
-      );
-      updatedData.skills = skillIds.map((skill) => skill._id);
-    } catch (error) {
-      return res
-        .status(400)
-        .json({ message: "Error fetching skill IDs", error: error.message });
-    }
-  }
+  // // Convert skill names to ObjectIds
+  // if (skills) {
+  //   try {
+  //     const skillIds = await Skills.find({ skillName: { $in: parsedSkills } }).select(
+  //       "_id"
+  //     );
+  //     updatedData.skills = skillIds.map((skill) => skill._id);
+  //   } catch (error) {
+  //     return res
+  //       .status(400)
+  //       .json({ message: "Error fetching skill IDs", error: error.message });
+  //   }
+  // }
 
   if (req.file) {
     updatedData.image = req.file.filename;
@@ -277,4 +287,5 @@ module.exports = {
   getcustomlimitusers,
   loginUser,
   upload,
+  getAllUsersForDashboard
 };
