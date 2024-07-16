@@ -4,28 +4,31 @@ import InternshipCard from "../../components/Internships/InternshipCard.js";
 import Footer from "../Footer/Footer.js";
 import NavBar from "../NavBar/NavBar.js";
 import api from "../../api.js";
-import { useHistory } from "react-router-dom";
-import sorticon from '../../imgsrc/sorticon.svg';
-import categories from '../../imgsrc/categories.svg';
+import sorticon from "../../imgsrc/sorticon.svg";
+import categories from "../../imgsrc/categories.svg";
 
 function Internships() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterType, setFilterType] = useState("all");
   const [sortOrder, setSortOrder] = useState("newest");
-  const history = useHistory();
   const [internships, setInternships] = useState([]);
   const [filter, setFilter] = useState({
     category: "all",
   });
+  const [total, setTotal] = useState(0);
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState(1);
 
   const getAllInternships = async () => {
     try {
-      const response = await api.get("/internships");
-      //Qikjo i qet internshipet prej ma t'res nmomentin qe kyqum nfaqe
-      const sortedInternships = response.data.sort(
+      const response = await api.get("/internships", {
+        params: { ...filter, page, limit, sortOrder },
+      });
+      const sortedInternships = response.data.internships.sort(
         (a, b) => new Date(b.registeredDate) - new Date(a.registeredDate)
       );
       setInternships(sortedInternships);
+      setTotal(response.data.total);
     } catch (err) {
       console.log("You need to be logged in first!");
     }
@@ -37,17 +40,20 @@ function Internships() {
     //   return;
     // }
     getAllInternships();
-  }, [history]);
+  }, [filter, sortOrder, page, limit]);
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
-  //qikjo perdoret te filtrimi
+
   const handleFilterChange = (event) => {
     setFilterType(event.target.value);
   };
 
-  //qikjo perdoret te sortimi
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+  };
+
   const handleSortChange = (event) => {
     setSortOrder(event.target.value);
   };
@@ -64,18 +70,14 @@ function Internships() {
         .includes(searchQuery.toLowerCase());
       const matchesFilterType =
         filterType === "all" ||
-        //qikjo na mundeson nese filtertype osht part-time dhe internship fillon me p
         (filterType === "part-time" &&
           internship.type.toLowerCase().startsWith("p")) ||
-        //qikjo na mundeson nese filtertype osht full-time dhe internship fillon me f
         (filterType === "full-time" &&
           internship.type.toLowerCase().startsWith("f"));
-      // qikjo na mundeson filtrimin, nese o all i merr krejt ose kategoria e internshipit osht e njejt me kategorin e filterit
       const matchesCategory =
         filter.category === "all" || internship.category === filter.category;
       return matchesSearchQuery && matchesFilterType && matchesCategory;
     })
-    //qitu bohet sortimi
     .sort((a, b) =>
       sortOrder === "newest"
         ? new Date(b.registeredDate) - new Date(a.registeredDate)
@@ -86,8 +88,6 @@ function Internships() {
     <div>
       <NavBar />
       <div className="internship_body">
-        {/* <h1 style={{textAlign:"center", marginTop: "2rem"}}>Got Talent?<br /> Meet our Opportunity</h1>
-        <h5 style={{textAlign: "center"}}>Find Jobs, Employment & Career Opportunities. Some of the companies <br /> we've helped recruit excellent applicants over the years.</h5> */}
         <h2 className="fontregular" style={{ marginTop: "5%" }}>
           Search Internships
         </h2>
@@ -117,7 +117,6 @@ function Internships() {
             value={filter.category}
             onChange={handleFilterrChange}
             className="filter-select"
-            aria-placeholder="selectOne"
           >
             <option value="all">All Categories</option>
             <option value="Front-End Developer">Front-End Developer</option>
@@ -150,6 +149,17 @@ function Internships() {
         </div>
         {filteredInternships.map((internship) => (
           <InternshipCard key={internship._id} {...internship} />
+        ))}
+      </div>
+      <div className="internship-pagination">
+        {Array.from({ length: Math.ceil(total / limit) }, (_, i) => (
+          <button
+            key={i}
+            onClick={() => handlePageChange(i + 1)}
+            className={page === i + 1 ? "active" : ""}
+          >
+            {i + 1}
+          </button>
         ))}
       </div>
       <Footer />
