@@ -38,7 +38,7 @@ const Login = () => {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.username);
       setToken(response.data.token);
-
+      history.push('/');
       Toast.fire({
         icon: "success",
         title: "Logged in successfully",

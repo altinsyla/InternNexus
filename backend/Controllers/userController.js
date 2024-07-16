@@ -1,7 +1,5 @@
 const User = require("../Models/userModel");
-const Skills = require("../Models/skillsModel");
 const jwt = require("jsonwebtoken");
-const { model } = require("mongoose");
 const multer = require("multer");
 const path = require("path");
 const bcrypt = require("bcryptjs");
@@ -25,27 +23,6 @@ const upload = multer({
 });
 
 
-
-// const uploadProfileImage = async (req, res) => {
-//   const username = req.params.username;
-//   try {
-//     const user = await User.findOne({ username: username });
-//     if (!user) {
-//       return res.status(404).json({ message: "User not found" });
-//     }
-
-//     if (req.file) {
-//       user.profileImage = req.file.filename;
-//       await user.save();
-//       res.status(200).json({ message: "Profile image uploaded successfully", profileImage: user.profileImage });
-//     } else {
-//       res.status(400).json({ message: "No file uploaded" });
-//     }
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
-
 const getSingleUser = async (req, res) => {
   const username = req.params.username;
   try {
@@ -57,7 +34,7 @@ const getSingleUser = async (req, res) => {
 };
 
 const getAllUsers = async (req, res) => {
-  const { username, fullname, category, page = 1, limit = 50, sortOrder } = req.query;
+  const { username, fullname, page = 1, limit = 50, sortOrder } = req.query;
 
 
   let query = {};
@@ -99,8 +76,6 @@ const getAllUsersForDashboard = async (req, res) => {
   }
 };
 
-
-
 const getcustomlimitusers = async (req, res) => {
   let limit = req.params.limit;
   try {
@@ -119,7 +94,6 @@ const loginUser = async (req, res) => {
 
     const username = user.username;
     if (isvalid) {
-      // username edhe pw correct
       const token = jwt.sign(
         { id: user._id },
         process.env.JWT_SECRET || "qelsi",
@@ -226,7 +200,6 @@ const updateUser = async (req, res) => {
     courses: parsedCourses,
     university: parsedUni,
     highschool: parsedHs,
-
     // courses,
     // university,
     // highschool,
@@ -239,7 +212,6 @@ const updateUser = async (req, res) => {
     updatedData.password = hashedPassword;
   }
 
-  // // Convert skill names to ObjectIds
   // if (skills) {
   //   try {
   //     const skillIds = await Skills.find({ skillName: { $in: parsedSkills } }).select(

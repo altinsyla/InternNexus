@@ -1,7 +1,7 @@
 const express = require("express");
 const userController = require("../Controllers/userController");
 const tokenVerification = require("../verifyToken");
-const upload = userController.upload; // Correctly import the upload middleware
+const upload = userController.upload; 
 const router = express.Router();
 
 router.get("/", userController.getAllUsers);
