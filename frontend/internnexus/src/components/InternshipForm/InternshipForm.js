@@ -5,6 +5,7 @@ import Footer from "../Footer/Footer";
 import { useHistory, useParams } from "react-router-dom";
 import api from "../../../src/api";
 import Swal from "sweetalert2";
+import deletebutton from "../../imgsrc/deletebuttonblack.svg";
 
 function InternshipForm() {
   const history = useHistory();
@@ -20,7 +21,10 @@ function InternshipForm() {
     offers: "",
     category: "",
     salary: "",
+    topics: [],
   });
+  const [topics, setTopics] = useState([]);
+  const [currentTopic, setCurrentTopic] = useState("");
 
   useEffect(() => {
     if (id) {
@@ -39,6 +43,9 @@ function InternshipForm() {
             category: response.data.category,
             salary: response.data.salary,
           });
+          setTopics(
+            Array.isArray(response.data.topics) ? response.data.topics : []
+          );
         } catch (error) {
           console.error("Error fetching internship data", error);
         }
@@ -71,6 +78,9 @@ function InternshipForm() {
     formData.append("offers", internship.offers);
     formData.append("category", internship.category);
     formData.append("salary", internship.salary);
+    topics.forEach((topic) => {
+      formData.append("topics[]", topic);
+    });
 
     try {
       if (id) {
@@ -108,6 +118,24 @@ function InternshipForm() {
   const handleCancel = () => {
     history.push("/home");
   };
+  const handleTopicChange = (e) => {
+    setCurrentTopic(e.target.value);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (currentTopic.trim()) {
+        setTopics([...topics, currentTopic.trim()]);
+        setCurrentTopic("");
+      }
+    }
+  };
+
+  const removeTopic = (indexToRemove) => {
+    setTopics(topics.filter((_, index) => index !== indexToRemove));
+  };
+
   const formatList = (input) => {
     if (input.trim() === "") return "";
     const listItems = input.split("\n");
@@ -252,6 +280,32 @@ function InternshipForm() {
             />
             <div className="formatted-offers">
               {formatList(internship.offers)}
+            </div>
+            <div className="form-group">
+              <label className="internshipform-labels">Topics</label>
+              <input
+                type="text"
+                className="internshipform-inputs"
+                placeholder="Type a topic and press Enter"
+                value={currentTopic}
+                onChange={handleTopicChange}
+                onKeyDown={handleKeyDown}
+              />
+              <div className="added-topics">
+                {Array.isArray(topics) &&
+                  topics.map((topic, index) => (
+                    <div key={index} className="topic-item">
+                      {topic}
+                      <button
+                        type="button"
+                        className="remove-topic"
+                        onClick={() => removeTopic(index)}
+                      >
+                        <img src={deletebutton} className="delete-topic"></img>
+                      </button>
+                    </div>
+                  ))}
+              </div>
             </div>
           </div>
           <div className="form-buttons">

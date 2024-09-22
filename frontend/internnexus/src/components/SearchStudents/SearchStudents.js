@@ -14,7 +14,7 @@ const SearchStudents = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [sortOrder, setSortOrder] = useState("newest");
   const [total, setTotal] = useState(0);
-  const [limit, setLimit] = useState(50);
+  const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
 
   const getUsers = async () => {

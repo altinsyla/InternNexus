@@ -16,7 +16,6 @@ const storage = multer.diskStorage({
     );
   },
 });
-// Create the multer upload instance
 
 const upload = multer({
   storage: storage,
@@ -34,7 +33,7 @@ const getSingleUser = async (req, res) => {
 };
 
 const getAllUsers = async (req, res) => {
-  const { username, fullname, page = 1, limit = 50, sortOrder } = req.query;
+  const { username, fullname, page = 1, limit = 10, sortOrder } = req.query;
 
 
   let query = {};

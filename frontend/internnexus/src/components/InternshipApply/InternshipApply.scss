@@ -1,10 +1,8 @@
 @import "../../styles/_globals.scss";
 
-
 * {
   margin: 0;
   padding: 0;
-
 }
 .applymainContainer {
   width: 100%;
@@ -39,7 +37,7 @@
   transition: transform 0.3s, background-color 0.3s, color 0.2s;
   color: white;
 }
-.specifiations-details{
+.specifiations-details {
   width: 150px;
   height: 30px;
   background-color: $clr_graywhite;
@@ -47,16 +45,39 @@
   padding: 5px 10px;
   text-align: center;
 }
-.specifiations-div{
+.specifiations-div {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   margin-bottom: 2%;
 }
-.title-specs{
+
+.topics-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
   text-align: center;
+  gap: 50px;
+  font-family: poppins_regular;
+  font-size: 1.1rem;
 }
+
+.int-topics {
+  display: flex;
+  width: 130px;
+  flex-direction: column;
+  background-color: lightgray;
+  border-radius: 30px;
+  padding: 5px 10px;
+}
+
+.applyCard {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5%;
+}
+
 .btn-delete:hover {
   transform: translateY(-2px);
   background-color: #d61d1d;
@@ -64,7 +85,7 @@
 }
 .btn-apply:hover {
   transform: translateY(-2px);
-  background-color: #DCD6D6;
+  background-color: #dcd6d6;
   color: black;
 }
 
@@ -73,7 +94,7 @@
   flex-direction: row;
   margin-top: 5%;
 }
-.apply-icons{
+.apply-icons {
   width: 20px;
   height: 20px;
 }
@@ -106,8 +127,8 @@
   background-color: #fef8f8;
   padding: 3% 3%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  // align-items: center;
 }
+
 .int-requirements {
   align-self: center;
   font-family: poppins_regular;
@@ -119,13 +140,11 @@
   display: flex;
   justify-content: space-evenly;
 }
-.svg-icons{
+.svg-icons {
   width: 25px;
   height: 25px;
   margin-right: 10px;
 }
-
-
 
 @media (max-width: 480px) {
   .applyCard {
@@ -157,7 +176,7 @@
     align-items: center;
     gap: 5px;
   }
-  .specifiations-div{
+  .specifiations-div {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -241,7 +260,7 @@
     align-items: center;
     gap: 10px;
   }
-  .specifiations-div{
+  .specifiations-div {
     display: flex;
     flex-direction: column;
     width: 100%;

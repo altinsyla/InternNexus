@@ -99,7 +99,7 @@ function Internships() {
           className="internshipsearchInput"
         />
         <div className="filter-sort-container">
-          <p style={{ fontFamily: "poppins_bold", marginTop: "3px" }}>
+          <p className='filterby-int'>
             Filter by:
           </p>
           <select

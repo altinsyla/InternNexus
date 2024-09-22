@@ -115,6 +115,11 @@
   color: white;
 }
 
+.filterby-int{
+  font-family: poppins_bold;
+  margin-top: 3px;
+}
+
 @media only screen and (max-width: 1024px) {
   .internship_body {
     width: 90%;
@@ -184,5 +189,8 @@
   .filter-select option {
     width: 20px;
     font-size: 0.5rem;
+  }
+  .filterby-int{
+    font-size: 0.8rem;
   }
 }

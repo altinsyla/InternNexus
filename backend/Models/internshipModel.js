@@ -46,7 +46,10 @@ const Internship = new Schema({
   salary: {
     type: String,
     required: true,
-  }
+  },
+  topics: {
+    type: [String],
+  },
 });
 
 module.exports = mongoose.model("internshipModel", Internship);

@@ -8,9 +8,9 @@ import Swal from "sweetalert2";
 import { IoTimeOutline, IoLocationOutline } from "react-icons/io5";
 import { LiaBusinessTimeSolid } from "react-icons/lia";
 import { MdEuroSymbol } from "react-icons/md";
-import deletebutton from '../../imgsrc/deletebutton.svg';
-import editbutton from '../../imgsrc/editbuttonn.svg';
-import applybutton from '../../imgsrc/applybutton.svg';
+import deletebutton from "../../imgsrc/deletebutton.svg";
+import editbutton from "../../imgsrc/editbuttonn.svg";
+import applybutton from "../../imgsrc/applybutton.svg";
 
 function InternshipApply() {
   const { id } = useParams();
@@ -34,6 +34,7 @@ function InternshipApply() {
     const fetchInternship = async () => {
       try {
         const response = await api.get(`/internships/${id}`);
+        console.log("Fetched Internship:", response.data);
         setInternship(response.data);
       } catch (err) {
         console.error("Failed to fetch internship details", err);
@@ -139,14 +140,14 @@ function InternshipApply() {
                     Edit
                   </button>
                   <button className="btn-delete" onClick={deleteInternship}>
-                  <img src={deletebutton} className="svg-icons"></img>
+                    <img src={deletebutton} className="svg-icons"></img>
                     Delete
                   </button>
                 </>
               ) : (
                 currentUser.role === 1 && (
                   <button className="btn-apply" onClick={handleApply}>
-                     <img src={applybutton} className="svg-icons"></img>
+                    <img src={applybutton} className="svg-icons"></img>
                     Apply Now
                   </button>
                 )
@@ -161,6 +162,13 @@ function InternshipApply() {
         <div className="intapplydescription">
           <p className="int-requirements">What we offer</p>
           <ul>{formatList(internship.offers)}</ul>
+        </div>
+        <div className="topics-container">
+            {internship.topics.map((topic, index) => (
+              <p key={index} className="int-topics">
+                {topic}
+              </p>
+            ))}
         </div>
       </div>
       <Footer />

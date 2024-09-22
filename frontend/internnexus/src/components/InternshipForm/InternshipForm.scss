@@ -10,7 +10,7 @@
   max-width: 40%;
   margin: 2% auto 3%;
   padding: 20px;
-  background-color:  #FEF8F8;
+  background-color: #fef8f8;
   border-radius: 8px;
   box-shadow: 1px 1px #555;
   font-family: poppins_regular;
@@ -71,7 +71,6 @@
   font-size: 1rem;
 }
 
-
 .create-internship {
   background-color: #333;
   color: #fff;
@@ -81,13 +80,33 @@
   font-size: 1rem;
 }
 
-
 .create-internship:hover,
 .cancel-internship:hover {
   transform: scale(1.1);
 }
 
-.formatted-offers, .formatted-requirements{
+.formatted-offers,
+.formatted-requirements {
+  font-size: 0.9rem;
+}
+
+.remove-topic {
+  margin-top: 0.5rem;
+  width: 10%;
+  margin-left: 10px;
+  border-radius: 5px;
+  border: none;
+  justify-items: center;
+  background-color: #fef8f8;
+}
+
+.delete-topic {
+  width: 20px;
+  height: 20px;
+}
+.topic-item {
+  margin-top: 0.5rem;
+  margin-left: 10px;
   font-size: 0.9rem;
 }
 
@@ -106,7 +125,7 @@
   width: 30%;
   font-size: 1rem;
 }
-.cancel-internship{
+.cancel-internship {
   width: 30%;
   font-size: 1rem;
 }
@@ -124,7 +143,7 @@
     width: 40%;
     font-size: 0.9rem;
   }
-  .cancel-internship{
+  .cancel-internship {
     width: 40%;
     font-size: 0.9rem;
   }
@@ -164,4 +183,3 @@
     font-size: 0.8rem;
   }
 }
-
