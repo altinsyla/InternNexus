@@ -1,15 +1,15 @@
-import "./Home.scss";
-import NavBar from "../NavBar/NavBar";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Studentcard from "./Card";
 import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
-import Footer from "../../components/Footer/Footer";
 import { Link, useHistory } from "react-router-dom";
-import api from "../../api.js";
 import Swal from "sweetalert2";
+import api from "../../api.js";
+import Footer from "../../components/Footer/Footer";
 import "../../styles/_globals.scss";
 import useGlobalFunctions from "../globalFunctions.js";
+import NavBar from "../NavBar/NavBar";
+import Studentcard from "./Card";
+import "./Home.scss";
 
 function Home() {
   const history = useHistory();
@@ -140,7 +140,7 @@ function Home() {
                 </button>
                 <Link
                   to="/internships"
-                  className="linknodecoration button_findintern"
+                  className="button_findintern"
                 >
                   Find an Internship
                 </Link>
