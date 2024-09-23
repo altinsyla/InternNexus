@@ -24,7 +24,6 @@ const NavBar = () => {
     }
   };
 
-
   useEffect(() => {
     if (localStorage.getItem("token")) {
       getcurrentuser();
@@ -37,6 +36,18 @@ const NavBar = () => {
         <img src={require("./internnexus.png")} className="navbarlogo" />
       </Link>
       <div className="navbartabs">
+        {currentUser.role == 3 ? (
+          <div>
+            <Link
+              to="/admindashboard"
+              className="navbarlinks navbarsimplelinks"
+            >
+              DASHBOARD
+            </Link>
+          </div>
+        ) : (
+          <></>
+        )}
         <div>
           <Link to="/Internships" className={`navbarlinks navbarsimplelinks`}>
             INTERNSHIPS

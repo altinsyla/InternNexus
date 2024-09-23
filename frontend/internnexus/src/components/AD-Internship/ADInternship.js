@@ -30,18 +30,12 @@ const ADInternship = () => {
   const [loading, setLoading] = useState(true);
   const history = useHistory();
 
-  useEffect(() => {
-    getAllInternships();
-    if (isEditing && id) {
-      getSingleInternship(id);
-    }
-  }, [id, isEditing]);
-
   const getAllInternships = async () => {
     try {
       const response = await api.get("/internships");
       setInternships(response.data.internships);
       setLoading(false);
+      console.log(response.data.internships)
     } catch (err) {
       console.log("You need to be logged in first!");
       setLoading(false);
@@ -70,6 +64,13 @@ const ADInternship = () => {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    getAllInternships();
+    if (isEditing && id) {
+      getSingleInternship(id);
+    }
+  }, [id, isEditing]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -448,14 +449,14 @@ const ADInternship = () => {
                   type="button"
                   className="btn btn-danger"
                   onClick={handleCancel}
-                  style={{width: "150px"}}
+                  style={{ width: "150px" }}
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   className="btn btn-primary"
-                  style={{width: "150px"}}
+                  style={{ width: "150px" }}
                 >
                   {isEditing ? "Save Changes" : "Create Internship"}
                 </button>
