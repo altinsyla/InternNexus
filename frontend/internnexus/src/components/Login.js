@@ -40,10 +40,10 @@ const Login = () => {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.username);
       setToken(response.data.token);
-  
+      console.log(response.data.role);
       if (response.data.role === 3) {
         history.push('/admindashboard');
-      } else if (response.data.role === 1 || response.data.role === 2) {
+      } else{
         history.push('/');
       }
 
