@@ -61,7 +61,7 @@ function Students() {
 
             <div className="studentbannerrightside">
               <img
-                src={`http://localhost:5001/userimages/${user.image}`}
+                src={`https://internnexus.onrender.com/userimages/${user.image}`}
                 alt="studentPhoto"
                 className="studentPhoto"
               />

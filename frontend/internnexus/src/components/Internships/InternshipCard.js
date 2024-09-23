@@ -11,7 +11,7 @@ function InternshipCard({ _id, title, type, location, image, registeredDate, cat
 
   return (
     <div className="internshipcard_body" onClick={handleInternship}>
-      <img src={`http://localhost:5001/images/${image}`} alt="Company Logo" className="company_logo" />
+      <img src={`https://internnexus.onrender.com/images/${image}`} alt="Company Logo" className="company_logo" />
       <div className="positionInfo">
         <p className="companyName">{title}</p>
         <p className="categoryType">{category}</p>

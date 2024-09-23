@@ -75,7 +75,7 @@ const NavBar = () => {
               >
                 {currentUser?.username}{" "}
                 <img
-                  src={`http://localhost:5001/userimages/${currentUser?.image}`}
+                  src={`https://internnexus.onrender.com/userimages/${currentUser?.image}`}
                   alt="studentPhoto"
                   style={{
                     width: "20px",

@@ -49,7 +49,7 @@ function StudentCard({ username }) {
 
   return (
     <div className="studentcard-body container" onClick={handleLink}>
-      <img src={`http://localhost:5001/userimages/${user.image}`} alt="User Profile" />
+      <img src={`https://internnexus.onrender.com/userimages/${user.image}`} alt="User Profile" />
       <div className="student-card-content">
         <h3 className="fullName">{user.fullname}</h3>
         <h6 className="userName">{user.username}</h6>

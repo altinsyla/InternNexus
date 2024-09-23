@@ -102,7 +102,7 @@ function InternshipApply() {
       <div className="applymainContainer">
         <div className="applyCard">
           <img
-            src={`http://localhost:5001/images/${internship.image}`}
+            src={`https://internnexus.onrender.com/images/${internship.image}`}
             alt="Company Logo"
             className="applycompanyLogo"
           />

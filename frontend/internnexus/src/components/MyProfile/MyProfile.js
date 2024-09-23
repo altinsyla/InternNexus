@@ -221,7 +221,7 @@ function MyProfile() {
           style={{ textAlign: "center" }}
         >
           <img
-            src={`http://localhost:5001/userimages/${currentUser.image}`}
+            src={`https://internnexus.onrender.com/userimages/${currentUser.image}`}
             alt="studentPhoto"
             className="imgprofilephoto"
           />
@@ -650,7 +650,7 @@ function ModalCard({ id }) {
     <Card style={{ width: "18rem" }}>
       <Card.Img
         variant="top"
-        src={`http://localhost:5001/images/${internship.image}`}
+        src={`https://internnexus.onrender.com/images/${internship.image}`}
         id="internshipImage"
       />
       <Card.Body>
