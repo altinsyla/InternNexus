@@ -33,6 +33,16 @@ const getSingleInternshipApplication = async (req, res) => {
   }
 };
 
+const getUserApplicationsByUsername = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const internshipApplication = await InternshipApplication.find({ username: id});
+    res.status(200).json(internshipApplication);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 const createInternshipApplication = async (req, res) => {
   const { internshipID, username, additionalMessage } = req.body;
   const cv = req.file ? req.file.filename : "";
@@ -99,5 +109,6 @@ module.exports = {
   createInternshipApplication,
   updateInternshipApplication,
   deleteInternshipApplication,
+  getUserApplicationsByUsername,
   upload,
 };

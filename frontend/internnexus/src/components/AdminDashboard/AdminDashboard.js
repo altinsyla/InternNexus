@@ -34,6 +34,21 @@ const AdminDashboard = () => {
     }
   };
 
+  const getcurrentUser = async () => {
+    try {
+      const response = await api.get(
+        "/user/" + localStorage.getItem("username")
+      );
+      setcurrentUser(response.data);
+      if(response.data.role != 3){
+        console.log("Not an admin!");
+        return;
+      }
+    } catch (err) {
+      console.log("Error getting custom users");
+    }
+  };
+
   const onChange = (e) => {
     const { name, value } = e.target;
     setSingleUser({ ...singleUser, [name]: value });
@@ -41,6 +56,8 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     getAllUsers();
+    getcurrentUser();
+
   }, []);
 
   const onSubmit = async (e) => {

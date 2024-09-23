@@ -34,7 +34,6 @@ function InternshipApply() {
     const fetchInternship = async () => {
       try {
         const response = await api.get(`/internships/${id}`);
-        console.log("Fetched Internship:", response.data);
         setInternship(response.data);
       } catch (err) {
         console.error("Failed to fetch internship details", err);

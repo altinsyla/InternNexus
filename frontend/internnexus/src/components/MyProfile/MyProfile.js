@@ -7,6 +7,9 @@ import "../MyProfile/MyProfile.scss";
 import Swal from "sweetalert2";
 import Dropdown from "react-bootstrap/Dropdown";
 import useGlobalFunctions from "../globalFunctions.js";
+import Modal from "react-bootstrap/Modal";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
 
 function MyProfile() {
   const { getAllSkills } = useGlobalFunctions();
@@ -19,7 +22,11 @@ function MyProfile() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [show, setShow] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [imagePreviewUrl, setimagePreviewUrl] = useState("");
+
+  const [internships, setinternships] = useState([]);
+  const [applications, setapplications] = useState([]);
 
   const getcurrentUser = async () => {
     try {
@@ -30,6 +37,30 @@ function MyProfile() {
       setnewSkills(response.data.skills);
     } catch (err) {
       console.log("Error getting custom users");
+    }
+  };
+
+  const getAllUserApplications = async () => {
+    try {
+      const response = await api.get(
+        "/internshipapplication/user/" + localStorage.getItem("username")
+      );
+      setapplications(response.data);
+      // console.log(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getAllHrInternships = async () => {
+    try {
+      const response = await api.get(
+        "/internships/user/" + localStorage.getItem("username")
+      );
+      setinternships(response.data);
+      // console.log(response.data);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -46,6 +77,12 @@ function MyProfile() {
     if (!localStorage.getItem("token")) {
       history.push("/login");
     }
+
+    // if (currentUser.role == 1) {
+      getAllUserApplications();
+    // } else {
+      getAllHrInternships();
+    // }
   }, [username]);
 
   const handleFileChange = (e) => {
@@ -63,7 +100,7 @@ function MyProfile() {
     e.preventDefault();
 
     // let uniqueSkills = [...new Set(newSkills)];
-    
+
     if (!newSkills.includes(skillName)) {
       setnewSkills([...newSkills, skillName]);
     }
@@ -188,9 +225,21 @@ function MyProfile() {
             alt="studentPhoto"
             className="imgprofilephoto"
           />
-          <div className="editing-buttons" style={{ marginTop: "5px" }}>
+          <div
+            className="editing-buttons"
+            style={{
+              marginTop: "5px",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
             <button onClick={() => setShowFilterModal(true)}>
               Edit Profile <i className="bi bi-pencil-square"></i>
+            </button>
+            <button onClick={() => setShowModal(true)}>
+              {currentUser.role == 1
+                ? "Get My Applications"
+                : "Get My Internships"}
             </button>
           </div>
         </div>
@@ -501,7 +550,9 @@ function MyProfile() {
                         className="bi bi-trash dashboardActionIcons"
                         onClick={(e) => {
                           setnewSkills(
-                            newSkills.filter((skills) => skills._id !== skill._id)
+                            newSkills.filter(
+                              (skills) => skills._id !== skill._id
+                            )
                           );
                         }}
                       ></i>
@@ -544,9 +595,90 @@ function MyProfile() {
           </form>
         </div>
       )}
+
+      {
+        <Modal
+          show={showModal}
+          fullscreen={true}
+          onHide={() => setShowModal(false)}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>
+              {currentUser.role == 1 ? "User Applications" : "User Internships"}
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body id="internshipContainer">
+            {}
+            {currentUser.role == 1
+              ? applications.map((skill) => (
+                  <>
+                    <ModalCard key={skill._id} id={skill.internshipID} />
+                  </>
+                ))
+              : internships.map((skill) => (
+                  <>
+                    <ModalCard key={skill._id} id={skill._id} />
+                  </>
+                ))}
+          </Modal.Body>
+        </Modal>
+      }
       <Footer />
     </div>
   );
 }
+
+function ModalCard({ id }) {
+  const history = useHistory();
+  const [internship, setinternship] = useState([]);
+
+  const getInternship = async () => {
+    try {
+      const response = await api.get("/internships/" + id);
+      setinternship(response.data);
+    } catch (err) {
+      console.log("Error getting custom users");
+    }
+  };
+
+  useEffect(() => {
+    getInternship();
+
+  }, []);
+
+  return (
+    <Card style={{ width: "18rem" }}>
+      <Card.Img
+        variant="top"
+        src={`http://localhost:5001/images/${internship.image}`}
+        id="internshipImage"
+      />
+      <Card.Body>
+        <hr></hr>
+        <Card.Title id="internshipTitle">{internship.title}</Card.Title>
+        {/* <Card.Text>{internship.topics}</Card.Text> */}
+      </Card.Body>
+      <ListGroup className="list-group-flush">
+        <ListGroup.Item>Location: {internship.location}</ListGroup.Item>
+        <ListGroup.Item>
+          Internship Created On: {new Date(internship.registeredDate).toLocaleDateString()}
+        </ListGroup.Item>
+        <ListGroup.Item>Type : {internship.type}</ListGroup.Item>
+      </ListGroup>
+      <Card.Body>
+        <Card.Link
+          onClick={() => {
+            history.push(`/apply/${internship._id}`);
+          }}
+          id="internshipLink"
+        >
+          Go to Internship Post
+        </Card.Link>
+      </Card.Body>
+    </Card>
+  );
+}
+
+
 
 export default MyProfile;

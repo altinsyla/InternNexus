@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const InternshipApplication = new Schema({
   internshipID: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Internship',
+    ref: 'internshipModel',
     required: true,
   },
   username: {

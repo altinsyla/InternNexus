@@ -73,8 +73,20 @@
   font-size: 18px;
 }
 
+.myprofilebannerrightside{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .educationstable td {
   font-family: poppins_thin;
+}
+
+.editing-buttons{
+  text-align: center;
+  gap: 5px;
 }
 
 .editing-buttons button:nth-of-type(1) {
@@ -327,4 +339,72 @@
   font-size: 0.7rem;
   margin: 0;
   margin-left: 10px;
+}
+
+
+.modalBody{
+  background-color: rgb(233, 232, 232);
+
+  border: 1px solid black;
+  border-radius: 10px;
+
+  height: 5rem;
+}
+
+#internshipImage{
+
+  width: 80%;
+  height: 100%;
+  object-fit: contain;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  margin-top: 5%;
+}
+
+#internshipTitle{
+  height: 4rem;
+  overflow-y: auto;
+}
+
+#internshipTitle::-webkit-scrollbar {
+  height: 12px;
+  width: 5px;
+}
+#internshipTitle::-webkit-scrollbar-thumb,
+#internshipTitle::-webkit-scrollbar-track {
+  border-radius: 92px;
+}
+#internshipTitle::-webkit-scrollbar-thumb {
+  background: $clr-caramel;
+}
+#internshipTitle::-webkit-scrollbar-track {
+  background: $clr_graywhite;
+}
+
+#internshipLink{
+  text-decoration: none;
+  color: black;
+  background-color: $clr-caramel;
+  border-radius: 5px;
+  padding: 2px 5px;
+
+  
+  transition: transform 0.3s, background-color 0.3s, color 0.2s;
+
+}
+#internshipLink:hover{
+  cursor: pointer;
+  background-color: $clr_buttontheme;
+  color: white;
+}
+
+#internshipContainer{
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 1em;
+  justify-content: center;
 }

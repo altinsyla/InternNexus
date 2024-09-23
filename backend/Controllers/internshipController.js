@@ -57,6 +57,20 @@ const getSingleInternship = async (req, res) => {
   }
 };
 
+const getHrInternships = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const internship = await Internship.find({username: id});
+    if (!internship) {
+      return res.status(404).json({ error: "Internship not found" });
+    }
+    res.json(internship);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error: " + err.message });
+  }
+};
+
 const createInternship = async (req, res) => {
   const {
     username,
@@ -152,4 +166,5 @@ module.exports = {
   updateInternship,
   deleteInternship,
   upload,
+  getHrInternships
 };

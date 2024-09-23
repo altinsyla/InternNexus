@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.get("/", internshipController.getAllInternships);
 router.get("/:id", internshipController.getSingleInternship);
+router.get("/user/:id", internshipController.getHrInternships);
 router.post(
   "/",
   internshipController.upload.single("image"),
