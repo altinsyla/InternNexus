@@ -22,8 +22,8 @@ const ADInternship = () => {
     salary: "",
     topics: [],
   });
-  const [topics, setTopics] = useState([]); // Topics state
-  const [currentTopic, setCurrentTopic] = useState(""); // Input for new topic
+  const [topics, setTopics] = useState([]);
+  const [currentTopic, setCurrentTopic] = useState("");
   const [show, setShow] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const { id } = useParams();

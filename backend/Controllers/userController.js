@@ -92,17 +92,18 @@ const loginUser = async (req, res) => {
     const isvalid = await user.isValidPassword(password);
 
     const username = user.username;
+    const role = user.role;
+
     if (isvalid) {
       const token = jwt.sign(
         { id: user._id },
         process.env.JWT_SECRET || "qelsi",
         {
           expiresIn: `${3600 * 1000}`, // 1 hour
-          // expiresIn: `${5000}`, // 5 seconds
         }
       );
 
-      res.json({ token, username }); //kthehet tokeni si response
+      res.json({ token, username, role });
     } else {
       res.status(400).json({ message: "Invalid credentials" });
     }
@@ -136,7 +137,6 @@ const createUser = async (req, res) => {
   }
 
   try {
-    // Check for duplicate userID
     const existingUserUsername = await User.findOne({ username });
     const existingUserEmail = await User.findOne({ email });
 

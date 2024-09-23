@@ -32,18 +32,27 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     try {
       const response = await api.post("/user/login", { email, password });
+      
+      // Qitu i rujm tokenin, usernamen edhe rolin nlocalstorage
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.username);
       setToken(response.data.token);
-      history.push('/');
+  
+      if (response.data.role === 3) {
+        history.push('/admindashboard');
+      } else if (response.data.role === 1 || response.data.role === 2) {
+        history.push('/');
+      }
+
       Toast.fire({
         icon: "success",
         title: "Logged in successfully",
         timer: 1000,
       });
+      
     } catch (error) {
       Swal.fire({
         title: "Email or password is incorrect!",
@@ -52,6 +61,7 @@ const Login = () => {
       console.log(error);
     }
   };
+  
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
