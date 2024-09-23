@@ -1,0 +1,41 @@
+{
+  "files": {
+    "main.css": "/InternNexus/static/css/main.9d28bd85.css",
+    "main.js": "/InternNexus/static/js/main.abad54b8.js",
+    "static/js/453.d18cdafe.chunk.js": "/InternNexus/static/js/453.d18cdafe.chunk.js",
+    "static/media/AltinSyla.jpg": "/InternNexus/static/media/AltinSyla.84a484db56ff91cb9855.jpg",
+    "static/media/FlamurIsa.jpg": "/InternNexus/static/media/FlamurIsa.4169d2028515c52aca9e.jpg",
+    "static/media/HakifKadriu.jpg": "/InternNexus/static/media/HakifKadriu.d13e15cc61d145fe7c5f.jpg",
+    "static/media/ict.png": "/InternNexus/static/media/ict.a3f280a9d88a83d82ff1.png",
+    "static/media/Poppins-Light.ttf": "/InternNexus/static/media/Poppins-Light.7641a0f76ca9ef6c252c.ttf",
+    "static/media/blerandstavileci.jpg": "/InternNexus/static/media/blerandstavileci.ba4260b8bca1e427f8cd.jpg",
+    "static/media/Poppins-Regular.ttf": "/InternNexus/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
+    "static/media/Poppins-Medium.ttf": "/InternNexus/static/media/Poppins-Medium.673ed42382ab264e0bf5.ttf",
+    "static/media/Poppins-Bold.ttf": "/InternNexus/static/media/Poppins-Bold.cdb29a5d7ccf57ff05a3.ttf",
+    "static/media/Poppins-Black.ttf": "/InternNexus/static/media/Poppins-Black.d8b850b920a5ef49d752.ttf",
+    "static/media/internnexus.png": "/InternNexus/static/media/internnexus.5f27dfeb331b1f90c9e1.png",
+    "static/media/categories.svg": "/InternNexus/static/media/categories.b2ceadbeabdf7124bd5cab84e0665595.svg",
+    "static/media/xponent.jpg": "/InternNexus/static/media/xponent.be6b3e6b7b37566e6684.jpg",
+    "static/media/solaborate.png": "/InternNexus/static/media/solaborate.c0020af2a2c1ae759945.png",
+    "static/media/starlabs.png": "/InternNexus/static/media/starlabs.68f6979a316e9a9675fe.png",
+    "static/media/man_laptop.jpeg": "/InternNexus/static/media/man_laptop.c46f0c8f73116a26cf8a.jpeg",
+    "static/media/not-found.svg": "/InternNexus/static/media/not-found.5eb3e64476624b8a49d7d75cc64a0d40.svg",
+    "static/media/jobicon.svg": "/InternNexus/static/media/jobicon.7fc765499d702365e1b70b5288ff60b9.svg",
+    "static/media/deletebutton.svg": "/InternNexus/static/media/deletebutton.539eed7a06f9a60dcfba2c0de7859e47.svg",
+    "static/media/applications.svg": "/InternNexus/static/media/applications.5d67c258cbef9cefadcc79964c35c05e.svg",
+    "static/media/deletebuttonblack.svg": "/InternNexus/static/media/deletebuttonblack.212c8821d736f8b11fbebad7e3d13d5b.svg",
+    "static/media/logout.svg": "/InternNexus/static/media/logout.3a170b63dd692e3c29018420a85f19f8.svg",
+    "index.html": "/InternNexus/index.html",
+    "static/media/sorticon.svg": "/InternNexus/static/media/sorticon.c23c1530700ba5032e6c752eb08e804d.svg",
+    "static/media/editbuttonn.svg": "/InternNexus/static/media/editbuttonn.6c91637dfd6a03a407a147a24444528f.svg",
+    "static/media/usericon.svg": "/InternNexus/static/media/usericon.45534694adfcfe2fdaeed5d0dc00e279.svg",
+    "static/media/applybutton.svg": "/InternNexus/static/media/applybutton.539a581c81a98c09e0b399102af100a7.svg",
+    "main.9d28bd85.css.map": "/InternNexus/static/css/main.9d28bd85.css.map",
+    "main.abad54b8.js.map": "/InternNexus/static/js/main.abad54b8.js.map",
+    "453.d18cdafe.chunk.js.map": "/InternNexus/static/js/453.d18cdafe.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9d28bd85.css",
+    "static/js/main.abad54b8.js"
+  ]
+}
