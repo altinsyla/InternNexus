@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const api = axios.create ({
-    baseURL: 'http://localhost:5001',
+const api = axios.create({
+    baseURL: `https://internnexus.onrender.com`,
     headers: {
-        'Content-Type': 'application/json'
-        }
-});
+      "Content-Type": "application/json",
+    },
+  });
 
 api.interceptors.request.use(function(config) {
     
