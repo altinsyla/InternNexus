@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/InternNexus/static/css/main.9d28bd85.css",
-    "main.js": "/InternNexus/static/js/main.1e16a46b.js",
+    "main.js": "/InternNexus/static/js/main.189e30ae.js",
     "static/js/453.d18cdafe.chunk.js": "/InternNexus/static/js/453.d18cdafe.chunk.js",
     "static/media/AltinSyla.jpg": "/InternNexus/static/media/AltinSyla.84a484db56ff91cb9855.jpg",
     "static/media/FlamurIsa.jpg": "/InternNexus/static/media/FlamurIsa.4169d2028515c52aca9e.jpg",
@@ -31,11 +31,11 @@
     "static/media/usericon.svg": "/InternNexus/static/media/usericon.45534694adfcfe2fdaeed5d0dc00e279.svg",
     "static/media/applybutton.svg": "/InternNexus/static/media/applybutton.539a581c81a98c09e0b399102af100a7.svg",
     "main.9d28bd85.css.map": "/InternNexus/static/css/main.9d28bd85.css.map",
-    "main.1e16a46b.js.map": "/InternNexus/static/js/main.1e16a46b.js.map",
+    "main.189e30ae.js.map": "/InternNexus/static/js/main.189e30ae.js.map",
     "453.d18cdafe.chunk.js.map": "/InternNexus/static/js/453.d18cdafe.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9d28bd85.css",
-    "static/js/main.1e16a46b.js"
+    "static/js/main.189e30ae.js"
   ]
 }
