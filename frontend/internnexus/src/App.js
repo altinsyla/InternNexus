@@ -30,6 +30,11 @@ function App() {
         <Route exact path="/home">
           <Home />
         </Route>
+
+        <Route exact path="/InternNexus">
+          <Home />
+        </Route>
+
         <Route exact path="/adinternship">
           <ADInternship />
         </Route>
