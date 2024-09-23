@@ -64,25 +64,32 @@ function Internships() {
   };
 
   const filteredInternships = internships
-    .filter((internship) => {
-      const matchesSearchQuery = internship.title
-        .toLowerCase()
-        .includes(searchQuery.toLowerCase());
-      const matchesFilterType =
-        filterType === "all" ||
-        (filterType === "part-time" &&
-          internship.type.toLowerCase().startsWith("p")) ||
-        (filterType === "full-time" &&
-          internship.type.toLowerCase().startsWith("f"));
-      const matchesCategory =
-        filter.category === "all" || internship.category === filter.category;
-      return matchesSearchQuery && matchesFilterType && matchesCategory;
-    })
-    .sort((a, b) =>
-      sortOrder === "newest"
-        ? new Date(b.registeredDate) - new Date(a.registeredDate)
-        : new Date(a.registeredDate) - new Date(b.registeredDate)
+  .filter((internship) => {
+    const matchesSearchQuery = internship.title
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+
+    const matchesTopics = internship.topics.some((topic) =>
+      topic.toLowerCase().includes(searchQuery.toLowerCase())
     );
+
+    const matchesFilterType =
+      filterType === "all" ||
+      (filterType === "part-time" &&
+        internship.type.toLowerCase().startsWith("p")) ||
+      (filterType === "full-time" &&
+        internship.type.toLowerCase().startsWith("f"));
+
+    const matchesCategory =
+      filter.category === "all" || internship.category === filter.category;
+
+    return (matchesSearchQuery || matchesTopics) && matchesFilterType && matchesCategory;
+  })
+  .sort((a, b) =>
+    sortOrder === "newest"
+      ? new Date(b.registeredDate) - new Date(a.registeredDate)
+      : new Date(a.registeredDate) - new Date(b.registeredDate)
+);
 
   return (
     <div>

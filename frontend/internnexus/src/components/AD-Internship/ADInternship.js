@@ -4,7 +4,7 @@ import "./ADInternship.scss";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Swal from "sweetalert2";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar.js";
 
 const ADInternship = () => {
@@ -20,11 +20,15 @@ const ADInternship = () => {
     offers: "",
     category: "",
     salary: "",
+    topics: [],
   });
+  const [topics, setTopics] = useState([]); // Topics state
+  const [currentTopic, setCurrentTopic] = useState(""); // Input for new topic
   const [show, setShow] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
+  const history = useHistory();
 
   useEffect(() => {
     getAllInternships();
@@ -59,6 +63,9 @@ const ADInternship = () => {
         category: response.data.category,
         salary: response.data.salary,
       });
+      setTopics(
+        Array.isArray(response.data.topics) ? response.data.topics : []
+      );
     } catch (err) {
       console.log(err);
     }
@@ -71,6 +78,30 @@ const ADInternship = () => {
 
   const handleFileChange = (e) => {
     setSingleInternship({ ...singleInternship, image: e.target.files[0] });
+  };
+
+  const handleTopicChange = (e) => {
+    setCurrentTopic(e.target.value);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (currentTopic.trim()) {
+        setTopics([...topics, currentTopic.trim()]);
+        setCurrentTopic("");
+      }
+    }
+  };
+
+  const handleCancel = () => {
+    setShow(false);
+    setIsEditing(false);
+    history.push("/adinternship");
+  };
+
+  const removeTopic = (indexToRemove) => {
+    setTopics(topics.filter((_, index) => index !== indexToRemove));
   };
 
   const handleSubmit = async (event) => {
@@ -88,6 +119,9 @@ const ADInternship = () => {
     formData.append("offers", singleInternship.offers);
     formData.append("category", singleInternship.category);
     formData.append("salary", singleInternship.salary);
+    topics.forEach((topic) => {
+      formData.append("topics[]", topic);
+    });
 
     try {
       if (isEditing && id) {
@@ -126,7 +160,10 @@ const ADInternship = () => {
         offers: "",
         category: "",
         salary: "",
+        topics: [],
       });
+      setTopics([]);
+      getAllInternships();
     } catch (error) {
       console.error("Internship save error", error);
     }
@@ -210,6 +247,7 @@ const ADInternship = () => {
               <th>Duration</th>
               <th>Salary</th>
               <th>Registered Date</th>
+              <th>Topics</th>
               <th>Edit</th>
               <th>Delete</th>
             </tr>
@@ -230,6 +268,7 @@ const ADInternship = () => {
                     { month: "long", day: "numeric", year: "numeric" }
                   )}
                 </td>
+                <td>{internship.topics && internship.topics.join(", ")}</td>
                 <td>
                   <button
                     className="btn btn-warning mr-2"
@@ -244,7 +283,7 @@ const ADInternship = () => {
                   </button>
                 </td>
                 <td>
-                <button
+                  <button
                     className="btn btn-danger mr-2"
                     style={{ fontSize: "10px" }}
                     onClick={() => deleteInternship(internship._id)}
@@ -261,170 +300,168 @@ const ADInternship = () => {
           size="lg"
           show={show}
           aria-labelledby="example-modal-sizes-title-lg"
-          centered={true}
-          keyboard={true}
+          centered
         >
-          <Modal.Header
-            closeButton
-            onHide={() => {
-              setShow(false);
-              setSingleInternship({
-                username: localStorage.getItem("username"),
-                image: null,
-                title: "",
-                type: "",
-                location: "",
-                duration: "",
-                requirements: "",
-                offers: "",
-                category: "",
-                salary: "",
-              });
-              setIsEditing(false);
-            }}
-          >
+          <Modal.Header>
             <Modal.Title id="example-modal-sizes-title-lg">
-              Internship
+              {isEditing ? "Edit Internship" : "Create Internship"}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form
-              className="adinternship-modalform"
-              onSubmit={handleSubmit}
-              encType="multipart/form-data"
-            >
-              <label>Internship Image</label>
-              <input
-                type="file"
-                className="internshipform-inputs"
-                name="image"
-                onChange={handleFileChange}
-              />
-              <label>Internship Title</label>
-              <input
-                type="text"
-                className="internshipform-inputs"
-                name="title"
-                placeholder="Enter internship title"
-                value={singleInternship.title}
-                onChange={handleChange}
-              />
-              <label>Internship Type</label>
-              <input
-                type="text"
-                className="internshipform-inputs"
-                name="type"
-                placeholder="e.g. Full-time, Part-time"
-                value={singleInternship.type}
-                onChange={handleChange}
-              />
-              <label className="internshipform-labels">
-                Internship Category
-              </label>
-              <select
-                name="category"
-                className="internshipform-inputs"
-                value={singleInternship.category}
-                onChange={handleChange}
-              >
-                <option value="">Select a Category</option>
-                <option value="Front-End Developer">Front-End Developer</option>
-                <option value="Back-End Developer">Back-End Developer</option>
-                <option value="Full Stack Developer">
-                  Full Stack Developer
-                </option>
-                <option value="Data Scientist">Data Scientist</option>
-                <option value="Machine Learning Engineer">
-                  Machine Learning Engineer
-                </option>
-                <option value="DevOps Engineer">DevOps Engineer</option>
-                <option value="Cloud Architect">Cloud Architect</option>
-                <option value="Cybersecurity Analyst">
-                  Cybersecurity Analyst
-                </option>
-                <option value="AI Engineer">AI Engineer</option>
-                <option value="Blockchain Developer">
-                  Blockchain Developer
-                </option>
-                <option value="IoT Developer">IoT Developer</option>
-                <option value="Mobile Application Developer">
-                  Mobile Application Developer
-                </option>
-                <option value="UI/UX Designer">UI/UX Designer</option>
-              </select>
-              <label>Location</label>
-              <input
-                type="text"
-                className="internshipform-inputs"
-                name="location"
-                placeholder="e.g. Prishtine, Vushtrri, Remote"
-                value={singleInternship.location}
-                onChange={handleChange}
-              />
-              <label>Duration</label>
-              <input
-                type="text"
-                className="internshipform-inputs"
-                name="duration"
-                placeholder="e.g. 3 months, 6 months"
-                value={singleInternship.duration}
-                onChange={handleChange}
-              />
-              <label>Salary</label>
-              <input
-                type="text"
-                className="internshipform-inputs"
-                name="salary"
-                placeholder="e.g. 300$, 500$"
-                value={singleInternship.salary}
-                onChange={handleChange}
-              />
-              <label>Internship Requirements</label>
-              <textarea
-                className="internshipform-inputs"
-                name="requirements"
-                placeholder="List the requirements for the internship"
-                value={singleInternship.requirements}
-                onChange={handleChange}
-              />
-              <div>{formatList(singleInternship.requirements)}</div>
-              <label>What We Offer</label>
-              <textarea
-                className="internshipform-inputs"
-                name="offers"
-                placeholder="Describe what your company offers to interns"
-                value={singleInternship.offers}
-                onChange={handleChange}
-              />
-              <div>{formatList(singleInternship.offers)}</div>
+            <form className="addinstructor-form" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label>Image</label>
+                <input
+                  type="file"
+                  className="form-control"
+                  onChange={handleFileChange}
+                />
+              </div>
+              <div className="form-group">
+                <label>Title</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="title"
+                  placeholder="Enter internship title"
+                  value={singleInternship.title}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Type</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="type"
+                  placeholder="Enter internship type"
+                  value={singleInternship.type}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Location</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="location"
+                  placeholder="Enter internship location"
+                  value={singleInternship.location}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Duration</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="duration"
+                  placeholder="Enter internship duration"
+                  value={singleInternship.duration}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Requirements</label>
+                <textarea
+                  className="form-control"
+                  name="requirements"
+                  placeholder="Enter internship requirements"
+                  value={singleInternship.requirements}
+                  onChange={handleChange}
+                  required
+                ></textarea>
+                <div className="formatted-requirements">
+                  {formatList(singleInternship.requirements)}
+                </div>
+              </div>
+              <div className="form-group">
+                <label>Offers</label>
+                <textarea
+                  className="form-control"
+                  name="offers"
+                  placeholder="Enter internship offers"
+                  value={singleInternship.offers}
+                  onChange={handleChange}
+                  required
+                ></textarea>
+                <div className="formatted-requirements">
+                  {formatList(singleInternship.offers)}
+                </div>
+              </div>
+              <div className="form-group">
+                <label>Category</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="category"
+                  placeholder="Enter internship category"
+                  value={singleInternship.category}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Salary</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="salary"
+                  placeholder="Enter internship salary"
+                  value={singleInternship.salary}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Topics</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={currentTopic}
+                  onChange={handleTopicChange}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Press Enter to add a topic"
+                />
+                <div className="topic-list">
+                  {topics.map((topic, index) => (
+                    <span key={index} className="topic-item">
+                      {topic}{" "}
+                      <button
+                        type="button"
+                        onClick={() => removeTopic(index)}
+                        className="remove-topic"
+                      >
+                        &times;
+                      </button>
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="adint-buttons">
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={handleCancel}
+                  style={{width: "150px"}}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  style={{width: "150px"}}
+                >
+                  {isEditing ? "Save Changes" : "Create Internship"}
+                </button>
+              </div>
             </form>
           </Modal.Body>
-          <Modal.Footer>
-            <Button
-              variant="secondary"
-              onClick={() => {
-                setShow(false);
-                setSingleInternship({
-                  username: localStorage.getItem("username"),
-                  image: null,
-                  title: "",
-                  type: "",
-                  location: "",
-                  duration: "",
-                  requirements: "",
-                  offers: "",
-                  category: "",
-                  salary: "",
-                });
-                setIsEditing(false);
-              }}
-            >
-              Close
-            </Button>
-            <Button variant="primary" onClick={handleSubmit}>
-              Save Changes
-            </Button>
-          </Modal.Footer>
         </Modal>
       </div>
     </div>

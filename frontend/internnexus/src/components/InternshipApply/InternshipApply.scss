@@ -218,6 +218,16 @@
   h6 {
     font-size: 0.8rem;
   }
+  .topics-container {
+    gap: 10px;
+    font-family: poppins_regular;
+    font-size: 0.6rem;
+  }
+  
+  .int-topics {
+    width: 70px;
+    padding: 5px 10px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -275,6 +285,16 @@
   }
   h6 {
     font-size: 0.9rem;
+  }
+  .topics-container {
+    gap: 10px;
+    font-family: poppins_regular;
+    font-size: 0.8rem;
+  }
+  
+  .int-topics {
+    width: 100px;
+    padding: 5px 10px;
   }
 }
 

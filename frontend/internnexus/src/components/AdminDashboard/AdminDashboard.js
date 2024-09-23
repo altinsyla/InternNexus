@@ -260,7 +260,7 @@ const AdminDashboard = () => {
                 type="text"
                 onChange={onChange}
                 value={singleUser.about}
-                name="role"
+                name="about"
               />
             </form>
           </Modal.Body>

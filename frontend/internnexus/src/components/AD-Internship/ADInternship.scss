@@ -8,3 +8,13 @@
 .adinternship-table td{
     text-align: center;
 }
+.adint-buttons{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+.form-control{
+    margin-top: 5px;
+}
