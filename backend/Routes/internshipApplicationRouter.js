@@ -3,6 +3,7 @@ const internshipApplicationController = require('../Controllers/internshipApplic
 const router = express.Router();
 
 router.get('/', internshipApplicationController.getAllInternshipApplications);
+router.get('/application/:id', internshipApplicationController.getAllInternshipApplicationsWithUsername);
 router.get('/:id', internshipApplicationController.getSingleInternshipApplication);
 router.get('/user/:id', internshipApplicationController.getUserApplicationsByUsername);
 router.post('/', internshipApplicationController.upload.single('cv'), internshipApplicationController.createInternshipApplication);

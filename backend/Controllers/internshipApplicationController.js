@@ -23,6 +23,16 @@ const getAllInternshipApplications = async (req, res) => {
   }
 };
 
+const getAllInternshipApplicationsWithUsername = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const internshipApplicationsWU = await InternshipApplication.find({ internshipID: id }); //po menoj qishtu se i marrum veq qa i ka kriju hr currentUser.username == internshipApplications.username
+    res.status(200).json(internshipApplicationsWU);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 const getSingleInternshipApplication = async (req, res) => {
   const { id } = req.params;
   try {
@@ -105,6 +115,7 @@ const deleteInternshipApplication = async (req, res) => {
 
 module.exports = {
   getAllInternshipApplications,
+  getAllInternshipApplicationsWithUsername,
   getSingleInternshipApplication,
   createInternshipApplication,
   updateInternshipApplication,

@@ -79,9 +79,9 @@ function MyProfile() {
     }
 
     // if (currentUser.role == 1) {
-      getAllUserApplications();
+    getAllUserApplications();
     // } else {
-      getAllHrInternships();
+    getAllHrInternships();
     // }
   }, [username]);
 
@@ -241,6 +241,9 @@ function MyProfile() {
                 ? "Get My Applications"
                 : "Get My Internships"}
             </button>
+            {/* {currentUser.role == 2 && (
+              <button onClick={() => setShowModalApp(true)}>View Aplications</button>
+            )} */}
           </div>
         </div>
       </div>
@@ -612,25 +615,28 @@ function MyProfile() {
             {currentUser.role == 1
               ? applications.map((skill) => (
                   <>
-                    <ModalCard key={skill._id} id={skill.internshipID} />
+                    <ModalCard key={skill._id} id={skill.internshipID} role={currentUser.role} />
                   </>
                 ))
               : internships.map((skill) => (
                   <>
-                    <ModalCard key={skill._id} id={skill._id} />
+                    <ModalCard key={skill._id} id={skill._id} role={currentUser.role}/>
                   </>
                 ))}
           </Modal.Body>
         </Modal>
       }
+
       <Footer />
     </div>
   );
 }
 
-function ModalCard({ id }) {
+function ModalCard({ id, role }) {
   const history = useHistory();
   const [internship, setinternship] = useState([]);
+  const [application, setapplication] = useState([]);
+  const [showModalApp, setShowModalApp] = useState(false);
 
   const getInternship = async () => {
     try {
@@ -641,44 +647,69 @@ function ModalCard({ id }) {
     }
   };
 
+  const getAllUserApplicationsByUsers = async () => {
+    try {
+      const response = await api.get("/internshipapplication/application/" + internship._id);
+      setapplication(response.data);
+      console.log(response.data);
+    } catch (err) {
+      console.log("Error getting custom users");
+    }
+  };
+
   useEffect(() => {
     getInternship();
-
   }, []);
 
   return (
-    <Card style={{ width: "18rem" }}>
-      <Card.Img
-        variant="top"
-        src={`https://internnexus.onrender.com/images/${internship.image}`}
-        id="internshipImage"
-      />
-      <Card.Body>
-        <hr></hr>
-        <Card.Title id="internshipTitle">{internship.title}</Card.Title>
-        {/* <Card.Text>{internship.topics}</Card.Text> */}
-      </Card.Body>
-      <ListGroup className="list-group-flush">
-        <ListGroup.Item>Location: {internship.location}</ListGroup.Item>
-        <ListGroup.Item>
-          Internship Created On: {new Date(internship.registeredDate).toLocaleDateString()}
-        </ListGroup.Item>
-        <ListGroup.Item>Type : {internship.type}</ListGroup.Item>
-      </ListGroup>
-      <Card.Body>
-        <Card.Link
-          onClick={() => {
-            history.push(`/apply/${internship._id}`);
-          }}
-          id="internshipLink"
-        >
-          Go to Internship Post
-        </Card.Link>
-      </Card.Body>
-    </Card>
+    <>
+      <Card style={{ width: "18rem" }}>
+        <Card.Img
+          variant="top"
+          src={`https://internnexus.onrender.com/images/${internship.image}`}
+          id="internshipImage"
+        />
+        <Card.Body>
+          <hr></hr>
+          <Card.Title id="internshipTitle">{internship.title}</Card.Title>
+          {/* <Card.Text>{internship.topics}</Card.Text> */}
+        </Card.Body>
+        <ListGroup className="list-group-flush">
+          <ListGroup.Item>Location: {internship.location}</ListGroup.Item>
+          <ListGroup.Item>
+            Internship Created On:{" "}
+            {new Date(internship.registeredDate).toLocaleDateString()}
+          </ListGroup.Item>
+          <ListGroup.Item>Type : {internship.type}</ListGroup.Item>
+        </ListGroup>
+        <Card.Body style={{display: "flex", flexDirection: 'column', alignItems: "center", gap: '1rem'}}>
+          <Card.Link
+            onClick={() => {
+              history.push(`/apply/${internship._id}`);
+            }}
+            id="internshipLink"
+          >
+            Go to Internship Post
+          </Card.Link>
+          {role == 2 && (
+            <Card.Link id="internshipLink" onClick={() => {setShowModalApp(true); getAllUserApplicationsByUsers()}}>
+              View Aplications
+            </Card.Link>
+          )}
+        </Card.Body>
+      </Card>
+      <Modal
+        show={showModalApp}
+        fullscreen={true}
+        onHide={() => setShowModalApp(false)}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Applications for this Internship</Modal.Title>
+        </Modal.Header>
+        <Modal.Body></Modal.Body>
+      </Modal>
+    </>
   );
 }
-
-
 
 export default MyProfile;
