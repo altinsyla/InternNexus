@@ -26,7 +26,7 @@ const getAllInternshipApplications = async (req, res) => {
 const getAllInternshipApplicationsWithUsername = async (req, res) => {
   const { id } = req.params;
   try {
-    const internshipApplicationsWU = await InternshipApplication.find({ internshipID: id }); //po menoj qishtu se i marrum veq qa i ka kriju hr currentUser.username == internshipApplications.username
+    const internshipApplicationsWU = await InternshipApplication.find({ internshipID: id }).populate('internshipID'); //po menoj qishtu se i marrum veq qa i ka kriju hr currentUser.username == internshipApplications.username
     res.status(200).json(internshipApplicationsWU);
   } catch (error) {
     res.status(404).json({ message: error.message });

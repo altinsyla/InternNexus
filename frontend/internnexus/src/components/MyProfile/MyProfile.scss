@@ -417,3 +417,11 @@
   gap: 1em;
   justify-content: center;
 }
+
+#modalBodyApp{
+  background-color: $clr-caramel;
+}
+
+#modalBodyAppButton:hover{
+  cursor: pointer;
+}

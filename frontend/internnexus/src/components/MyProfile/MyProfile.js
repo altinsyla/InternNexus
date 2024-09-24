@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams, Link } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import Dropdown from "react-bootstrap/Dropdown";
+import ListGroup from "react-bootstrap/ListGroup";
+import Modal from "react-bootstrap/Modal";
+import { useHistory, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 import api from "../../api.js";
 import Footer from "../Footer/Footer.js";
-import NavBar from "../NavBar/NavBar.js";
-import "../MyProfile/MyProfile.scss";
-import Swal from "sweetalert2";
-import Dropdown from "react-bootstrap/Dropdown";
 import useGlobalFunctions from "../globalFunctions.js";
-import Modal from "react-bootstrap/Modal";
-import Card from "react-bootstrap/Card";
-import ListGroup from "react-bootstrap/ListGroup";
+import "../MyProfile/MyProfile.scss";
+import NavBar from "../NavBar/NavBar.js";
 
 function MyProfile() {
   const { getAllSkills } = useGlobalFunctions();
@@ -615,12 +615,20 @@ function MyProfile() {
             {currentUser.role == 1
               ? applications.map((skill) => (
                   <>
-                    <ModalCard key={skill._id} id={skill.internshipID} role={currentUser.role} />
+                    <ModalCard
+                      key={skill._id}
+                      id={skill.internshipID}
+                      role={currentUser.role}
+                    />
                   </>
                 ))
               : internships.map((skill) => (
                   <>
-                    <ModalCard key={skill._id} id={skill._id} role={currentUser.role}/>
+                    <ModalCard
+                      key={skill._id}
+                      id={skill._id}
+                      role={currentUser.role}
+                    />
                   </>
                 ))}
           </Modal.Body>
@@ -649,7 +657,9 @@ function ModalCard({ id, role }) {
 
   const getAllUserApplicationsByUsers = async () => {
     try {
-      const response = await api.get("/internshipapplication/application/" + internship._id);
+      const response = await api.get(
+        "/internshipapplication/application/" + internship._id
+      );
       setapplication(response.data);
       console.log(response.data);
     } catch (err) {
@@ -682,7 +692,14 @@ function ModalCard({ id, role }) {
           </ListGroup.Item>
           <ListGroup.Item>Type : {internship.type}</ListGroup.Item>
         </ListGroup>
-        <Card.Body style={{display: "flex", flexDirection: 'column', alignItems: "center", gap: '1rem'}}>
+        <Card.Body
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "1rem",
+          }}
+        >
           <Card.Link
             onClick={() => {
               history.push(`/apply/${internship._id}`);
@@ -692,7 +709,13 @@ function ModalCard({ id, role }) {
             Go to Internship Post
           </Card.Link>
           {role == 2 && (
-            <Card.Link id="internshipLink" onClick={() => {setShowModalApp(true); getAllUserApplicationsByUsers()}}>
+            <Card.Link
+              id="internshipLink"
+              onClick={() => {
+                setShowModalApp(true);
+                getAllUserApplicationsByUsers();
+              }}
+            >
               View Aplications
             </Card.Link>
           )}
@@ -706,7 +729,15 @@ function ModalCard({ id, role }) {
         <Modal.Header closeButton>
           <Modal.Title>Applications for this Internship</Modal.Title>
         </Modal.Header>
-        <Modal.Body></Modal.Body>
+        <Modal.Body style={{display: 'flex', flexDirection: 'column', gap: '5px'}}>
+          {application.map((app) => (
+            <Card body id="modalBodyApp">
+              User <strong id={'modalBodyAppButton'}onClick={() => history.push('/student/' + app.username)}>{app.username}</strong> applied for{" "}
+              <strong>{app.internshipID.title}</strong> at{" "}
+              <strong>{new Date(app.applyDate).toLocaleDateString()}.</strong>
+            </Card>
+          ))}
+        </Modal.Body>
       </Modal>
     </>
   );
