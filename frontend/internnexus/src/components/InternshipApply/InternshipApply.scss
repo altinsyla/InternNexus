@@ -219,6 +219,10 @@
     font-size: 0.8rem;
   }
   .topics-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-content: center;
     gap: 10px;
     font-family: poppins_regular;
     font-size: 0.6rem;
@@ -287,14 +291,21 @@
     font-size: 0.9rem;
   }
   .topics-container {
-    gap: 10px;
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: repeat(2, 1);
     font-family: poppins_regular;
     font-size: 0.8rem;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 100%;
   }
   
   .int-topics {
-    width: 100px;
-    padding: 5px 10px;
+    // border: 1px solid black;
+    width: auto;
+    text-align: center;
   }
 }
 

@@ -12,6 +12,7 @@ const mongoURI =
 const allowedOrigins = [
   "http://localhost:3000",
   "https://hakifkadriu.github.io",
+    "https://internnexus.onrender.com",
   "https://expensetracker-nkp3.onrender.com",
 ];
 
@@ -24,8 +25,8 @@ app.use(
         callback(new Error("Not allowed by CORS"));
       }
     },
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    // credentials: true,
   })
 );
 app.use(express.json());

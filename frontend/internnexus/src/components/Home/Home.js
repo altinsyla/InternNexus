@@ -140,7 +140,7 @@ function Home() {
                 </button>
                 <Link
                   to="/internships"
-                  className="button_findintern"
+                  className="linknodecoration button_findintern"
                 >
                   Find an Internship
                 </Link>
