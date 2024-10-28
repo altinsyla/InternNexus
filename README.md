@@ -1,6 +1,6 @@
-##InternNexus is an innovative platform designed to bridge the gap between students seeking internships and companies looking for fresh talent. Built collaboratively by Altin Syla,  Hakif Kadriu and Flamur Isa. InternNexus provides a streamlined, user-friendly experience to make the internship search and recruitment process easier and more effective.
+**InternNexus** is an innovative platform designed to bridge the gap between students seeking internships and companies looking for fresh talent. Built collaboratively by Altin Syla,  Hakif Kadriu and Flamur Isa. InternNexus provides a streamlined, user-friendly experience to make the internship search and recruitment process easier and more effective.
 
-##🔑 Key Features
+**🔑 Key Features**
 - Personalized User Accounts
 Tailored profiles for both students and HR representatives, offering role-specific features and access.
 
@@ -16,7 +16,7 @@ HR representatives can edit, update, and remove listings, keeping internship inf
 - Admin Supervision for Quality Control
 Platform administrators manage listings and monitor user interactions, ensuring a smooth, reliable experience for all users.
 
-##⚙️ Technology Stack
+**⚙️ Technology Stack**
 Front-End: ReactJS
 Back-End: NodeJS + ExpressJS
 Database: MongoDB
